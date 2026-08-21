@@ -3,7 +3,9 @@
     python run.py init-db                       create the database
     python run.py seed-demo                     insert synthetic data (offline testing)
     python run.py purge-demo                    delete the synthetic data again
-    python run.py ingest-hf                     load McAuley Amazon-Reviews-2023 into the DB
+    python run.py reset-corpus                  wipe ALL phones/reviews (clean slate)
+    python run.py import-corpus PATH            import Colab/HF export + optional ABSA
+    python run.py ingest-hf                     stream HF directly into the DB (slower)
     python run.py login                         save a signed-in browser session (optional live scrape)
     python run.py scrape -q "samsung galaxy s24" -q "iphone 15"
     python run.py analyze                       run Steps 1-6 over stored reviews
@@ -18,6 +20,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Annotated
 
 import typer
@@ -97,6 +100,66 @@ def cmd_purge_demo(
         )
     else:
         console.print("[yellow]No demo data found — nothing to purge.[/yellow]")
+
+
+@app.command("reset-corpus")
+def cmd_reset_corpus(
+    yes: Annotated[bool, typer.Option("--yes", "-y", help="Skip the confirmation prompt.")] = False,
+) -> None:
+    """Delete ALL phones/reviews/scores (demo + scrape + HF) so you can load a clean real corpus."""
+    _bootstrap()
+    from app.services.corpus_import import reset_corpus
+
+    if not yes:
+        typer.confirm(
+            "Delete the ENTIRE corpus (every phone, review and score)? This cannot be undone.",
+            abort=True,
+        )
+
+    with session_scope() as db:
+        result = reset_corpus(db)
+
+    console.print(f"[green]Reset[/green] — deleted {result['phones_deleted']} phone(s).")
+
+
+@app.command("import-corpus")
+def cmd_import_corpus(
+    folder: Annotated[str, typer.Argument(help="Folder with phones.jsonl + reviews.jsonl")],
+    replace: Annotated[bool, typer.Option("--replace/--no-replace", help="Wipe DB first.")] = True,
+    analyze: Annotated[bool, typer.Option("--analyze/--no-analyze", help="Run Steps 2-6 after import.")] = True,
+) -> None:
+    """Import a real HF corpus built in Colab or by scripts/build_hf_corpus.py."""
+    settings = _bootstrap()
+    from app.services.analysis import run_analysis
+    from app.services.corpus_import import import_corpus_folder
+
+    def progress(done: int, total: int, message: str) -> None:
+        console.print(f"({done}/{total}) {message}")
+
+    with session_scope() as db:
+        result = import_corpus_folder(
+            db,
+            Path(folder),
+            settings=settings,
+            replace=replace,
+            progress=progress,
+        )
+
+    console.print_json(json.dumps(result, default=str))
+    if not result["phones_upserted"]:
+        console.print("[yellow]No phones imported.[/yellow]")
+        raise typer.Exit(1)
+
+    if analyze:
+        console.print("[cyan]Running methodology Steps 2–6 (segment → ABSA → aggregate)…[/cyan]")
+        analysis = run_analysis(
+            phone_ids=result["phone_ids"],
+            settings=settings,
+            progress=progress,
+        )
+        console.print_json(json.dumps(analysis, default=str))
+
+    console.print("[green]Done.[/green] Open the UI: [cyan]python run.py serve[/cyan]")
 
 
 @app.command("ingest-hf")

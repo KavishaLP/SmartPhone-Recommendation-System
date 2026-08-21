@@ -15,61 +15,71 @@ Recommendation ◀─ Feature scores ◀─ Step 6 Aggregate ◀─ Step 4 Senti
 
 ---
 
-## 1. Quick start
+## 1. Quick start (real Hugging Face corpus — no demo data)
 
-```bash
-# 1. Install dependencies and the browser (browser only needed for optional live scrape)
+**Recommended path:** build the corpus in Google Colab (fast download), then import locally.
+
+### A) Google Colab
+
+1. Open [`notebooks/Amazon_Reviews_2023_ABSA_Corpus.ipynb`](notebooks/Amazon_Reviews_2023_ABSA_Corpus.ipynb) in Colab  
+   (or upload it from this repo).
+2. Run all cells. It pulls exact reviews from
+   [`McAuley-Lab/Amazon-Reviews-2023`](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023),
+   filters real smartphones, applies **methodology Step 1** preprocessing, and downloads `hf_corpus.zip`.
+
+### B) On your PC
+
+```powershell
+cd "d:\4TH YEAR\RESEARCH SETUP\smartphone recommendation"
 pip install -r requirements.txt
-python -m playwright install chromium
 
-# 2. Configure (optional)
-copy .env.example .env          # Windows
+# unzip hf_corpus.zip into .\hf_corpus\  (phones.jsonl + reviews.jsonl + manifest.json)
 
-# 3. Create the database
-python run.py init-db
-
-# 4. Load the McAuley Amazon-Reviews-2023 corpus (phones + reviews + ABSA)
-python run.py ingest-hf --max-phones 30 --max-reviews 60 --min-ratings 200
-
-# 5. Start the website (reads the DB only — no scrape UI)
+python run.py reset-corpus --yes
+python run.py import-corpus .\hf_corpus --replace --analyze
 python run.py serve
 # -> http://127.0.0.1:8000/ui/
 ```
 
-`ingest-hf` streams `raw_meta_Cell_Phones_and_Accessories` (parquet) and
-`raw/review_categories/Cell_Phones_and_Accessories.jsonl` from Hugging Face,
-filters accessories out, runs Step 1 preprocessing on insert, then runs the
-ABSA pipeline so Recommend works immediately.
+`reset-corpus` removes demo/sample/old rows. `import-corpus --analyze` runs methodology
+Steps 2–6 (segment → aspect extraction → sentiment → structured rows → aspect scores).
 
-Optional live Amazon scraping still exists as CLI-only (`python run.py login` /
-`python run.py scrape`) and is **not** exposed in the website.
+### Alternative: stream HF directly on your PC (slower)
 
-`seed-demo` inserts a reproducible synthetic corpus so you can verify the pipeline,
-the API and the recommender without touching a marketplace. **It is test
-scaffolding — never report results from it.** Remove it before collecting real data:
-
-```bash
-python run.py purge-demo
+```powershell
+python run.py reset-corpus --yes
+python scripts/build_hf_corpus.py --max-phones 40 --max-reviews 100 --min-ratings 500 --max-review-scan 2000000 --out data/exports/hf_corpus
+python run.py import-corpus data/exports/hf_corpus --replace --analyze
 ```
 
-Only rows with `source = "demo"` are deleted, so scraped data is never at risk. The
-dashboard shows a warning banner for as long as synthetic phones remain in the database.
+Or one-shot into the DB: `python run.py ingest-hf ...` (same data source, less portable).
 
-### A note on price currencies
+---
 
-Amazon localises prices to your delivery country, so the same `amazon.com` search can
-return LKR for one researcher and USD for another. Because affordability is a min-max
-normalisation of numeric price, mixing currencies in one corpus would pin the
-foreign-currency phone at 0 and squash every other phone near 1, destroying the
-dimension. Two guards handle this:
+## Methodology mapping
 
-- `affordability_index` normalises **within** each currency, and leaves a phone
-  unscored when it is the only one in its currency (there is nothing to compare against).
-- `/stats` reports `currency_breakdown`, and the dashboard warns when more than one
-  currency is present.
+| Step | What | Where |
+|---|---|---|
+| 1 | Dedupe, spam/empty, HTML, normalise, language filter | Colab / `build_hf_corpus.py` |
+| 2 | Sentence segmentation | `import-corpus --analyze` |
+| 3–4 | Aspect extraction + sentiment (lexicon or LLM) | same |
+| 5 | Structured aspect–sentiment dataset | SQLite `aspect_sentiments` |
+| 6 | Aspect score aggregation → feature table | SQLite `aspect_scores` |
+| — | Weighted recommendation | `/ui/` Recommend page |
 
-Collect from a single marketplace with a single delivery country for any results you
-intend to report.
+Aspects: **battery, camera, display, performance, price**.
+
+---
+
+## Old quick start notes
+
+```bash
+# optional live scrape (CLI only, not the website)
+python run.py login
+python run.py scrape -q "samsung galaxy s24"
+```
+
+`seed-demo` is **test scaffolding only — never report it**. Prefer `reset-corpus` + HF import.
 
 ---
 
