@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phone Recommender</title>
+<link rel="stylesheet" href="app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f8ef7'/><text y='68' x='50' font-size='58' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>P</text></svg>">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-title">
+        <div class="brand-mark">P</div>
+        <div>Phone Recommender</div>
+      </div>
+      <div class="brand-sub">Aspect scores from review text</div>
+    </div>
+    <nav class="nav">
+      <div class="nav-label">Use</div>
+      <div class="nav-item active" data-view="recommend">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18.5 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+        <span>Recommend</span>
+      </div>
+      <div class="nav-item" data-view="phones">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+        <span>Phones</span>
+        <span class="nav-badge" id="badge-phones">-</span>
+      </div>
+      <div class="nav-label">Data</div>
+      <div class="nav-item" data-view="data">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+        <span>Database</span>
+      </div>
+    </nav>
+    <div class="sidebar-foot">
+      <div><span class="dot" id="health-dot"></span><span id="health-text">connecting…</span></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="btn btn-ghost menu-toggle" id="menu-toggle" style="place-items:center">☰</button>
+      <div>
+        <h1 id="page-title">Recommend</h1>
+        <div class="topbar-sub" id="page-sub">Set your priorities and get ranked phones from the database</div>
+      </div>
+      <div class="topbar-actions">
+        <span class="chip info" id="engine-chip">engine: …</span>
+        <button class="btn btn-sm" id="btn-refresh">Refresh</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- Recommend -->
+      <section class="view active" id="view-recommend">
+        <div class="grid split">
+          <div class="card pad-lg">
+            <div class="card-head"><h3>Your requirements</h3></div>
+            <div class="presets" id="presets"></div>
+            <div id="weights"></div>
+            <hr style="border:none;border-top:1px solid var(--border-soft);margin:20px 0">
+            <div class="grid cols-2" style="gap:12px">
+              <label class="field" style="margin:0">
+                <span class="lbl">Min price (USD)</span>
+                <input type="number" id="budget-min" placeholder="any" min="0">
+              </label>
+              <label class="field" style="margin:0">
+                <span class="lbl">Max price (USD)</span>
+                <input type="number" id="budget-max" placeholder="any" min="0">
+              </label>
+            </div>
+            <label class="field mt-16">
+              <span class="lbl">Minimum analysed reviews</span>
+              <input type="number" id="min-reviews" value="0" min="0">
+              <span class="hint">Set to 0 while the corpus is still loading. Raise it later to hide thin evidence.</span>
+            </label>
+            <button class="btn btn-primary btn-block mt-16" id="btn-recommend">Rank phones</button>
+          </div>
+          <div id="rec-results"></div>
+        </div>
+      </section>
+
+      <!-- Phones -->
+      <section class="view" id="view-phones">
+        <div class="card">
+          <div class="row wrap">
+            <input type="text" id="phone-search" placeholder="Search by name or brand…" style="max-width:320px">
+            <select id="phone-brand" style="max-width:190px"><option value="">All brands</option></select>
+            <div class="spacer"></div>
+            <span class="dim small" id="phone-count"></span>
+          </div>
+        </div>
+        <div class="grid auto mt-16" id="phone-grid"></div>
+      </section>
+
+      <!-- Data status -->
+      <section class="view" id="view-data">
+        <div class="banner info" style="margin-bottom:16px">
+          <span class="banner-icon">ℹ</span>
+          <div>
+            This site only <strong>reads</strong> the local database. Load or refresh data from the
+            terminal with <code class="mono">python run.py ingest-hf</code>, then
+            <code class="mono">python run.py analyze</code> if needed. Scraping is not part of the UI.
+          </div>
+        </div>
+        <div class="grid cols-4" id="stat-cards"></div>
+        <div class="card mt-24">
+          <div class="card-head"><h3>Feature scores in the database</h3></div>
+          <div id="feature-table"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div style="min-width:0">
+      <h2 id="drawer-title" style="font-size:16px">—</h2>
+      <div class="topbar-sub" id="drawer-sub"></div>
+    </div>
+    <button class="drawer-close" id="drawer-close">✕</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</aside>
+<div id="toasts"></div>
+<script src="app.js"></script>
+</body>
+</html>
