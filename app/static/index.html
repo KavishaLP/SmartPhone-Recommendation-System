@@ -18,7 +18,7 @@
       <div class="brand-sub">Aspect scores from review text</div>
     </div>
     <nav class="nav">
-      <div class="nav-label">Use</div>
+      <div class="nav-label">App</div>
       <div class="nav-item active" data-view="recommend">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18.5 5.5 22 7 14.5 2 9.5 9 9"/></svg>
         <span>Recommend</span>
@@ -27,11 +27,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
         <span>Phones</span>
         <span class="nav-badge" id="badge-phones">-</span>
-      </div>
-      <div class="nav-label">Data</div>
-      <div class="nav-item" data-view="data">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
-        <span>Database</span>
       </div>
     </nav>
     <div class="sidebar-foot">
@@ -44,7 +39,7 @@
       <button class="btn btn-ghost menu-toggle" id="menu-toggle" style="place-items:center">☰</button>
       <div>
         <h1 id="page-title">Recommend</h1>
-        <div class="topbar-sub" id="page-sub">Set your priorities and get ranked phones from the database</div>
+        <div class="topbar-sub" id="page-sub">Set aspect priorities; ranks phones from Amazon review ABSA scores</div>
       </div>
       <div class="topbar-actions">
         <span class="chip info" id="engine-chip">engine: …</span>
@@ -77,6 +72,7 @@
               <span class="hint">Set to 0 while the corpus is still loading. Raise it later to hide thin evidence.</span>
             </label>
             <button class="btn btn-primary btn-block mt-16" id="btn-recommend">Rank phones</button>
+            <p class="hint mt-16">Data is prepared offline (not in this UI): <code class="mono">python run.py prepare-corpus</code></p>
           </div>
           <div id="rec-results"></div>
         </div>
@@ -95,22 +91,6 @@
         <div class="grid auto mt-16" id="phone-grid"></div>
       </section>
 
-      <!-- Data status -->
-      <section class="view" id="view-data">
-        <div class="banner info" style="margin-bottom:16px">
-          <span class="banner-icon">ℹ</span>
-          <div>
-            This site only <strong>reads</strong> the local database. Load or refresh data from the
-            terminal with <code class="mono">python run.py ingest-hf</code>, then
-            <code class="mono">python run.py analyze</code> if needed. Scraping is not part of the UI.
-          </div>
-        </div>
-        <div class="grid cols-4" id="stat-cards"></div>
-        <div class="card mt-24">
-          <div class="card-head"><h3>Feature scores in the database</h3></div>
-          <div id="feature-table"></div>
-        </div>
-      </section>
     </div>
   </div>
 </div>

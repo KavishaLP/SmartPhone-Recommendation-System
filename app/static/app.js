@@ -78,9 +78,8 @@ const state = {
 };
 
 const VIEW_META = {
-  recommend: ['Recommend', 'Set your priorities and get ranked phones from the database'],
-  phones: ['Phones', 'Browse phones already stored in the database'],
-  data: ['Database', 'What is currently loaded — refresh data from the CLI'],
+  recommend: ['Recommend', 'Set aspect priorities; ranks phones from Amazon review ABSA scores'],
+  phones: ['Phones', 'Aspect scores built from real Amazon-Reviews-2023 reviews'],
 };
 
 const PRESETS = {
@@ -332,52 +331,6 @@ async function renderPhones() {
   }
 }
 
-async function renderData() {
-  $('#stat-cards').innerHTML = skeletons(4);
-  try {
-    const [stats, features] = await Promise.all([api('/stats'), api('/features')]);
-    state.features = features;
-    setBadges(stats);
-
-    $('#stat-cards').innerHTML = `
-      <div class="stat"><div class="stat-label">Phones</div><div class="stat-value">${num(stats.phones)}</div><div class="stat-sub">${(stats.sources || []).join(', ') || '—'}</div></div>
-      <div class="stat pos"><div class="stat-label">Usable reviews</div><div class="stat-value">${num(stats.reviews_usable)}</div><div class="stat-sub">of ${num(stats.reviews_total)}</div></div>
-      <div class="stat"><div class="stat-label">Sentences</div><div class="stat-value">${num(stats.sentences)}</div></div>
-      <div class="stat neu"><div class="stat-label">Aspect mentions</div><div class="stat-value">${num(stats.aspect_sentiments)}</div></div>`;
-
-    if (!features.length) {
-      $('#feature-table').innerHTML = emptyState(
-        'No scores yet',
-        'After ingest, run <code class="mono">python run.py analyze</code> (or use <code class="mono">ingest-hf</code> with analyze on).'
-      );
-      return;
-    }
-
-    const aspects = state.aspects.map((a) => a.aspect);
-    const head = `<tr><th>Phone</th><th class="num">Price</th>${aspects.map((a) => `<th class="num cap">${esc(a)}</th>`).join('')}<th class="num">Reviews</th></tr>`;
-    const body = features
-      .map((vector) => {
-        const cells = aspects
-          .map((aspect) => {
-            const value = vector.scores[aspect];
-            if (value == null) return `<td class="num"><span class="heat empty">n/a</span></td>`;
-            return `<td class="num"><span class="heat" style="background:${scoreColor(value)}">${score2(value)}</span></td>`;
-          })
-          .join('');
-        return `<tr class="clickable" onclick="openPhone(${vector.smartphone_id})">
-          <td><strong>${esc(vector.name)}</strong></td>
-          <td class="num">${money(vector.price, vector.currency)}</td>
-          ${cells}
-          <td class="num">${num(vector.review_count)}</td>
-        </tr>`;
-      })
-      .join('');
-    $('#feature-table').innerHTML = `<div class="table-wrap"><table><thead>${head}</thead><tbody>${body}</tbody></table></div>`;
-  } catch (error) {
-    toast('Could not load database status', error.message, 'err');
-  }
-}
-
 async function openPhone(phoneId) {
   $('#drawer-body').innerHTML = skeletons(2);
   $('#drawer').classList.add('open');
@@ -448,7 +401,6 @@ async function renderView(view) {
 
   if (view === 'recommend') return runRecommend();
   if (view === 'phones') return renderPhones();
-  if (view === 'data') return renderData();
 }
 
 async function refreshAll() {

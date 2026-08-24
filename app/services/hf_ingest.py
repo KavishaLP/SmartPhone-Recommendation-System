@@ -61,6 +61,13 @@ def _stream_reviews():
 
     return load_dataset("json", data_files=REVIEW_JSONL, split="train", streaming=True)
 
+
+def review_scan_exhausted(scanned: int, max_review_scan: int) -> bool:
+    """True when the optional row cap is hit. ``max_review_scan <= 0`` means unlimited."""
+    if max_review_scan is None or max_review_scan <= 0:
+        return False
+    return scanned >= max_review_scan
+
 _PHONE_CATEGORY = re.compile(
     r"\b(?:cell\s*phones?|smartphones?|unlocked\s*phones?|mobile\s*phones?)\b",
     re.IGNORECASE,
@@ -295,7 +302,7 @@ def ingest_amazon_reviews_2023(
     max_phones: int = 40,
     max_reviews_per_phone: int = 80,
     min_rating_count: int = 50,
-    max_review_scan: int = 1_500_000,
+    max_review_scan: int = 0,
     brand_filter: list[str] | None = None,
     settings: Settings | None = None,
     progress: ProgressCallback | None = None,
@@ -358,7 +365,7 @@ def ingest_amazon_reviews_2023(
         report(len(wanted), max_phones, f"Kept {product.canonical_name}")
         db.commit()
 
-        if len(wanted) >= max_phones:
+        if max_phones > 0 and len(wanted) >= max_phones:
             break
 
     if not wanted:
@@ -375,7 +382,7 @@ def ingest_amazon_reviews_2023(
         summary["reviews_scanned"] += 1
         parent = (row.get("parent_asin") or row.get("asin") or "").strip().upper()
         if parent not in remaining:
-            if summary["reviews_scanned"] >= max_review_scan:
+            if review_scan_exhausted(summary["reviews_scanned"], max_review_scan):
                 break
             continue
 
@@ -408,7 +415,7 @@ def ingest_amazon_reviews_2023(
                 f"(scanned {summary['reviews_scanned']:,})",
             )
 
-        if not remaining or summary["reviews_scanned"] >= max_review_scan:
+        if not remaining or review_scan_exhausted(summary["reviews_scanned"], max_review_scan):
             break
 
     db.commit()

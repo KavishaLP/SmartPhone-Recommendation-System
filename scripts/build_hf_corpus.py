@@ -50,6 +50,7 @@ from app.services.hf_ingest import (
     _PHONE_PRODUCT,
     _stream_parquet,
     _stream_reviews,
+    review_scan_exhausted,
 )
 
 ASPECTS = ("battery", "camera", "display", "performance", "price")
@@ -197,7 +198,7 @@ def build_corpus(
     max_phones: int = 40,
     max_reviews_per_phone: int = 100,
     min_rating_count: int = 200,
-    max_review_scan: int = 2_000_000,
+    max_review_scan: int = 0,
     brand_filter: list[str] | None = None,
     out_dir: Path,
     min_chars: int = 15,
@@ -234,7 +235,7 @@ def build_corpus(
         asin_set.add(phone["source_product_id"])
         print(f"  + {phone['canonical_name']} [{phone['source_product_id']}] "
               f"ratings={phone['site_rating_count']}")
-        if len(phones) >= max_phones:
+        if max_phones > 0 and len(phones) >= max_phones:
             break
 
     if not phones:
@@ -242,11 +243,18 @@ def build_corpus(
 
     # Prefer popular phones first so review matching finds more hits earlier.
     phones.sort(key=lambda p: p.get("site_rating_count") or 0, reverse=True)
-    phones = phones[:max_phones]
+    if max_phones > 0:
+        phones = phones[:max_phones]
     asin_set = {p["source_product_id"] for p in phones}
+    print(f"  selected {len(phones)} smartphone(s) "
+          f"(cap={'all' if max_phones <= 0 else max_phones})")
 
-    print(f"\n[2/3] Collecting exact reviews for {len(phones)} phone(s) "
-          f"(scan up to {max_review_scan:,} review rows)…")
+    scan_label = (
+        "until phones are filled or the JSONL ends"
+        if (max_review_scan is None or max_review_scan <= 0)
+        else f"up to {max_review_scan:,} review rows"
+    )
+    print(f"\n[2/3] Collecting exact reviews for {len(phones)} phone(s) ({scan_label})…")
     per_phone: dict[str, list[dict[str, Any]]] = defaultdict(list)
     seen_hash: dict[str, set[str]] = defaultdict(set)
     reviews_scanned = 0
@@ -257,7 +265,7 @@ def build_corpus(
         reviews_scanned += 1
         parent = (row.get("parent_asin") or row.get("asin") or "").strip().upper()
         if parent not in remaining:
-            if reviews_scanned >= max_review_scan:
+            if review_scan_exhausted(reviews_scanned, max_review_scan):
                 break
             continue
 
@@ -281,7 +289,7 @@ def build_corpus(
             print(f"  scanned {reviews_scanned:,} | kept {reviews_kept:,} | "
                   f"phones full {filled}/{len(asin_set)}")
 
-        if not remaining or reviews_scanned >= max_review_scan:
+        if not remaining or review_scan_exhausted(reviews_scanned, max_review_scan):
             break
 
     print(f"\n[3/3] Writing corpus files…")
@@ -362,10 +370,20 @@ def build_corpus(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--max-phones", type=int, default=40)
+    parser.add_argument(
+        "--max-phones",
+        type=int,
+        default=0,
+        help="How many real smartphones to keep. 0 = every listing that passes the phone filter.",
+    )
     parser.add_argument("--max-reviews", type=int, default=100)
     parser.add_argument("--min-ratings", type=int, default=200)
-    parser.add_argument("--max-review-scan", type=int, default=2_000_000)
+    parser.add_argument(
+        "--max-review-scan",
+        type=int,
+        default=0,
+        help="Max review rows to scan. 0 = scan until selected phones are filled or JSONL ends.",
+    )
     parser.add_argument("--brand", action="append", default=[])
     parser.add_argument("--out", type=Path, default=ROOT / "data" / "exports" / "hf_corpus")
     parser.add_argument("--min-chars", type=int, default=15)

@@ -3,9 +3,10 @@
     python run.py init-db                       create the database
     python run.py seed-demo                     insert synthetic data (offline testing)
     python run.py purge-demo                    delete the synthetic data again
+    python run.py prepare-corpus                Phase 1: load Amazon-Reviews-2023 + preprocess + ABSA
     python run.py reset-corpus                  wipe ALL phones/reviews (clean slate)
-    python run.py import-corpus PATH            import Colab/HF export + optional ABSA
-    python run.py ingest-hf                     stream HF directly into the DB (slower)
+    python run.py import-corpus PATH            import a pre-built HF folder + optional ABSA
+    python run.py ingest-hf                     stream HF directly into the DB (same data, less portable)
     python run.py login                         save a signed-in browser session (optional live scrape)
     python run.py scrape -q "samsung galaxy s24" -q "iphone 15"
     python run.py analyze                       run Steps 1-6 over stored reviews
@@ -122,6 +123,68 @@ def cmd_reset_corpus(
     console.print(f"[green]Reset[/green] — deleted {result['phones_deleted']} phone(s).")
 
 
+@app.command("prepare-corpus")
+def cmd_prepare_corpus(
+    max_phones: Annotated[int, typer.Option("--max-phones", help="How many real phones to keep. 0 = all matching smartphones.")] = 0,
+    max_reviews: Annotated[int, typer.Option("--max-reviews", help="Reviews per phone.")] = 60,
+    min_ratings: Annotated[int, typer.Option("--min-ratings", help="Minimum Amazon rating count. 0 = no popularity cutoff.")] = 0,
+    brand: Annotated[list[str] | None, typer.Option("--brand", "-b", help="Brand filter (repeatable).")] = None,
+    max_review_scan: Annotated[int, typer.Option("--max-review-scan", help="Max review rows to scan. 0 = until phones are filled or the JSONL ends.")] = 0,
+    out: Annotated[str, typer.Option("--out", help="Folder to write phones.jsonl / reviews.jsonl.")] = "data/exports/hf_corpus",
+    analyze: Annotated[bool, typer.Option("--analyze/--no-analyze", help="Run Steps 2–6 after import.")] = True,
+) -> None:
+    """Phase 1 (local, no Colab): load McAuley-Lab/Amazon-Reviews-2023, preprocess, import, ABSA.
+
+    Same work as the notebook, run on this machine. Then start the website with serve.
+    """
+    settings = _bootstrap()
+    from scripts.build_hf_corpus import build_corpus
+    from app.services.analysis import run_analysis
+    from app.services.corpus_import import import_corpus_folder
+
+    brands = brand or []
+
+    def progress(done: int, total: int, message: str) -> None:
+        console.print(f"({done}/{total}) {message}")
+
+    console.print("[cyan]Phase 1a — download + filter + Step 1 preprocess (exact HF reviews)…[/cyan]")
+    manifest = build_corpus(
+        max_phones=max_phones,
+        max_reviews_per_phone=max_reviews,
+        min_rating_count=min_ratings,
+        max_review_scan=max_review_scan,
+        brand_filter=brands,
+        out_dir=Path(out),
+    )
+    console.print_json(json.dumps(manifest.get("counts", manifest), default=str))
+
+    console.print("[cyan]Phase 1b — import into SQLite (replace existing / demo data)…[/cyan]")
+    with session_scope() as db:
+        result = import_corpus_folder(
+            db,
+            Path(out),
+            settings=settings,
+            replace=True,
+            progress=progress,
+        )
+    console.print_json(json.dumps(result, default=str))
+
+    if not result.get("phones_upserted"):
+        console.print("[yellow]No phones imported. Try lowering --min-ratings.[/yellow]")
+        raise typer.Exit(1)
+
+    if analyze:
+        console.print("[cyan]Phase 1c — methodology Steps 2–6 (segment → ABSA → scores)…[/cyan]")
+        analysis = run_analysis(
+            phone_ids=result["phone_ids"],
+            settings=settings,
+            progress=progress,
+        )
+        console.print_json(json.dumps(analysis, default=str))
+
+    console.print("[green]Phase 1 done.[/green] Phase 2: [cyan]python run.py serve[/cyan] → http://127.0.0.1:8000/ui/")
+
+
 @app.command("import-corpus")
 def cmd_import_corpus(
     folder: Annotated[str, typer.Argument(help="Folder with phones.jsonl + reviews.jsonl")],
@@ -168,7 +231,7 @@ def cmd_ingest_hf(
     max_reviews: Annotated[int, typer.Option("--max-reviews", help="Reviews per phone.")] = 60,
     min_ratings: Annotated[int, typer.Option("--min-ratings", help="Minimum Amazon rating count.")] = 80,
     brand: Annotated[list[str] | None, typer.Option("--brand", "-b", help="Brand filter (repeatable).")] = None,
-    max_review_scan: Annotated[int, typer.Option("--max-review-scan", help="Stop after scanning this many review rows.")] = 800_000,
+    max_review_scan: Annotated[int, typer.Option("--max-review-scan", help="Max review rows to scan. 0 = until phones are filled or the JSONL ends.")] = 0,
     analyze: Annotated[bool, typer.Option("--analyze/--no-analyze", help="Run ABSA after ingest.")] = True,
 ) -> None:
     """Load McAuley-Lab/Amazon-Reviews-2023 (Cell Phones) into the existing DB.

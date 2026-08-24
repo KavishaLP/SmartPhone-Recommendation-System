@@ -15,44 +15,39 @@ Recommendation ◀─ Feature scores ◀─ Step 6 Aggregate ◀─ Step 4 Senti
 
 ---
 
-## 1. Quick start (real Hugging Face corpus — no demo data)
+## 1. Two phases
 
-**Recommended path:** build the corpus in Google Colab (fast download), then import locally.
+The website only **reads** SQLite. Amazon data is prepared first (Colab or this PC), then imported.
 
-### A) Google Colab
-
-1. Open [`notebooks/Amazon_Reviews_2023_ABSA_Corpus.ipynb`](notebooks/Amazon_Reviews_2023_ABSA_Corpus.ipynb) in Colab  
-   (or upload it from this repo).
-2. Run all cells. It pulls exact reviews from
-   [`McAuley-Lab/Amazon-Reviews-2023`](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023),
-   filters real smartphones, applies **methodology Step 1** preprocessing, and downloads `hf_corpus.zip`.
-
-### B) On your PC
+### Option A — all on this PC
 
 ```powershell
 cd "d:\4TH YEAR\RESEARCH SETUP\smartphone recommendation"
 pip install -r requirements.txt
 
-# unzip hf_corpus.zip into .\hf_corpus\  (phones.jsonl + reviews.jsonl + manifest.json)
-
-python run.py reset-corpus --yes
-python run.py import-corpus .\hf_corpus --replace --analyze
+# Stop serve first if it is running (Ctrl+C). It locks the database.
+python run.py prepare-corpus --max-phones 0 --max-reviews 60 --min-ratings 0 --max-review-scan 0
 python run.py serve
-# -> http://127.0.0.1:8000/ui/
 ```
 
-`reset-corpus` removes demo/sample/old rows. `import-corpus --analyze` runs methodology
-Steps 2–6 (segment → aspect extraction → sentiment → structured rows → aspect scores).
+`--max-phones 0` keeps **every** listing that looks like a real smartphone (cases/cables are still excluded). `--min-ratings 0` does not drop low-popularity phones. `--max-review-scan 0` reads the review file until those phones are filled or it ends. This takes hours; the site still shows the old 17 phones until this command **finishes** and you restart `serve`.
 
-### Alternative: stream HF directly on your PC (slower)
+### Option B — Colab for download, this PC for ABSA + website
+
+1. Open [`notebooks/Amazon_Reviews_2023_ABSA_Corpus.ipynb`](notebooks/Amazon_Reviews_2023_ABSA_Corpus.ipynb) in Google Colab (clone the GitHub repo in the first cell).
+2. Run all cells. Colab filters real smartphones, attaches their reviews, runs Step 1, then downloads **`hf_corpus.zip`** (`phones.jsonl`, `reviews.jsonl`, `manifest.json`).
+3. Unzip into this project as `hf_corpus\`. Stop `serve` if it is running.
+4. Import, run Steps 2–6, start the UI:
 
 ```powershell
-python run.py reset-corpus --yes
-python scripts/build_hf_corpus.py --max-phones 40 --max-reviews 100 --min-ratings 500 --max-review-scan 2000000 --out data/exports/hf_corpus
-python run.py import-corpus data/exports/hf_corpus --replace --analyze
+python run.py import-corpus .\hf_corpus --replace --analyze
+python run.py serve
 ```
 
-Or one-shot into the DB: `python run.py ingest-hf ...` (same data source, less portable).
+Open http://127.0.0.1:8000/ui/ — **Recommend** (aspect weights) and **Phones** (scores). Keep minimum analysed reviews at **0** if the list looks empty.
+
+This streams [`McAuley-Lab/Amazon-Reviews-2023`](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023)
+(Cell Phones & Accessories), keeps real phones only, keeps **exact** review text.
 
 ---
 
@@ -60,8 +55,8 @@ Or one-shot into the DB: `python run.py ingest-hf ...` (same data source, less p
 
 | Step | What | Where |
 |---|---|---|
-| 1 | Dedupe, spam/empty, HTML, normalise, language filter | Colab / `build_hf_corpus.py` |
-| 2 | Sentence segmentation | `import-corpus --analyze` |
+| 1 | Dedupe, spam/empty, HTML, normalise, language filter | Colab notebook or `prepare-corpus` |
+| 2 | Sentence segmentation | same (`--analyze`) |
 | 3–4 | Aspect extraction + sentiment (lexicon or LLM) | same |
 | 5 | Structured aspect–sentiment dataset | SQLite `aspect_sentiments` |
 | 6 | Aspect score aggregation → feature table | SQLite `aspect_scores` |
@@ -83,31 +78,16 @@ python run.py scrape -q "samsung galaxy s24"
 
 ---
 
-## 1b. The dashboard
+## 1b. The website
 
-Everything the CLI can do is also driveable from a browser. The UI lives in
-`app/static/` and is served by the API itself at `/ui/`, so there is nothing to
-build or install — it is plain HTML, CSS and JavaScript with no dependencies and
-no CDN calls, and it works offline.
+The UI is only two pages (methodology output, not a lab console):
 
 | View | What it is for |
 |---|---|
-| Dashboard | Corpus counts, sentiment and aspect distributions, the full phone × aspect score matrix as a colour-coded heatmap, and the star-rating validation report. |
-| Phones | Every handset with its aspect scores. Click one for a radar chart, the positive/neutral/negative split per aspect, parsed specifications, price history, and the individual sentences behind each score. |
-| Recommend | Weight sliders per aspect plus affordability, with presets and price/review filters. Each result shows its weighted contribution breakdown, evidence coverage, and strengths and weaknesses. |
-| Corpus | Browse reviews and expand any one to see it segmented into sentences with the aspects and sentiment extracted from each — Steps 2 to 4 applied to a single review. |
-| Scrape | Build a collection run from search terms and product IDs, then watch it progress live. |
-| Pipeline | Run the ABSA stages, choose the engine, or re-aggregate scores after changing weighting settings. |
-| Jobs | History of scrape and analysis runs with their result payloads. |
+| Recommend | Weight sliders per aspect plus affordability. Ranks phones from stored ABSA scores. |
+| Phones | Handsets with aspect scores. Click one for the per-aspect split and supporting sentences. |
 
-To check the UI still renders after a change, with the server running:
-
-```bash
-python tests/_ui_smoke.py http://127.0.0.1:8000
-```
-
-It drives every view in a real browser, fails on any console error or failed
-request, and writes screenshots to `tests/_ui_shots/`.
+Phase 1 (download, preprocess, ABSA) is CLI or Colab, not the browser: `prepare-corpus` locally, or Colab zip plus `import-corpus --analyze`. Then `python run.py serve`.
 
 ---
 
