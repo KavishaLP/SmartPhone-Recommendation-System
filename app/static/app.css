@@ -259,6 +259,17 @@ a:hover { text-decoration: underline; }
 .btn-sm { padding: 5px 10px; font-size: 12px; }
 .btn-block { width: 100%; }
 
+.btn-icon {
+  width: 42px; height: 42px; padding: 0;
+  display: inline-grid; place-items: center;
+  flex: 0 0 42px;
+}
+.btn-icon .theme-icon { width: 20px; height: 20px; }
+.theme-toggle { color: var(--text-dim); border-color: var(--border-soft); }
+.theme-toggle:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+[data-theme="dark"] .theme-toggle { color: var(--neutral); }
+[data-theme="dark"] .theme-toggle:hover:not(:disabled) { color: #fde68a; border-color: rgba(251, 191, 36, 0.45); background: var(--neutral-soft); }
+
 .chip {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 3px 9px; border-radius: 20px;
