@@ -209,6 +209,10 @@ class FeatureVector(BaseModel):
     currency: str | None = None
     review_count: int = 0
     mention_count: int = 0
+    image_url: str | None = None
+    product_url: str | None = None
+    site_rating: float | None = None
+    site_rating_count: int | None = None
     scores: dict[str, float | None] = Field(
         description="Aspect -> score in [0,1]. Null when the aspect was never mentioned."
     )
@@ -258,6 +262,10 @@ class Recommendation(BaseModel):
     brand: str | None
     price: float | None
     currency: str | None
+    image_url: str | None = None
+    product_url: str | None = None
+    site_rating: float | None = None
+    site_rating_count: int | None = None
     final_score: float
     review_count: int
     coverage: float = Field(description="Share of requested weight backed by real mentions.")

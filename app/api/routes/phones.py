@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import httpx
 from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi.responses import Response
 from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
@@ -20,6 +22,11 @@ from app.models.schemas import (
 from app.nlp.aggregate import latest_prices
 
 router = APIRouter(prefix="/phones", tags=["phones"])
+
+_IMAGE_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (compatible; SmartphoneRecommender/1.0)",
+    "Referer": "https://www.amazon.com/",
+}
 
 
 def _review_counts(db: Session, phone_ids: list[int]) -> tuple[dict[int, int], dict[int, int]]:
@@ -101,6 +108,31 @@ def list_phones(
         limit=limit,
         offset=offset,
         items=[_to_summary(phone, prices, totals, analysed) for phone in phones],
+    )
+
+
+@router.get("/{phone_id}/image", summary="Product image (proxied from Amazon CDN)")
+def phone_image(phone_id: int, db: Session = Depends(get_db)) -> Response:
+    """Serve product photos through the API so the browser is not blocked by hotlink rules."""
+    phone = db.get(Smartphone, phone_id)
+    if phone is None or not phone.image_url:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "No image for this phone.")
+
+    try:
+        with httpx.Client(timeout=12.0, follow_redirects=True) as client:
+            upstream = client.get(phone.image_url.strip(), headers=_IMAGE_HEADERS)
+            upstream.raise_for_status()
+    except httpx.HTTPError as exc:
+        raise HTTPException(
+            status.HTTP_502_BAD_GATEWAY,
+            f"Could not fetch product image: {exc}",
+        ) from exc
+
+    media_type = upstream.headers.get("content-type", "image/jpeg").split(";")[0]
+    return Response(
+        content=upstream.content,
+        media_type=media_type,
+        headers={"Cache-Control": "public, max-age=86400"},
     )
 
 

@@ -56,10 +56,25 @@ def _stream_parquet(pattern: str):
 
 
 def _stream_reviews():
-    """Stream Cell Phones reviews (JSONL — no parquet export for this category)."""
-    from datasets import load_dataset
+    """Yield Cell Phones reviews from a locally cached JSONL (faster than HF streaming)."""
+    from huggingface_hub import hf_hub_download
 
-    return load_dataset("json", data_files=REVIEW_JSONL, split="train", streaming=True)
+    print(
+        "Opening review JSONL (first run downloads several GB into the Hugging Face cache)…",
+        flush=True,
+    )
+    path = hf_hub_download(
+        repo_id=HF_DATASET,
+        filename=REVIEW_CONFIG,
+        repo_type="dataset",
+    )
+    print(f"Reading reviews from {path}", flush=True)
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            yield json.loads(line)
 
 
 def review_scan_exhausted(scanned: int, max_review_scan: int) -> bool:

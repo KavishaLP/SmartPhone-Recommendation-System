@@ -30,6 +30,50 @@ function scoreColor(value) {
   return `hsl(${clamped * 132} 68% ${38 + clamped * 11}%)`;
 }
 
+function phoneLabel(phone) {
+  return phone.canonical_name || phone.name || phone.raw_title || 'Unknown phone';
+}
+
+function phoneImageSrc(phone) {
+  const id = phone.id ?? phone.smartphone_id;
+  if (id) return `/phones/${id}/image`;
+  return phone.image_url || '';
+}
+
+function phoneImageFailed(img) {
+  const wrap = img.closest('.phone-image-wrap');
+  if (!wrap || wrap.classList.contains('broken')) return;
+  wrap.classList.add('broken');
+  img.remove();
+  const initial = (wrap.dataset.initial || '?').charAt(0).toUpperCase();
+  wrap.innerHTML = `<span>${esc(initial)}</span>`;
+}
+
+function phoneImageMarkup(phone, sizeClass = '') {
+  const label = esc(phoneLabel(phone));
+  const initial = esc((phone.brand || phoneLabel(phone)).charAt(0).toUpperCase());
+  const src = phoneImageSrc(phone);
+  if (src) {
+    return `<div class="phone-image-wrap ${sizeClass}" data-initial="${initial}">
+      <img src="${esc(src)}" alt="${label}" loading="lazy"
+        onerror="phoneImageFailed(this)">
+    </div>`;
+  }
+  return `<div class="phone-image-wrap ${sizeClass} placeholder"><span>${initial}</span></div>`;
+}
+
+function starRatingMarkup(rating, count) {
+  if (rating == null) return '';
+  const clamped = Math.max(0, Math.min(5, Number(rating)));
+  const full = Math.floor(clamped);
+  const partial = clamped - full >= 0.5;
+  let stars = '★'.repeat(full);
+  if (partial) stars += '½';
+  stars = stars.padEnd(partial ? 4 : 5, '☆');
+  const countText = count != null ? ` (${num(count)})` : '';
+  return `<span class="stars" title="${clamped.toFixed(1)} out of 5">${stars}</span><span class="dim small">${countText}</span>`;
+}
+
 async function api(path, options = {}) {
   const response = await fetch(path, {
     headers: { 'Content-Type': 'application/json' },
@@ -70,6 +114,36 @@ function emptyState(title, message) {
 const skeletons = (count = 3) =>
   `<div class="grid" style="gap:12px">${'<div class="skeleton"></div>'.repeat(count)}</div>`;
 
+const THEME_KEY = 'phone-recommender-theme';
+
+function isDarkTheme() {
+  return document.documentElement.getAttribute('data-theme') === 'dark';
+}
+
+function updateThemeButton() {
+  const btn = $('#btn-theme');
+  if (!btn) return;
+  const dark = isDarkTheme();
+  btn.textContent = dark ? 'Light mode' : 'Dark mode';
+  btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+}
+
+function toggleTheme() {
+  const next = isDarkTheme() ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem(THEME_KEY, next);
+  updateThemeButton();
+}
+
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved === 'dark' || saved === 'light') {
+    document.documentElement.setAttribute('data-theme', saved);
+  }
+  updateThemeButton();
+}
+
 const state = {
   aspects: [],
   health: null,
@@ -79,7 +153,7 @@ const state = {
 
 const VIEW_META = {
   recommend: ['Recommend', 'Set aspect priorities; ranks phones from Amazon review ABSA scores'],
-  phones: ['Phones', 'Aspect scores built from real Amazon-Reviews-2023 reviews'],
+  phones: ['Phones', 'Browse smartphones with aspect scores from Amazon reviews'],
 };
 
 const PRESETS = {
@@ -249,24 +323,33 @@ function renderRecommendation(item) {
     )
     .join('');
 
+  const amazonRating = starRatingMarkup(item.site_rating, item.site_rating_count);
+
   return `<div class="rec ${item.rank === 1 ? 'top' : ''}">
-    <div class="rec-head">
-      <div class="rank">${item.rank}</div>
-      <div style="min-width:0">
-        <div class="phone-name">${esc(item.name)}</div>
-        <div class="phone-meta">${esc(item.brand || 'Unknown')} · ${money(item.price, item.currency)} · ${num(item.review_count)} reviews</div>
+    <div class="rec-layout">
+      ${phoneImageMarkup(item, 'rec-size')}
+      <div class="rec-body">
+        <div class="rec-head">
+          <div class="rank">${item.rank}</div>
+          <div style="min-width:0;flex:1">
+            <div class="phone-name">${esc(item.name)}</div>
+            <div class="phone-meta">${esc(item.brand || 'Unknown')}</div>
+            ${amazonRating ? `<div class="phone-rating-row">${amazonRating}</div>` : ''}
+            <div class="phone-meta">${money(item.price, item.currency)} · ${num(item.review_count)} analysed reviews</div>
+          </div>
+          <div class="rec-score">
+            <div class="rec-score-val" style="color:${scoreColor(item.final_score)}">${item.final_score.toFixed(3)}</div>
+            <div class="rec-score-lbl">match score</div>
+          </div>
+        </div>
+        <div class="mt-16">${rows}</div>
+        <div class="row wrap mt-16">
+          ${item.strengths.map((s) => `<span class="chip pos">▲ ${esc(s)}</span>`).join('')}
+          ${item.weaknesses.map((w) => `<span class="chip neg">▼ ${esc(w)}</span>`).join('')}
+          <div class="spacer"></div>
+          <button class="btn btn-sm btn-ghost" onclick="openPhone(${item.smartphone_id})">Details →</button>
+        </div>
       </div>
-      <div class="rec-score">
-        <div class="rec-score-val" style="color:${scoreColor(item.final_score)}">${item.final_score.toFixed(3)}</div>
-        <div class="rec-score-lbl">score</div>
-      </div>
-    </div>
-    <div class="mt-16">${rows}</div>
-    <div class="row wrap mt-16">
-      ${item.strengths.map((s) => `<span class="chip pos">▲ ${esc(s)}</span>`).join('')}
-      ${item.weaknesses.map((w) => `<span class="chip neg">▼ ${esc(w)}</span>`).join('')}
-      <div class="spacer"></div>
-      <button class="btn btn-sm btn-ghost" onclick="openPhone(${item.smartphone_id})">Details →</button>
     </div>
   </div>`;
 }
@@ -314,14 +397,15 @@ async function renderPhones() {
           })
           .join('');
         return `<div class="phone-card" onclick="openPhone(${phone.id})">
-          <div class="phone-card-head">
-            <div style="min-width:0;flex:1">
-              <div class="phone-name">${esc(phone.canonical_name || phone.raw_title || 'Unknown')}</div>
-              <div class="phone-meta">${esc(phone.brand || 'Unknown')} · ${num(phone.analyzed_review_count)} analysed</div>
-            </div>
+          ${phoneImageMarkup(phone, 'card-size')}
+          <div class="phone-card-body">
+            <div class="phone-name truncate" title="${esc(phoneLabel(phone))}">${esc(phoneLabel(phone))}</div>
+            <div class="phone-meta">${esc(phone.brand || 'Unknown')}</div>
+            ${phone.site_rating != null ? `<div class="phone-rating-row">${starRatingMarkup(phone.site_rating, phone.site_rating_count)}</div>` : ''}
             <div class="phone-price">${money(phone.latest_price, phone.currency)}</div>
+            <div class="phone-meta">${num(phone.analyzed_review_count)} analysed reviews</div>
+            ${bars}
           </div>
-          ${bars}
         </div>`;
       })
       .join('');
@@ -338,10 +422,17 @@ async function openPhone(phoneId) {
 
   try {
     const phone = await api(`/phones/${phoneId}`);
-    $('#drawer-title').textContent = phone.canonical_name || phone.raw_title || `Phone ${phoneId}`;
+    $('#drawer-title').textContent = phoneLabel(phone);
+    const ratingLine = phone.site_rating != null
+      ? ` · ${phone.site_rating.toFixed(1)}★ (${num(phone.site_rating_count)})`
+      : '';
     $('#drawer-sub').textContent =
       `${phone.brand || 'Unknown'} · ${money(phone.latest_price, phone.currency)} · ` +
-      `${num(phone.analyzed_review_count)} analysed reviews`;
+      `${num(phone.analyzed_review_count)} analysed reviews${ratingLine}`;
+
+    const hero = phone.image_url
+      ? `<div class="drawer-hero">${phoneImageMarkup(phone, 'drawer-size')}</div>`
+      : '';
 
     const breakdown = phone.aspect_scores.length
       ? phone.aspect_scores
@@ -363,7 +454,7 @@ async function openPhone(phoneId) {
           .join('')
       : '<p class="dim small">No aspect scores yet — run analyze.</p>';
 
-    $('#drawer-body').innerHTML = `<div>${breakdown}</div>
+    $('#drawer-body').innerHTML = `${hero}<div>${breakdown}</div>
       <p class="card-note mt-16">Scores come from review sentences already stored in the database.</p>`;
   } catch (error) {
     $('#drawer-body').innerHTML = `<div class="banner">${esc(error.message)}</div>`;
@@ -424,6 +515,8 @@ async function init() {
   $$('.nav-item').forEach((node) => { node.onclick = () => go(node.dataset.view); });
   window.addEventListener('hashchange', () => renderView(currentView()));
   $('#btn-refresh').onclick = refreshAll;
+  $('#btn-theme').onclick = toggleTheme;
+  initTheme();
   $('#menu-toggle').onclick = () => $('#sidebar').classList.toggle('open');
   $('#btn-recommend').onclick = runRecommend;
 

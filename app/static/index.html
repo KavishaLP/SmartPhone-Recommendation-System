@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Phone Recommender</title>
-<link rel="stylesheet" href="app.css">
+<script>
+(function () {
+  var saved = localStorage.getItem('phone-recommender-theme');
+  document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+})();
+</script>
+<link rel="stylesheet" href="app.css?v={{ASSET_VERSION}}">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f8ef7'/><text y='68' x='50' font-size='58' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>P</text></svg>">
 </head>
 <body>
@@ -42,6 +48,7 @@
         <div class="topbar-sub" id="page-sub">Set aspect priorities; ranks phones from Amazon review ABSA scores</div>
       </div>
       <div class="topbar-actions">
+        <button class="btn btn-sm btn-ghost" id="btn-theme" type="button" aria-pressed="false" title="Toggle dark mode">Dark mode</button>
         <span class="chip info" id="engine-chip">engine: …</span>
         <button class="btn btn-sm" id="btn-refresh">Refresh</button>
       </div>
@@ -99,7 +106,7 @@
 <aside class="drawer" id="drawer">
   <div class="drawer-head">
     <div style="min-width:0">
-      <h2 id="drawer-title" style="font-size:16px">—</h2>
+      <h2 id="drawer-title">—</h2>
       <div class="topbar-sub" id="drawer-sub"></div>
     </div>
     <button class="drawer-close" id="drawer-close">✕</button>
@@ -107,6 +114,6 @@
   <div class="drawer-body" id="drawer-body"></div>
 </aside>
 <div id="toasts"></div>
-<script src="app.js"></script>
+<script src="app.js?v={{ASSET_VERSION}}"></script>
 </body>
 </html>

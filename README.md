@@ -15,11 +15,69 @@ Recommendation ◀─ Feature scores ◀─ Step 6 Aggregate ◀─ Step 4 Senti
 
 ---
 
-## 1. Two phases
+## 0. Recommended: Kaggle Amazon Cell Phones Reviews
 
-The website only **reads** SQLite. Amazon data is prepared first (Colab or this PC), then imported.
+~714 real smartphones across 10 brands, already joined on **ASIN** — no accessory
+filtering or multi-hour HF metadata scans.
 
-### Option A — all on this PC
+**Dataset:** [grikomsn/amazon-cell-phones-reviews](https://www.kaggle.com/datasets/grikomsn/amazon-cell-phones-reviews) (Griko Nibras)
+
+```powershell
+cd "d:\4TH YEAR\RESEARCH SETUP\smartphone recommendation"
+pip install -r requirements.txt
+
+# One-time: place Kaggle API token at %USERPROFILE%\.kaggle\kaggle.json
+# (Account → Settings → Create New Token on kaggle.com)
+
+python run.py prepare-kaggle --max-phones 50 --min-reviews 10
+python run.py website
+# -> http://localhost:8501
+```
+
+| Flag | Default | Meaning |
+|---|---|---|
+| `--max-phones` | 50 | Top N phones by review count (0 = all ~714) |
+| `--min-reviews` | 10 | Skip products with fewer Amazon reviews |
+| `--max-reviews` | 0 | Cap reviews per phone (0 = all in CSV) |
+| `--brand Apple --brand Samsung` | — | Optional brand filter |
+| `--dataset-dir PATH` | — | Skip download; use local folder with `*items*.csv` + `*reviews*.csv` |
+| `--no-analyze` | — | Import only; run ABSA later with `python run.py analyze` |
+
+`prepare-kaggle` wipes the old corpus, loads items + reviews, then runs Steps 2–6.
+Stop `serve` / `website` before importing — SQLite allows one writer.
+
+Load only (no ABSA):
+
+```powershell
+python run.py ingest-kaggle --max-phones 50
+```
+
+---
+
+## 0b. Staged research website (HF / manual workflow)
+
+One page per methodology stage — useful when building from Amazon Reviews 2023 or
+hand-picking ASINs from a metadata scan.
+
+```powershell
+python run.py website
+# -> http://localhost:8501
+```
+
+| Page | Stage | What you do |
+|---|---|---|
+| 1 Dataset | Input + Step 1 | Scan metadata, tick real phones, collect reviews, import |
+| 2 Preprocessing | Steps 1-2 | Inspect cleaning and sentence splits |
+| 3 ABSA Analysis | Steps 3-4 | Aspect extraction and sentiment |
+| 4 Aspect Scores | Steps 5-6 | Feature score table |
+| 5 Recommendations | Output | Aspect weights → ranked phones |
+
+---
+
+## 1. Legacy command-line (Amazon Reviews 2023 on Hugging Face)
+
+The HF path streams 1.3M+ Cell Phones & Accessories listings, filters accessories,
+and scans a huge review JSONL. Use only if you need that corpus instead of Kaggle.
 
 ```powershell
 cd "d:\4TH YEAR\RESEARCH SETUP\smartphone recommendation"
@@ -55,7 +113,7 @@ This streams [`McAuley-Lab/Amazon-Reviews-2023`](https://huggingface.co/datasets
 
 | Step | What | Where |
 |---|---|---|
-| 1 | Dedupe, spam/empty, HTML, normalise, language filter | Colab notebook or `prepare-corpus` |
+| 1 | Dedupe, spam/empty, HTML, normalise, language filter | `prepare-kaggle`, Colab notebook, or `prepare-corpus` |
 | 2 | Sentence segmentation | same (`--analyze`) |
 | 3–4 | Aspect extraction + sentiment (lexicon or LLM) | same |
 | 5 | Structured aspect–sentiment dataset | SQLite `aspect_sentiments` |

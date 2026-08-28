@@ -18,8 +18,11 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.requests import Request
+from starlette.responses import Response as StarletteResponse
 
 from app import __version__
 from app.api.routes import analysis, jobs, phones, recommend, reviews, scrape
@@ -90,6 +93,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+class _NoCacheUIMiddleware(BaseHTTPMiddleware):
+    """Prevent stale app.js / app.css after UI updates during development."""
+
+    async def dispatch(self, request: Request, call_next) -> StarletteResponse:
+        response = await call_next(request)
+        path = request.url.path
+        if path.startswith("/ui/") and (
+            path.endswith((".js", ".css", ".html")) or path in {"/ui", "/ui/"}
+        ):
+            response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+            response.headers["Pragma"] = "no-cache"
+        return response
+
+
+app.add_middleware(_NoCacheUIMiddleware)
+
 app.include_router(scrape.router)
 app.include_router(analysis.router)
 app.include_router(phones.router)
@@ -101,7 +121,18 @@ app.include_router(jobs.router)
 # shadow any API route.
 STATIC_DIR = Path(__file__).parent / "static"
 if STATIC_DIR.is_dir():
-    app.mount("/ui", StaticFiles(directory=str(STATIC_DIR), html=True), name="ui")
+
+    @app.get("/ui/", include_in_schema=False)
+    @app.get("/ui", include_in_schema=False)
+    def ui_index() -> HTMLResponse:
+        html = (STATIC_DIR / "index.html").read_text(encoding="utf-8")
+        html = html.replace("{{ASSET_VERSION}}", __version__)
+        return HTMLResponse(
+            html,
+            headers={"Cache-Control": "no-cache, no-store, must-revalidate"},
+        )
+
+    app.mount("/ui", StaticFiles(directory=str(STATIC_DIR), html=False), name="ui")
 
 
 @app.get("/", include_in_schema=False)

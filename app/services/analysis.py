@@ -158,6 +158,130 @@ def analyze_phone(
     return stats
 
 
+def segment_phone(
+    db: Session,
+    phone_id: int,
+    *,
+    force: bool = False,
+    max_reviews: int | None = None,
+    settings: Settings | None = None,
+) -> dict[str, int]:
+    """Steps 1-2 only: clean and split reviews into sentences, no ABSA.
+
+    Used when aspect sentiment is produced elsewhere (for example a transformer
+    model running in Colab) and imported afterwards.
+    """
+    settings = settings or get_settings()
+    stats = {"reviews_processed": 0, "reviews_skipped": 0, "sentences_created": 0}
+
+    reviews = _pending_reviews(db, phone_id, force, max_reviews)
+    if not reviews:
+        return stats
+
+    if force:
+        review_ids = [review.id for review in reviews]
+        db.execute(delete(Sentence).where(Sentence.review_id.in_(review_ids)))
+        db.flush()
+
+    now = datetime.now(timezone.utc)
+
+    for review in reviews:
+        if force or not review.cleaned_body:
+            cleaned = preprocess_review(
+                review.body,
+                title=review.title,
+                min_chars=settings.min_review_chars,
+                language_filter=settings.language_filter or None,
+            )
+            review.cleaned_body = cleaned.cleaned_text or None
+            review.language = cleaned.language
+            review.is_spam = cleaned.is_spam
+            review.excluded_reason = cleaned.excluded_reason
+            review.pipeline_version = settings.pipeline_version
+
+        if not review.cleaned_body or review.excluded_reason or review.is_spam:
+            review.processed_at = now
+            stats["reviews_skipped"] += 1
+            continue
+
+        sentences = segment_sentences(review.cleaned_body)
+        if not sentences:
+            review.processed_at = now
+            stats["reviews_skipped"] += 1
+            continue
+
+        for position, text in enumerate(sentences):
+            db.add(
+                Sentence(
+                    review_id=review.id,
+                    smartphone_id=phone_id,
+                    position=position,
+                    text=text,
+                    char_count=len(text),
+                    word_count=count_words(text),
+                )
+            )
+            stats["sentences_created"] += 1
+
+        review.processed_at = now
+        review.pipeline_version = settings.pipeline_version
+        stats["reviews_processed"] += 1
+
+    db.flush()
+    return stats
+
+
+def run_segmentation(
+    *,
+    phone_ids: list[int] | None = None,
+    force: bool = False,
+    max_reviews_per_phone: int | None = None,
+    settings: Settings | None = None,
+    progress: ProgressCallback | None = None,
+) -> dict[str, Any]:
+    """Clean and segment every phone's reviews without running ABSA."""
+    settings = settings or get_settings()
+    totals: dict[str, Any] = {
+        "phones_processed": 0,
+        "reviews_processed": 0,
+        "reviews_skipped": 0,
+        "sentences_created": 0,
+        "errors": [],
+    }
+
+    with session_scope() as db:
+        targets = _phones_to_process(db, phone_ids)
+
+    if not targets:
+        totals["errors"].append("No phones found. Build a corpus first.")
+        return totals
+
+    total = len(targets)
+    if progress:
+        progress(0, total, f"Cleaning and segmenting {total} phone(s)")
+
+    for index, phone_id in enumerate(targets, start=1):
+        try:
+            with session_scope() as db:
+                stats = segment_phone(
+                    db,
+                    phone_id,
+                    force=force,
+                    max_reviews=max_reviews_per_phone,
+                    settings=settings,
+                )
+            totals["phones_processed"] += 1
+            for key in ("reviews_processed", "reviews_skipped", "sentences_created"):
+                totals[key] += stats[key]
+            if progress:
+                progress(index, total, f"Segmented phone {phone_id} ({index}/{total})")
+        except Exception as exc:  # noqa: BLE001
+            totals["errors"].append(f"phone {phone_id}: {type(exc).__name__}: {exc}")
+            logger.exception("Segmentation failed for phone %s", phone_id)
+
+    return totals
+
+
 def run_analysis(
     *,
     phone_ids: list[int] | None = None,

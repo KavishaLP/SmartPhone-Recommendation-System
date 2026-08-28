@@ -26,6 +26,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -254,17 +255,40 @@ def build_corpus(
         if (max_review_scan is None or max_review_scan <= 0)
         else f"up to {max_review_scan:,} review rows"
     )
-    print(f"\n[2/3] Collecting exact reviews for {len(phones)} phone(s) ({scan_label})…")
+    print(
+        f"\n[2/3] Collecting exact reviews for {len(phones)} phone(s) ({scan_label})…",
+        flush=True,
+    )
+    print(
+        "The website still shows the old corpus until this step finishes and SQLite is replaced.",
+        flush=True,
+    )
     per_phone: dict[str, list[dict[str, Any]]] = defaultdict(list)
     seen_hash: dict[str, set[str]] = defaultdict(set)
     reviews_scanned = 0
     reviews_kept = 0
     remaining = set(asin_set)
+    last_report = time.monotonic()
+
+    def _report() -> None:
+        with_reviews = sum(1 for a in asin_set if per_phone[a])
+        filled = sum(1 for a in asin_set if len(per_phone[a]) >= max_reviews_per_phone)
+        print(
+            f"  scanned {reviews_scanned:,} | kept {reviews_kept:,} | "
+            f"phones with reviews {with_reviews}/{len(asin_set)} | full {filled}",
+            flush=True,
+        )
 
     for row in _stream_reviews():
         reviews_scanned += 1
+        if reviews_scanned == 1:
+            print("  first review row read — matching ASINs…", flush=True)
         parent = (row.get("parent_asin") or row.get("asin") or "").strip().upper()
         if parent not in remaining:
+            now = time.monotonic()
+            if reviews_scanned % 25_000 == 0 or now - last_report >= 20:
+                _report()
+                last_report = now
             if review_scan_exhausted(reviews_scanned, max_review_scan):
                 break
             continue
@@ -284,13 +308,15 @@ def build_corpus(
         if len(per_phone[parent]) >= max_reviews_per_phone:
             remaining.discard(parent)
 
-        if reviews_scanned % 50_000 == 0:
-            filled = sum(1 for a in asin_set if len(per_phone[a]) >= max_reviews_per_phone)
-            print(f"  scanned {reviews_scanned:,} | kept {reviews_kept:,} | "
-                  f"phones full {filled}/{len(asin_set)}")
+        now = time.monotonic()
+        if reviews_scanned % 25_000 == 0 or now - last_report >= 20:
+            _report()
+            last_report = now
 
         if not remaining or review_scan_exhausted(reviews_scanned, max_review_scan):
             break
+
+    _report()
 
     print(f"\n[3/3] Writing corpus files…")
     # Drop phones that got zero usable reviews — they cannot feed ABSA.

@@ -4,6 +4,8 @@
     python run.py seed-demo                     insert synthetic data (offline testing)
     python run.py purge-demo                    delete the synthetic data again
     python run.py prepare-corpus                Phase 1: load Amazon-Reviews-2023 + preprocess + ABSA
+    python run.py prepare-kaggle                Phase 1: Kaggle phones dataset + ABSA (recommended)
+    python run.py ingest-kaggle                 load Kaggle Amazon Cell Phones Reviews only
     python run.py reset-corpus                  wipe ALL phones/reviews (clean slate)
     python run.py import-corpus PATH            import a pre-built HF folder + optional ABSA
     python run.py ingest-hf                     stream HF directly into the DB (same data, less portable)
@@ -11,6 +13,7 @@
     python run.py scrape -q "samsung galaxy s24" -q "iphone 15"
     python run.py analyze                       run Steps 1-6 over stored reviews
     python run.py pipeline -q "pixel 8"         scrape then analyse in one go
+    python run.py website                       staged research website (dataset -> ABSA -> recommend)
     python run.py serve                         start the FastAPI server
     python run.py stats                         corpus statistics
     python run.py features                      print the feature score table
@@ -223,6 +226,101 @@ def cmd_import_corpus(
         console.print_json(json.dumps(analysis, default=str))
 
     console.print("[green]Done.[/green] Open the UI: [cyan]python run.py serve[/cyan]")
+
+
+@app.command("ingest-kaggle")
+def cmd_ingest_kaggle(
+    dataset_dir: Annotated[
+        str | None,
+        typer.Option("--dataset-dir", help="Folder with items.csv + reviews.csv (skip download)."),
+    ] = None,
+    download: Annotated[bool, typer.Option("--download/--no-download", help="Download via kagglehub.")] = True,
+    replace: Annotated[bool, typer.Option("--replace/--no-replace", help="Wipe DB first.")] = True,
+    max_phones: Annotated[int, typer.Option("--max-phones", help="Phones to keep (0 = all in CSV).")] = 0,
+    max_reviews: Annotated[int, typer.Option("--max-reviews", help="Reviews per phone (0 = all).")] = 0,
+    min_reviews: Annotated[int, typer.Option("--min-reviews", help="Min totalReviews on product row.")] = 0,
+    brand: Annotated[list[str] | None, typer.Option("--brand", "-b", help="Brand filter (repeatable).")] = None,
+) -> None:
+    """Load Griko Nibras Kaggle *Amazon Cell Phones Reviews* (items + reviews by ASIN).
+
+    Dataset: https://www.kaggle.com/datasets/grikomsn/amazon-cell-phones-reviews
+    """
+    settings = _bootstrap()
+    from app.services.kaggle_ingest import ingest_kaggle_cell_phones
+
+    def progress(done: int, total: int, message: str) -> None:
+        console.print(f"({done}/{total}) {message}")
+
+    with session_scope() as db:
+        result = ingest_kaggle_cell_phones(
+            db,
+            dataset_dir=Path(dataset_dir) if dataset_dir else None,
+            download=download,
+            replace=replace,
+            max_phones=max_phones,
+            max_reviews_per_phone=max_reviews,
+            min_total_reviews=min_reviews,
+            brand_filter=brand,
+            settings=settings,
+            progress=progress,
+        )
+
+    console.print_json(json.dumps(result, default=str))
+    if not result["phones_upserted"]:
+        console.print("[yellow]No phones imported.[/yellow]")
+        raise typer.Exit(1)
+    console.print("[green]Kaggle ingest done.[/green] Next: [cyan]python run.py analyze[/cyan]")
+
+
+@app.command("prepare-kaggle")
+def cmd_prepare_kaggle(
+    max_phones: Annotated[int, typer.Option("--max-phones", help="Phones to keep (0 = all ~720).")] = 50,
+    max_reviews: Annotated[int, typer.Option("--max-reviews", help="Reviews per phone (0 = all).")] = 0,
+    min_reviews: Annotated[int, typer.Option("--min-reviews", help="Min totalReviews on product.")] = 10,
+    brand: Annotated[list[str] | None, typer.Option("--brand", "-b", help="Brand filter.")] = None,
+    dataset_dir: Annotated[str | None, typer.Option("--dataset-dir", help="Local Kaggle folder.")] = None,
+    analyze: Annotated[bool, typer.Option("--analyze/--no-analyze", help="Run Steps 2-6 after import.")] = True,
+) -> None:
+    """Recommended path: wipe old corpus, load Kaggle phones dataset, run ABSA, open website."""
+    settings = _bootstrap()
+    from app.services.analysis import run_analysis
+    from app.services.kaggle_ingest import ingest_kaggle_cell_phones
+
+    def progress(done: int, total: int, message: str) -> None:
+        console.print(f"({done}/{total}) {message}")
+
+    console.print("[cyan]Phase 1 — Kaggle Amazon Cell Phones Reviews (items + reviews by ASIN)…[/cyan]")
+    with session_scope() as db:
+        result = ingest_kaggle_cell_phones(
+            db,
+            dataset_dir=Path(dataset_dir) if dataset_dir else None,
+            download=dataset_dir is None,
+            replace=True,
+            max_phones=max_phones,
+            max_reviews_per_phone=max_reviews,
+            min_total_reviews=min_reviews,
+            brand_filter=brand,
+            settings=settings,
+            progress=progress,
+        )
+
+    console.print_json(json.dumps(result, default=str))
+    if not result["phones_upserted"]:
+        console.print("[yellow]No phones imported.[/yellow]")
+        raise typer.Exit(1)
+
+    if analyze:
+        console.print("[cyan]Phase 2 — methodology Steps 2–6 (segment → ABSA → scores)…[/cyan]")
+        analysis = run_analysis(
+            phone_ids=result["phone_ids"],
+            settings=settings,
+            progress=progress,
+        )
+        console.print_json(json.dumps(analysis, default=str))
+
+    console.print(
+        "[green]Done.[/green] Start the app: [cyan]python run.py website[/cyan] or [cyan]python run.py serve[/cyan]"
+    )
 
 
 @app.command("ingest-hf")
@@ -537,6 +635,23 @@ def cmd_serve(
     console.print(f"\n[bold green]Dashboard:[/bold green] http://{host}:{port}/ui/   [dim](open this one)[/dim]")
     console.print(f"[green]API docs: [/green] http://{host}:{port}/docs [dim](OpenAPI reference)[/dim]\n")
     uvicorn.run("app.main:app", host=host, port=port, reload=reload)
+
+
+@app.command("website")
+def cmd_website(
+    port: Annotated[int, typer.Option(help="Port.")] = 8501,
+) -> None:
+    """Start the staged research website (one page per methodology stage)."""
+    _bootstrap()
+    import subprocess
+    import sys
+
+    script = Path(__file__).with_name("streamlit_app.py")
+    console.print(f"\n[bold green]Website:[/bold green] http://localhost:{port}\n")
+    subprocess.run(
+        [sys.executable, "-m", "streamlit", "run", str(script), "--server.port", str(port)],
+        check=False,
+    )
 
 
 if __name__ == "__main__":
