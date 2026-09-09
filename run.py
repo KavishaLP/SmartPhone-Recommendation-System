@@ -3,9 +3,9 @@
     python run.py init-db                       create the database
     python run.py seed-demo                     insert synthetic data (offline testing)
     python run.py purge-demo                    delete the synthetic data again
-    python run.py prepare-corpus                Phase 1: load Amazon-Reviews-2023 + preprocess + ABSA
-    python run.py prepare-kaggle                Phase 1: Kaggle phones dataset + ABSA (recommended)
-    python run.py ingest-kaggle                 load Kaggle Amazon Cell Phones Reviews only
+    python run.py prepare-csv                   Phase 1: full_reviews.csv + preprocess + ABSA (recommended)
+    python run.py ingest-csv                    load data/full_reviews.csv only (English Step 1)
+    python run.py prepare-corpus                Phase 1: load Amazon-Reviews-2023 + preprocess + ABSA (legacy)
     python run.py reset-corpus                  wipe ALL phones/reviews (clean slate)
     python run.py import-corpus PATH            import a pre-built HF folder + optional ABSA
     python run.py ingest-hf                     stream HF directly into the DB (same data, less portable)
@@ -228,38 +228,37 @@ def cmd_import_corpus(
     console.print("[green]Done.[/green] Open the UI: [cyan]python run.py serve[/cyan]")
 
 
-@app.command("ingest-kaggle")
-def cmd_ingest_kaggle(
-    dataset_dir: Annotated[
-        str | None,
-        typer.Option("--dataset-dir", help="Folder with items.csv + reviews.csv (skip download)."),
-    ] = None,
-    download: Annotated[bool, typer.Option("--download/--no-download", help="Download via kagglehub.")] = True,
+@app.command("ingest-csv")
+def cmd_ingest_csv(
+    csv_path: Annotated[
+        str,
+        typer.Option("--csv", help="Path to full_reviews.csv (or compatible scrape)."),
+    ] = "data/full_reviews.csv",
     replace: Annotated[bool, typer.Option("--replace/--no-replace", help="Wipe DB first.")] = True,
-    max_phones: Annotated[int, typer.Option("--max-phones", help="Phones to keep (0 = all in CSV).")] = 0,
+    max_phones: Annotated[int, typer.Option("--max-phones", help="Phones to keep (0 = all).")] = 0,
     max_reviews: Annotated[int, typer.Option("--max-reviews", help="Reviews per phone (0 = all).")] = 0,
-    min_reviews: Annotated[int, typer.Option("--min-reviews", help="Min totalReviews on product row.")] = 0,
+    min_reviews: Annotated[int, typer.Option("--min-reviews", help="Min reviews present in CSV for a phone.")] = 0,
     brand: Annotated[list[str] | None, typer.Option("--brand", "-b", help="Brand filter (repeatable).")] = None,
 ) -> None:
-    """Load Griko Nibras Kaggle *Amazon Cell Phones Reviews* (items + reviews by ASIN).
+    """Load local scraped Amazon reviews CSV (``data/full_reviews.csv``).
 
-    Dataset: https://www.kaggle.com/datasets/grikomsn/amazon-cell-phones-reviews
+    Wipes the previous corpus by default, drops user-manual listings, runs
+    methodology Step 1 (English-only) on insert.
     """
     settings = _bootstrap()
-    from app.services.kaggle_ingest import ingest_kaggle_cell_phones
+    from app.services.scraped_csv_ingest import ingest_full_reviews_csv
 
     def progress(done: int, total: int, message: str) -> None:
         console.print(f"({done}/{total}) {message}")
 
     with session_scope() as db:
-        result = ingest_kaggle_cell_phones(
+        result = ingest_full_reviews_csv(
             db,
-            dataset_dir=Path(dataset_dir) if dataset_dir else None,
-            download=download,
+            csv_path=Path(csv_path),
             replace=replace,
             max_phones=max_phones,
             max_reviews_per_phone=max_reviews,
-            min_total_reviews=min_reviews,
+            min_reviews=min_reviews,
             brand_filter=brand,
             settings=settings,
             progress=progress,
@@ -269,36 +268,44 @@ def cmd_ingest_kaggle(
     if not result["phones_upserted"]:
         console.print("[yellow]No phones imported.[/yellow]")
         raise typer.Exit(1)
-    console.print("[green]Kaggle ingest done.[/green] Next: [cyan]python run.py analyze[/cyan]")
+    console.print(
+        "[green]CSV ingest done.[/green] Next: [cyan]python run.py analyze[/cyan] "
+        "or [cyan]python run.py prepare-csv[/cyan]"
+    )
 
 
-@app.command("prepare-kaggle")
-def cmd_prepare_kaggle(
-    max_phones: Annotated[int, typer.Option("--max-phones", help="Phones to keep (0 = all ~720).")] = 50,
+@app.command("prepare-csv")
+def cmd_prepare_csv(
+    csv_path: Annotated[
+        str,
+        typer.Option("--csv", help="Path to full_reviews.csv."),
+    ] = "data/full_reviews.csv",
+    max_phones: Annotated[int, typer.Option("--max-phones", help="Phones to keep (0 = all).")] = 0,
     max_reviews: Annotated[int, typer.Option("--max-reviews", help="Reviews per phone (0 = all).")] = 0,
-    min_reviews: Annotated[int, typer.Option("--min-reviews", help="Min totalReviews on product.")] = 10,
+    min_reviews: Annotated[int, typer.Option("--min-reviews", help="Min reviews in CSV for a phone.")] = 0,
     brand: Annotated[list[str] | None, typer.Option("--brand", "-b", help="Brand filter.")] = None,
-    dataset_dir: Annotated[str | None, typer.Option("--dataset-dir", help="Local Kaggle folder.")] = None,
     analyze: Annotated[bool, typer.Option("--analyze/--no-analyze", help="Run Steps 2-6 after import.")] = True,
 ) -> None:
-    """Recommended path: wipe old corpus, load Kaggle phones dataset, run ABSA, open website."""
+    """Recommended path: wipe old corpus, load full_reviews.csv, English preprocess, ABSA."""
     settings = _bootstrap()
     from app.services.analysis import run_analysis
-    from app.services.kaggle_ingest import ingest_kaggle_cell_phones
+    from app.services.scraped_csv_ingest import ingest_full_reviews_csv
 
     def progress(done: int, total: int, message: str) -> None:
         console.print(f"({done}/{total}) {message}")
 
-    console.print("[cyan]Phase 1 — Kaggle Amazon Cell Phones Reviews (items + reviews by ASIN)…[/cyan]")
+    console.print(
+        "[cyan]Phase 1 — scraped full_reviews.csv "
+        "(phones + reviews by ASIN, English-only Step 1)…[/cyan]"
+    )
     with session_scope() as db:
-        result = ingest_kaggle_cell_phones(
+        result = ingest_full_reviews_csv(
             db,
-            dataset_dir=Path(dataset_dir) if dataset_dir else None,
-            download=dataset_dir is None,
+            csv_path=Path(csv_path),
             replace=True,
             max_phones=max_phones,
             max_reviews_per_phone=max_reviews,
-            min_total_reviews=min_reviews,
+            min_reviews=min_reviews,
             brand_filter=brand,
             settings=settings,
             progress=progress,
@@ -319,7 +326,8 @@ def cmd_prepare_kaggle(
         console.print_json(json.dumps(analysis, default=str))
 
     console.print(
-        "[green]Done.[/green] Start the app: [cyan]python run.py website[/cyan] or [cyan]python run.py serve[/cyan]"
+        "[green]Done.[/green] Start the app: [cyan]python run.py serve[/cyan] "
+        "or [cyan]python run.py website[/cyan]"
     )
 
 

@@ -31,8 +31,5 @@ python-dotenv>=1.0.1
 # Research exports / analysis
 pandas>=2.2.0
 
-# Offline corpus (McAuley-Lab Amazon-Reviews-2023)
+# Offline corpus (optional legacy McAuley-Lab Amazon-Reviews-2023)
 datasets>=2.19.0
-
-# Kaggle Amazon Cell Phones Reviews (phones-only, ASIN join)
-kagglehub>=0.3.0
