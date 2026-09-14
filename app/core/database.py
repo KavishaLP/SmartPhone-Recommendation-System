@@ -46,6 +46,24 @@ def init_db() -> None:
     from app import models  # noqa: F401  (registers mappers)
 
     Base.metadata.create_all(bind=engine)
+    _ensure_sqlite_columns()
+
+
+def _ensure_sqlite_columns() -> None:
+    """Add columns introduced after the DB was first created (SQLite has no migrations)."""
+    if not _is_sqlite:
+        return
+    from sqlalchemy import text
+
+    with engine.begin() as conn:
+        cols = {
+            row[1]
+            for row in conn.execute(text("PRAGMA table_info(recommendation_feedback)")).all()
+        }
+        if cols and "phone_ratings" not in cols:
+            conn.execute(
+                text("ALTER TABLE recommendation_feedback ADD COLUMN phone_ratings JSON")
+            )
 
 
 def get_db() -> Generator[Session, None, None]:

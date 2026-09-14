@@ -56,6 +56,20 @@ def _review_counts(db: Session, phone_ids: list[int]) -> tuple[dict[int, int], d
     return totals, analysed
 
 
+def _phone_description(phone: Smartphone) -> str | None:
+    """Prefer specs_raw description, then first feature bullet."""
+    specs = phone.specs_raw or {}
+    desc = specs.get("description") if isinstance(specs, dict) else None
+    if isinstance(desc, str) and desc.strip():
+        return desc.strip()
+    bullets = phone.feature_bullets or []
+    if bullets:
+        first = str(bullets[0]).strip()
+        if first:
+            return first
+    return None
+
+
 def _to_summary(phone: Smartphone, prices, totals, analysed) -> PhoneSummary:  # noqa: ANN001
     price_value, currency = prices.get(phone.id, (None, None))
     summary = PhoneSummary.model_validate(phone)
@@ -63,6 +77,7 @@ def _to_summary(phone: Smartphone, prices, totals, analysed) -> PhoneSummary:  #
     summary.currency = currency
     summary.review_count = totals.get(phone.id, 0)
     summary.analyzed_review_count = analysed.get(phone.id, 0)
+    summary.description = _phone_description(phone)
     return summary
 
 
@@ -151,6 +166,7 @@ def get_phone(phone_id: int, db: Session = Depends(get_db)) -> PhoneDetail:
     detail.currency = currency
     detail.review_count = totals.get(phone_id, 0)
     detail.analyzed_review_count = analysed.get(phone_id, 0)
+    detail.description = _phone_description(phone)
 
     history = db.scalars(
         select(PriceObservation)

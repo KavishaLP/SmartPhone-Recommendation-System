@@ -273,3 +273,24 @@ class Job(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class RecommendationFeedback(Base):
+    """Step 13 — user satisfaction after seeing Top-N recommendations."""
+
+    __tablename__ = "recommendation_feedback"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    satisfaction: Mapped[int] = mapped_column(Integer)  # 1–5 overall (mean of phone ratings)
+    comment: Mapped[str | None] = mapped_column(Text)
+
+    # Snapshot of the recommendation request / result for evaluation (Step 14).
+    weights_used: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+    top_phone_ids: Mapped[list[Any] | None] = mapped_column(JSON)
+    top_phone_names: Mapped[list[Any] | None] = mapped_column(JSON)
+    # Per recommended phone: [{smartphone_id, name, rank, satisfaction, final_score}]
+    phone_ratings: Mapped[list[Any] | None] = mapped_column(JSON)
+    candidates_considered: Mapped[int | None] = mapped_column(Integer)
+    session_id: Mapped[str | None] = mapped_column(String(64), index=True)
+
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)

@@ -25,7 +25,7 @@ from starlette.requests import Request
 from starlette.responses import Response as StarletteResponse
 
 from app import __version__
-from app.api.routes import analysis, jobs, phones, recommend, reviews, scrape
+from app.api.routes import analysis, feedback, jobs, phones, recommend, reviews, scrape
 from app.core.config import get_settings
 from app.core.database import init_db
 from app.core.logging import get_logger, setup_logging
@@ -115,6 +115,7 @@ app.include_router(analysis.router)
 app.include_router(phones.router)
 app.include_router(reviews.router)
 app.include_router(recommend.router)
+app.include_router(feedback.router)
 app.include_router(jobs.router)
 
 # The dashboard is a dependency-free static bundle, mounted last so it cannot

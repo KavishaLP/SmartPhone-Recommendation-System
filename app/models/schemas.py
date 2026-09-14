@@ -140,6 +140,7 @@ class PhoneSummary(ORMModel):
     product_url: str | None
     site_rating: float | None
     site_rating_count: int | None
+    description: str | None = None
     latest_price: float | None = None
     currency: str | None = None
     review_count: int = 0
@@ -280,6 +281,48 @@ class RecommendResponse(BaseModel):
     results: list[Recommendation]
 
 
+class PhoneSatisfactionRating(BaseModel):
+    """Per-phone satisfaction for one recommended smartphone (Step 13)."""
+
+    smartphone_id: int
+    name: str
+    rank: int = Field(..., ge=1)
+    satisfaction: int = Field(..., ge=1, le=5)
+    final_score: float | None = None
+
+
+class FeedbackRequest(BaseModel):
+    satisfaction: int | None = Field(
+        None,
+        ge=1,
+        le=5,
+        description="Overall list satisfaction 1–5. If omitted, mean of phone_ratings is used.",
+    )
+    comment: str | None = Field(None, max_length=2000)
+    weights_used: dict[str, float] = Field(default_factory=dict)
+    top_phone_ids: list[int] = Field(default_factory=list)
+    top_phone_names: list[str] = Field(default_factory=list)
+    phone_ratings: list[PhoneSatisfactionRating] = Field(
+        default_factory=list,
+        description="Satisfaction 1–5 for each recommended smartphone.",
+    )
+    candidates_considered: int | None = None
+    session_id: str | None = Field(None, max_length=64)
+
+
+class FeedbackOut(ORMModel):
+    id: int
+    satisfaction: int
+    comment: str | None
+    weights_used: dict[str, Any] | None = None
+    top_phone_ids: list[Any] | None = None
+    top_phone_names: list[Any] | None = None
+    phone_ratings: list[Any] | None = None
+    candidates_considered: int | None = None
+    session_id: str | None = None
+    created_at: datetime
+
+
 # --------------------------------------------------------------------------- #
 # Corpus statistics (for the dissertation's dataset description)
 # --------------------------------------------------------------------------- #
@@ -317,3 +360,26 @@ class ValidationReport(BaseModel):
     mean_absolute_error: float
     by_rating: dict[str, dict[str, float]]
     note: str
+
+
+class EvaluationReport(BaseModel):
+    """Step 14 — ABSA validity + recommendation satisfaction summary."""
+
+    absa_engine: str
+    absa_method_breakdown: dict[str, int]
+    absa_validation: ValidationReport
+    feedback_count: int
+    phone_rating_count: int = 0
+    mean_satisfaction: float | None
+    satisfaction_distribution: dict[str, int]
+    mean_satisfaction_by_rank: dict[str, float] = Field(default_factory=dict)
+    top1_mean_satisfaction: float | None = None
+    high_satisfaction_rate: float | None = Field(
+        None,
+        description="Share of phone ratings that are 4 or 5.",
+    )
+    evaluation_verdict: str | None = Field(
+        None,
+        description="Short quality label derived from mean phone satisfaction.",
+    )
+    recent_feedback: list[FeedbackOut] = Field(default_factory=list)

@@ -34,6 +34,29 @@ function phoneLabel(phone) {
   return phone.canonical_name || phone.name || phone.raw_title || 'Unknown phone';
 }
 
+function phoneDescription(phone, maxLen = 140) {
+  const text = (phone.description || '').trim();
+  if (!text) return '';
+  if (text.length <= maxLen) return text;
+  return `${text.slice(0, maxLen - 1).trim()}…`;
+}
+
+function phoneDescriptionMarkup(phone, { compact = false } = {}) {
+  const full = (phone.description || '').trim();
+  if (!full) return '';
+  if (compact) {
+    const short = phoneDescription(phone, 160);
+    return `<div class="phone-desc-block compact">
+      <div class="phone-desc-label">Product description</div>
+      <p class="phone-desc" title="${esc(full)}">${esc(short)}</p>
+    </div>`;
+  }
+  return `<div class="phone-desc-block">
+    <div class="phone-desc-label">Product description</div>
+    <p class="phone-desc full">${esc(full)}</p>
+  </div>`;
+}
+
 function phoneImageSrc(phone) {
   const id = phone.id ?? phone.smartphone_id;
   if (id) return `/phones/${id}/image`;
@@ -50,16 +73,45 @@ function phoneImageFailed(img) {
 }
 
 function phoneImageMarkup(phone, sizeClass = '') {
-  const label = esc(phoneLabel(phone));
-  const initial = esc((phone.brand || phoneLabel(phone)).charAt(0).toUpperCase());
+  const label = phoneLabel(phone);
+  const initial = esc((phone.brand || label).charAt(0).toUpperCase());
   const src = phoneImageSrc(phone);
   if (src) {
-    return `<div class="phone-image-wrap ${sizeClass}" data-initial="${initial}">
-      <img src="${esc(src)}" alt="${label}" loading="lazy"
+    const srcJs = JSON.stringify(src);
+    const labelJs = JSON.stringify(label);
+    return `<div class="phone-image-wrap ${sizeClass} zoomable" data-initial="${initial}"
+      role="button" tabindex="0" title="Click to view full image"
+      onclick='event.stopPropagation(); openImageLightbox(${srcJs}, ${labelJs})'
+      onkeydown='if(event.key==="Enter"||event.key===" "){event.preventDefault();event.stopPropagation();openImageLightbox(${srcJs}, ${labelJs});}'>
+      <img src="${esc(src)}" alt="${esc(label)}" loading="lazy"
         onerror="phoneImageFailed(this)">
     </div>`;
   }
   return `<div class="phone-image-wrap ${sizeClass} placeholder"><span>${initial}</span></div>`;
+}
+
+function openImageLightbox(src, caption = '') {
+  if (!src) return;
+  const box = $('#lightbox');
+  const img = $('#lightbox-img');
+  const cap = $('#lightbox-caption');
+  if (!box || !img) return;
+  img.src = src;
+  img.alt = caption || 'Product image';
+  if (cap) cap.textContent = caption || '';
+  box.hidden = false;
+  box.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImageLightbox() {
+  const box = $('#lightbox');
+  const img = $('#lightbox-img');
+  if (!box) return;
+  box.classList.remove('open');
+  box.hidden = true;
+  if (img) img.removeAttribute('src');
+  document.body.style.overflow = '';
 }
 
 function starRatingMarkup(rating, count) {
@@ -157,12 +209,44 @@ const state = {
   health: null,
   features: [],
   weights: {},
+  lastRecommend: null,
+  phoneRatings: {},
+  flowStep: 1,
+  lastSessionEval: null,
 };
 
 const VIEW_META = {
-  recommend: ['Recommend', 'Set aspect priorities; ranks phones from Amazon review ABSA scores'],
+  recommend: ['Recommend', '1 Set priorities → 2 Rank → 3 Rate phones → 4 Open Evaluation tab'],
   phones: ['Phones', 'Browse smartphones with aspect scores from Amazon reviews'],
+  evaluation: [
+    'Evaluation',
+    'Full model evaluation from all satisfaction scores across ranking sessions',
+  ],
 };
+
+function setFlowStep(step) {
+  state.flowStep = step;
+  $$('#flow-steps .flow-step').forEach((node) => {
+    const n = Number(node.dataset.step);
+    node.classList.toggle('active', n === step);
+    node.classList.toggle('done', n < step);
+  });
+}
+
+function scrollToId(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function sessionId() {
+  const key = 'phone-recommender-session';
+  let id = localStorage.getItem(key);
+  if (!id) {
+    id = `s_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+    localStorage.setItem(key, id);
+  }
+  return id;
+}
 
 const PRESETS = {
   Balanced: {},
@@ -209,8 +293,7 @@ function renderWeightControls() {
       return `<div class="weight">
         <div class="weight-head">
           <span class="weight-name">${esc(label)}</span>
-          <span class="weight-raw" id="raw-${key}">${state.weights[key]}</span>
-          <span class="weight-pct" id="pct-${key}">—</span>
+          <span class="weight-mark" id="raw-${key}">${state.weights[key]} / 10</span>
         </div>
         <input type="range" min="0" max="10" step="1" value="${state.weights[key]}" data-weight="${esc(key)}">
       </div>`;
@@ -245,19 +328,20 @@ function renderWeightControls() {
 }
 
 function updateWeightLabels() {
-  const total = Object.values(state.weights).reduce((sum, value) => sum + value, 0);
   Object.entries(state.weights).forEach(([key, value]) => {
-    const rawNode = $(`#raw-${key}`);
-    const pctNode = $(`#pct-${key}`);
-    if (rawNode) rawNode.textContent = value;
-    if (pctNode) {
-      pctNode.textContent = total && value ? `${((value / total) * 100).toFixed(0)}%` : '—';
-    }
+    const markNode = $(`#raw-${key}`);
+    if (markNode) markNode.textContent = `${value} / 10`;
   });
 }
 
 async function runRecommend() {
   const container = $('#rec-results');
+  const evalPanel = $('#rec-eval');
+  if (evalPanel) {
+    evalPanel.hidden = true;
+    evalPanel.innerHTML = '';
+  }
+  setFlowStep(2);
   container.innerHTML = skeletons(3);
 
   const weights = Object.fromEntries(
@@ -267,7 +351,7 @@ async function runRecommend() {
   const payload = {
     weights,
     top_k: 10,
-    min_reviews: Number($('#min-reviews').value) || 0,
+    min_reviews: 0,
     apply_shrinkage: true,
   };
   const budgetMin = $('#budget-min').value;
@@ -279,42 +363,384 @@ async function runRecommend() {
     const response = await api('/recommend', { method: 'POST', body: JSON.stringify(payload) });
     if (!response.results.length) {
       let hint =
-        'No phone passed your filters (min reviews / price). Try min reviews = 0 and clear the price fields.';
+        'No phone passed your filters. Clear the price fields and try again.';
       try {
         const stats = await api('/stats');
         if (!stats.phones) {
           hint =
-            'The database has no phones yet. Wait for <code class="mono">ingest-hf</code> to finish ' +
-            'keeping phones, or run it again.';
+            'The database has no phones yet. Run offline ingest first, then try again.';
         } else if (!stats.aspect_sentiments) {
           hint =
             `There are ${stats.phones} phone(s) but no aspect scores yet. ` +
-            'Let ingest finish (or run <code class="mono">python run.py analyze</code>), then click Rank again.';
+            'Run <code class="mono">python run.py analyze</code>, then click Rank again.';
         } else if (response.candidates_considered === 0) {
           hint =
-            `Database has ${stats.phones} phone(s), but none match min reviews = ${payload.min_reviews}` +
-            (payload.budget_min != null || payload.budget_max != null ? ' / your budget' : '') +
-            '. Lower the minimum or clear price filters.';
+            `Database has ${stats.phones} phone(s), but none match your budget.` +
+            ' Clear the price filters and try again.';
         }
       } catch { /* keep default hint */ }
+      setFlowStep(1);
       container.innerHTML = emptyState('No phones to rank', hint);
       return;
     }
 
+    state.lastRecommend = response;
+    state.phoneRatings = {};
+    state.lastSessionEval = null;
+    setFlowStep(3);
     container.innerHTML = `
-      <div class="card" style="margin-bottom:14px">
+      <div class="card flow-banner">
+        <div class="flow-banner-title">Step 2 — Ranked phones</div>
         <div class="row wrap small">
-          <span class="dim">Ranked ${response.results.length} of ${response.candidates_considered}</span>
+          <span class="dim">Showing ${response.results.length} of ${response.candidates_considered} candidates</span>
           ${Object.entries(response.weights_used)
             .sort((a, b) => b[1] - a[1])
             .map(([key, value]) => `<span class="chip info">${esc(key)} ${(value * 100).toFixed(0)}%</span>`)
             .join('')}
         </div>
+        <p class="hint" style="margin:10px 0 0">Next: rate every phone (1–5). After submit, scores are saved and the full model evaluation opens in the Evaluation tab.</p>
       </div>
-      ${response.results.map(renderRecommendation).join('')}`;
+      ${response.results.map(renderRecommendation).join('')}
+      ${renderFeedbackForm(response)}`;
+    bindFeedbackForm(response);
+    setTimeout(() => scrollToId('feedback-card'), 120);
   } catch (error) {
     container.innerHTML = '';
+    state.lastRecommend = null;
+    setFlowStep(1);
     toast('Recommendation failed', error.message, 'err');
+  }
+}
+
+function renderFeedbackForm(response) {
+  const rows = response.results
+    .map((item) => {
+      const id = item.smartphone_id;
+      const stars = [1, 2, 3, 4, 5]
+        .map(
+          (n) =>
+            `<button type="button" class="fb-star" data-phone="${id}" data-sat="${n}" aria-label="Rate ${esc(item.name)} ${n}">${n}</button>`
+        )
+        .join('');
+      return `<div class="phone-rate-row" data-phone-row="${id}">
+        <div class="phone-rate-meta">
+          <span class="rank-mini">#${item.rank}</span>
+          <span class="phone-rate-name">${esc(item.name)}</span>
+        </div>
+        <div class="feedback-stars phone-stars">${stars}</div>
+      </div>`;
+    })
+    .join('');
+
+  return `<div class="card pad-lg feedback-card" id="feedback-card">
+    <div class="card-head"><h3>Step 3 — Rate each recommended phone</h3></div>
+    <p class="hint" style="margin:0">Tap 1 (poor fit) to 5 (great fit) for every phone. Submitting adds these scores to the full model evaluation (Evaluation tab).</p>
+    <div id="phone-rating-list" class="phone-rating-list">${rows}</div>
+    <label class="field mt-16" style="margin-bottom:0">
+      <span class="lbl">Optional comment</span>
+      <textarea id="feedback-comment" rows="2" placeholder="What was missing or useful?" maxlength="2000"></textarea>
+    </label>
+    <div class="feedback-actions">
+      <button class="btn btn-primary" id="btn-feedback" type="button">Submit scores &amp; open Evaluation →</button>
+      <span class="dim small" id="feedback-status"></span>
+    </div>
+  </div>`;
+}
+
+function bindFeedbackForm(response) {
+  $$('#phone-rating-list .fb-star').forEach((btn) => {
+    btn.onclick = () => {
+      const phoneId = Number(btn.dataset.phone);
+      const sat = Number(btn.dataset.sat);
+      state.phoneRatings[phoneId] = sat;
+      $$(`#phone-rating-list .fb-star[data-phone="${phoneId}"]`).forEach((b) => {
+        b.classList.toggle('active', Number(b.dataset.sat) === sat);
+      });
+      const rated = Object.keys(state.phoneRatings).length;
+      const total = response.results.length;
+      const status = $('#feedback-status');
+      if (status && rated < total) status.textContent = `${rated}/${total} phones rated`;
+      else if (status) status.textContent = 'All rated — ready to submit';
+    };
+  });
+  const submit = $('#btn-feedback');
+  if (!submit) return;
+  submit.onclick = () => submitFeedback(response);
+}
+
+function sessionEvalHtml(phoneRatings, report) {
+  const mean =
+    phoneRatings.reduce((sum, r) => sum + r.satisfaction, 0) / phoneRatings.length;
+  const high = phoneRatings.filter((r) => r.satisfaction >= 4).length;
+  const rows = phoneRatings
+    .map(
+      (p) => `<tr>
+        <td>#${esc(p.rank)}</td>
+        <td>${esc(p.name)}</td>
+        <td><strong>${esc(p.satisfaction)}</strong>/5</td>
+      </tr>`
+    )
+    .join('');
+  const verdict =
+    mean >= 4
+      ? 'This ranking looked like a good fit.'
+      : mean >= 3
+        ? 'This ranking was mixed - try adjusting priorities.'
+        : 'This ranking was a weak fit - try different weights.';
+
+  return `
+    <div class="card pad-lg flow-banner ok" id="session-eval-card">
+      <div class="flow-banner-title">Your scores for this ranking</div>
+      <p class="hint" style="margin:0 0 12px">${esc(verdict)} These scores were added to the full model evaluation.</p>
+      <div class="eval-grid">
+        <div>
+          <div class="eval-stat">${score2(mean)}</div>
+          <div class="eval-stat-label">Mean for this Top ${phoneRatings.length}</div>
+        </div>
+        <div>
+          <div class="eval-stat">${high}/${phoneRatings.length}</div>
+          <div class="eval-stat-label">Phones scored 4 or 5</div>
+        </div>
+        <div>
+          <div class="eval-stat">${num(report.phone_rating_count)}</div>
+          <div class="eval-stat-label">Total phone scores stored so far</div>
+        </div>
+      </div>
+      <div class="table-wrap mt-16">
+        <table>
+          <thead><tr><th>Rank</th><th>Phone</th><th>Your score</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      <div class="feedback-actions">
+        <button class="btn btn-primary" type="button" id="btn-open-evaluation">Open full model Evaluation →</button>
+        <span class="dim small">Cumulative results live in the Evaluation tab</span>
+      </div>
+    </div>`;
+}
+
+function bindInlineEvalActions() {
+  const openBtn = $('#btn-open-evaluation');
+  if (openBtn) openBtn.onclick = () => go('evaluation');
+}
+
+function renderInlineEvaluation(phoneRatings, report) {
+  const evalPanel = $('#rec-eval');
+  if (!evalPanel) return;
+  evalPanel.hidden = false;
+  // Session-only on Recommend; full cumulative model eval is on the Evaluation tab.
+  evalPanel.innerHTML = sessionEvalHtml(phoneRatings, report);
+  bindInlineEvalActions();
+}
+
+async function submitFeedback(response) {
+  const last = response || state.lastRecommend;
+  if (!last || !last.results?.length) {
+    toast('Nothing to rate', 'Run Rank phones first.', 'warn');
+    return;
+  }
+  const missing = last.results.filter((r) => !state.phoneRatings[r.smartphone_id]);
+  if (missing.length) {
+    toast('Rate all phones', `Still missing ${missing.length} phone rating(s).`, 'warn');
+    return;
+  }
+
+  const phone_ratings = last.results.map((r) => ({
+    smartphone_id: r.smartphone_id,
+    name: r.name || phoneLabel(r),
+    rank: r.rank,
+    satisfaction: Number(state.phoneRatings[r.smartphone_id]),
+    final_score: r.final_score ?? null,
+  }));
+  const mean =
+    phone_ratings.reduce((sum, r) => sum + r.satisfaction, 0) / phone_ratings.length;
+
+  const status = $('#feedback-status');
+  const btn = $('#btn-feedback');
+  if (btn) btn.disabled = true;
+  if (status) status.textContent = 'Saving scores…';
+  try {
+    await api('/feedback', {
+      method: 'POST',
+      body: JSON.stringify({
+        satisfaction: Math.max(1, Math.min(5, Math.round(mean))),
+        comment: ($('#feedback-comment')?.value || '').trim() || null,
+        weights_used: last.weights_used || {},
+        top_phone_ids: last.results.map((r) => r.smartphone_id).filter(Boolean),
+        top_phone_names: last.results.map((r) => r.name || phoneLabel(r)),
+        phone_ratings,
+        candidates_considered: last.candidates_considered ?? null,
+        session_id: sessionId(),
+      }),
+    });
+
+    const report = await api('/feedback/evaluation');
+    state.lastSessionEval = { phone_ratings, report };
+    setFlowStep(4);
+    renderInlineEvaluation(phone_ratings, report);
+
+    if (status) status.textContent = 'Saved. Opening Evaluation tab…';
+    if (btn) btn.textContent = 'Scores submitted';
+    toast(
+      'Added to Evaluation',
+      `${report.phone_rating_count} phone score(s) across ${report.feedback_count} session(s).`,
+      'ok'
+    );
+    // Full model evaluation lives on its own tab.
+    go('evaluation');
+  } catch (error) {
+    if (btn) btn.disabled = false;
+    if (status) status.textContent = '';
+    toast('Feedback failed', error.message, 'err');
+  }
+}
+
+function evaluationMarkup(report, { compact = false } = {}) {
+  const dist = report.satisfaction_distribution || {};
+  const distMax = Math.max(1, ...Object.values(dist).map(Number));
+  const methods = Object.entries(report.absa_method_breakdown || {})
+    .map(([m, c]) => `<span class="chip info">${esc(m)} ${num(c)}</span>`)
+    .join('') || '<span class="dim">none yet</span>';
+  const absa = report.absa_validation || {};
+  const byRating = Object.entries(absa.by_rating || {})
+    .map(
+      ([stars, row]) =>
+        `<tr><td>${esc(stars)}★</td><td>${num(row.reviews)}</td><td>${(row.agreement_rate * 100).toFixed(1)}%</td><td>${score2(row.mean_absolute_error)}</td></tr>`
+    )
+    .join('');
+  const byRank = Object.entries(report.mean_satisfaction_by_rank || {})
+    .map(([rank, mean]) => `<tr><td>#${esc(rank)}</td><td>${score2(mean)}</td></tr>`)
+    .join('');
+  const recent = (report.recent_feedback || [])
+    .map((f) => {
+      const when = f.created_at ? new Date(f.created_at).toLocaleString() : '—';
+      const phones =
+        Array.isArray(f.phone_ratings) && f.phone_ratings.length
+          ? f.phone_ratings
+              .map((p) => `#${esc(p.rank)} ${esc(p.name)} → <strong>${esc(p.satisfaction)}</strong>/5`)
+              .join('<br>')
+          : esc(f.comment || 'No per-phone ratings');
+      return `<div class="feedback-item">
+        <div class="meta">${esc(when)} · session mean <strong>${esc(f.satisfaction)}</strong>/5 · ${num((f.phone_ratings || []).length)} phone score(s)</div>
+        <div>${phones}</div>
+        ${f.comment ? `<div class="dim small" style="margin-top:8px">${esc(f.comment)}</div>` : ''}
+      </div>`;
+    })
+    .join('');
+
+  const highPct =
+    report.high_satisfaction_rate == null
+      ? '—'
+      : `${(report.high_satisfaction_rate * 100).toFixed(0)}%`;
+
+  return `
+    <div class="card pad-lg banner info" style="margin-bottom:16px" id="final-eval-card">
+      <div>
+        <strong>Final model evaluation (all sessions)</strong>
+        <div>${esc(
+          report.evaluation_verdict ||
+            'No satisfaction scores yet — rank phones on Recommend, rate each phone, then return here.'
+        )}</div>
+        <p class="hint" style="margin:10px 0 0">Using ${num(report.phone_rating_count)} phone score(s) from ${num(report.feedback_count)} ranking session(s). More responses improve this evaluation.</p>
+      </div>
+    </div>
+    <div class="eval-grid">
+      <div class="card pad-lg">
+        <div class="card-head"><h3>Mean phone satisfaction</h3></div>
+        <div class="eval-stat">${report.mean_satisfaction == null ? '—' : score2(report.mean_satisfaction)}</div>
+        <div class="eval-stat-label">From ${num(report.phone_rating_count)} phone score(s) across ${num(report.feedback_count)} ranking session(s)</div>
+        <div class="row wrap mt-16" style="gap:8px">
+          <span class="chip info">Top-1 mean ${report.top1_mean_satisfaction == null ? '—' : score2(report.top1_mean_satisfaction)}</span>
+          <span class="chip info">Scores ≥4: ${highPct}</span>
+        </div>
+        <div class="mt-16">
+          ${[5, 4, 3, 2, 1]
+            .map((n) => {
+              const c = Number(dist[String(n)] || 0);
+              const pct = (c / distMax) * 100;
+              return `<div class="dist-row"><span>${n}</span><div class="dist-track"><div class="dist-fill" style="width:${pct}%"></div></div><span class="dim">${c}</span></div>`;
+            })
+            .join('')}
+        </div>
+      </div>
+      <div class="card pad-lg">
+        <div class="card-head"><h3>Satisfaction by rank position</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Rank</th><th>Mean satisfaction</th></tr></thead>
+            <tbody>${byRank || '<tr><td colspan="2" class="dim">Rate recommended phones after ranking</td></tr>'}</tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card pad-lg">
+        <div class="card-head"><h3>ABSA validity</h3></div>
+        <div class="eval-stat">${((absa.agreement_rate || 0) * 100).toFixed(1)}%</div>
+        <div class="eval-stat-label">Agreement vs review stars (${num(absa.reviews_compared)} reviews)</div>
+        <div class="row wrap mt-16" style="gap:8px">${methods}</div>
+        <p class="hint mt-16" style="margin:0">Engine: ${esc(report.absa_engine)}</p>
+      </div>
+    </div>
+    <div class="card pad-lg mt-16">
+      <div class="card-head"><h3>ABSA agreement by star rating</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Stars</th><th>Reviews</th><th>Agreement</th><th>MAE</th></tr></thead>
+          <tbody>${byRating || '<tr><td colspan="4" class="dim">No validation rows yet</td></tr>'}</tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card pad-lg mt-16">
+      <div class="card-head"><h3>Recent recommendation ratings</h3></div>
+      <div class="feedback-list">${recent || '<p class="dim">No ratings yet — use Recommend to rank and score phones.</p>'}</div>
+    </div>`;
+}
+
+async function renderEvaluation() {
+  const root = $('#eval-content');
+  root.innerHTML = skeletons(3);
+  try {
+    const report = await api('/feedback/evaluation');
+    root.innerHTML = evaluationMarkup(report);
+  } catch (error) {
+    root.innerHTML = emptyState('Evaluation unavailable', esc(error.message));
+  }
+}
+
+function restoreRecommendView() {
+  setFlowStep(state.flowStep || 1);
+  const evalPanel = $('#rec-eval');
+  if (!state.lastRecommend) {
+    if (evalPanel) {
+      evalPanel.hidden = true;
+      evalPanel.innerHTML = '';
+    }
+    return;
+  }
+  const response = state.lastRecommend;
+  const container = $('#rec-results');
+  container.innerHTML = `
+    <div class="card flow-banner">
+      <div class="flow-banner-title">Step 2 — Ranked phones</div>
+      <div class="row wrap small">
+        <span class="dim">Showing ${response.results.length} of ${response.candidates_considered} candidates</span>
+      </div>
+    </div>
+    ${response.results.map(renderRecommendation).join('')}
+    ${renderFeedbackForm(response)}`;
+  bindFeedbackForm(response);
+  Object.entries(state.phoneRatings).forEach(([phoneId, sat]) => {
+    $$(`#phone-rating-list .fb-star[data-phone="${phoneId}"]`).forEach((b) => {
+      b.classList.toggle('active', Number(b.dataset.sat) === Number(sat));
+    });
+  });
+  if (state.lastSessionEval && evalPanel) {
+    renderInlineEvaluation(
+      state.lastSessionEval.phone_ratings,
+      state.lastSessionEval.report
+    );
+    setFlowStep(4);
+  } else if (evalPanel) {
+    evalPanel.hidden = true;
   }
 }
 
@@ -412,6 +838,7 @@ async function renderPhones() {
             ${phone.site_rating != null ? `<div class="phone-rating-row">${starRatingMarkup(phone.site_rating, phone.site_rating_count)}</div>` : ''}
             <div class="phone-price">${money(phone.latest_price, phone.currency)}</div>
             <div class="phone-meta">${num(phone.analyzed_review_count)} analysed reviews</div>
+            ${phoneDescriptionMarkup(phone, { compact: true })}
             ${bars}
           </div>
         </div>`;
@@ -462,7 +889,9 @@ async function openPhone(phoneId) {
           .join('')
       : '<p class="dim small">No aspect scores yet — run analyze.</p>';
 
-    $('#drawer-body').innerHTML = `${hero}<div>${breakdown}</div>
+    $('#drawer-body').innerHTML = `${hero}
+      ${phoneDescriptionMarkup(phone)}
+      <div class="mt-16">${breakdown}</div>
       <p class="card-note mt-16">Scores come from review sentences already stored in the database.</p>`;
   } catch (error) {
     $('#drawer-body').innerHTML = `<div class="banner">${esc(error.message)}</div>`;
@@ -498,8 +927,16 @@ async function renderView(view) {
   $('#page-sub').textContent = subtitle;
   $('#sidebar').classList.remove('open');
 
-  if (view === 'recommend') return runRecommend();
+  if (view === 'recommend') {
+    if (state.lastRecommend) {
+      restoreRecommendView();
+      return;
+    }
+    setFlowStep(1);
+    return;
+  }
   if (view === 'phones') return renderPhones();
+  if (view === 'evaluation') return renderEvaluation();
 }
 
 async function refreshAll() {
@@ -537,11 +974,25 @@ async function init() {
 
   $('#drawer-close').onclick = closeDrawer;
   $('#drawer-backdrop').onclick = closeDrawer;
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+  $('#lightbox-close').onclick = closeImageLightbox;
+  $('#lightbox').onclick = (e) => {
+    if (e.target === $('#lightbox') || e.target === $('#lightbox-img')) closeImageLightbox();
+  };
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if ($('#lightbox') && !$('#lightbox').hidden) {
+      closeImageLightbox();
+      return;
+    }
+    closeDrawer();
+  });
 
   await renderView(currentView());
 }
 
 window.go = go;
 window.openPhone = openPhone;
+window.openImageLightbox = openImageLightbox;
+window.closeImageLightbox = closeImageLightbox;
+window.phoneImageFailed = phoneImageFailed;
 init();
