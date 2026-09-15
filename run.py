@@ -18,6 +18,8 @@
     python run.py stats                         corpus statistics
     python run.py features                      print the feature score table
     python run.py recommend -w battery=0.5 -w camera=0.5
+    python run.py sample-gold                   CSV template for manual ABSA labels
+    python run.py evaluate-absa --gold PATH     score gold labels; show on Evaluation tab
     python run.py export                        write CSVs for the appendix
 """
 
@@ -615,6 +617,36 @@ def cmd_recommend(
         )
 
     console.print(table)
+
+
+@app.command("sample-gold")
+def cmd_sample_gold(
+    n: Annotated[int, typer.Option("--n", help="Number of rows to sample.")] = 200,
+) -> None:
+    """Write a CSV template for manual ABSA gold labels (proposal Stage 7)."""
+    settings = _bootstrap()
+    from app.services.absa_eval import sample_gold_template
+
+    with session_scope() as db:
+        path = sample_gold_template(db, n=n, settings=settings)
+    console.print(
+        f"[green]Gold template:[/green] {path}\n"
+        "Fill [cyan]gold_sentiment[/cyan] with positive / negative / neutral, then run:\n"
+        f"  [cyan]python run.py evaluate-absa --gold \"{path}\"[/cyan]"
+    )
+
+
+@app.command("evaluate-absa")
+def cmd_evaluate_absa(
+    gold: Annotated[Path, typer.Option("--gold", help="CSV with gold_sentiment filled.")],
+) -> None:
+    """Score ABSA predictions against a filled gold CSV; save metrics for Evaluation tab."""
+    _bootstrap()
+    from app.services.absa_eval import evaluate_gold_csv
+
+    report = evaluate_gold_csv(gold)
+    console.print_json(json.dumps(report, default=str))
+    console.print(f"[green]Saved for Evaluation tab:[/green] {report.get('saved_to')}")
 
 
 @app.command("export")

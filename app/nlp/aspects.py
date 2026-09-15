@@ -3,9 +3,9 @@
 The taxonomy is closed on purpose: a fixed label set keeps the LLM output
 comparable across runs and makes the aggregated score table well defined.
 
-`CORE_ASPECTS` matches the five aspects in the methodology
-(battery, camera, display, performance, price). `EXTENDED_ASPECTS` adds five
-more for studies that need finer granularity (ASPECT_SET=extended).
+`CORE_ASPECTS` matches the six features in the methodology
+(battery, camera, display, performance, design, price). `EXTENDED_ASPECTS`
+adds four more for studies that need finer granularity (ASPECT_SET=extended).
 """
 
 from __future__ import annotations
@@ -13,9 +13,16 @@ from __future__ import annotations
 import re
 from functools import lru_cache
 
-CORE_ASPECTS: tuple[str, ...] = ("battery", "camera", "display", "performance", "price")
+CORE_ASPECTS: tuple[str, ...] = (
+    "battery",
+    "camera",
+    "display",
+    "performance",
+    "design",
+    "price",
+)
 
-EXTRA_ASPECTS: tuple[str, ...] = ("design", "software", "connectivity", "audio", "durability")
+EXTRA_ASPECTS: tuple[str, ...] = ("software", "connectivity", "audio", "durability")
 
 EXTENDED_ASPECTS: tuple[str, ...] = CORE_ASPECTS + EXTRA_ASPECTS
 

@@ -227,26 +227,6 @@ class FeatureVector(BaseModel):
 # --------------------------------------------------------------------------- #
 # Recommendation
 # --------------------------------------------------------------------------- #
-class RecommendRequest(BaseModel):
-    weights: dict[str, float] = Field(
-        default_factory=dict,
-        description=(
-            "Aspect -> importance. Unlisted aspects get weight 0. "
-            "Weights are normalised internally. Use 'affordability' to weight numeric price."
-        ),
-        examples=[{"battery": 0.4, "camera": 0.3, "performance": 0.2, "affordability": 0.1}],
-    )
-    phone_ids: list[int] = Field(default_factory=list)
-    brands: list[str] = Field(default_factory=list)
-    budget_min: float | None = Field(None, ge=0)
-    budget_max: float | None = Field(None, ge=0)
-    min_reviews: int = Field(0, ge=0, description="Exclude phones with fewer analysed reviews.")
-    top_k: int = Field(10, ge=1, le=100)
-    apply_shrinkage: bool = Field(
-        True, description="Pull sparse aspect scores toward the corpus mean (reduces small-sample bias)."
-    )
-
-
 class AspectContribution(BaseModel):
     aspect: str
     score: float | None
@@ -273,21 +253,62 @@ class Recommendation(BaseModel):
     breakdown: list[AspectContribution]
     strengths: list[str] = Field(default_factory=list)
     weaknesses: list[str] = Field(default_factory=list)
+    explanation: str = Field(
+        default="",
+        description="Plain-language reason this phone was recommended.",
+    )
+
+
+class RecommendRequest(BaseModel):
+    weights: dict[str, float] = Field(
+        default_factory=dict,
+        description=(
+            "Aspect -> importance. Unlisted aspects get weight 0. "
+            "Weights are normalised internally. Core set: battery, camera, "
+            "display, performance, design, price."
+        ),
+        examples=[{"battery": 0.3, "camera": 0.25, "design": 0.2, "price": 0.25}],
+    )
+    phone_ids: list[int] = Field(default_factory=list)
+    brands: list[str] = Field(default_factory=list)
+    budget_min: float | None = Field(None, ge=0)
+    budget_max: float | None = Field(None, ge=0)
+    min_reviews: int = Field(0, ge=0, description="Exclude phones with fewer analysed reviews.")
+    top_k: int = Field(10, ge=1, le=100)
+    apply_shrinkage: bool = Field(
+        True, description="Pull sparse aspect scores toward the corpus mean (reduces small-sample bias)."
+    )
+    method: Literal["weighted", "star_rating"] = Field(
+        "weighted",
+        description=(
+            "weighted = user aspect priorities (proposed method). "
+            "star_rating = Amazon average stars baseline for comparison."
+        ),
+    )
 
 
 class RecommendResponse(BaseModel):
     weights_used: dict[str, float]
     candidates_considered: int
     results: list[Recommendation]
+    method: str = "weighted"
 
 
 class PhoneSatisfactionRating(BaseModel):
-    """Per-phone satisfaction for one recommended smartphone (Step 13)."""
+    """Per-phone graded fit for one recommended smartphone (1–5).
+
+    Used both as user feedback and as graded relevance for NDCG@3 / Spearman.
+    """
 
     smartphone_id: int
     name: str
     rank: int = Field(..., ge=1)
-    satisfaction: int = Field(..., ge=1, le=5)
+    satisfaction: int = Field(
+        ...,
+        ge=1,
+        le=5,
+        description="How well this phone fits the user's needs (1–5). Also used as graded relevance for ranking evaluation.",
+    )
     final_score: float | None = None
 
 
@@ -308,6 +329,10 @@ class FeedbackRequest(BaseModel):
     )
     candidates_considered: int | None = None
     session_id: str | None = Field(None, max_length=64)
+    ranking_method: str | None = Field(
+        "weighted",
+        description="weighted (proposed) or star_rating (Amazon baseline).",
+    )
 
 
 class FeedbackOut(ORMModel):
@@ -320,6 +345,7 @@ class FeedbackOut(ORMModel):
     phone_ratings: list[Any] | None = None
     candidates_considered: int | None = None
     session_id: str | None = None
+    ranking_method: str | None = None
     created_at: datetime
 
 
@@ -363,7 +389,7 @@ class ValidationReport(BaseModel):
 
 
 class EvaluationReport(BaseModel):
-    """Step 14 — ABSA validity + recommendation satisfaction summary."""
+    """Step 14 — ABSA validity + recommendation satisfaction + ranking quality."""
 
     absa_engine: str
     absa_method_breakdown: dict[str, int]
@@ -382,4 +408,26 @@ class EvaluationReport(BaseModel):
         None,
         description="Short quality label derived from mean phone satisfaction.",
     )
+    # Ranking quality (per-phone 1–5 used as graded relevance)
+    mean_ndcg_at_3: float | None = Field(
+        None,
+        description="Mean NDCG@3 across sessions that have per-phone ratings with ranks.",
+    )
+    ndcg_session_count: int = 0
+    mean_spearman: float | None = Field(
+        None,
+        description="Mean Spearman correlation (system order vs user rating order).",
+    )
+    spearman_session_count: int = 0
+    ranking_quality_note: str | None = None
+    # Proposed vs Amazon-star baseline (from feedback sessions tagged by ranking_method)
+    proposed_mean_satisfaction: float | None = None
+    proposed_mean_ndcg_at_3: float | None = None
+    proposed_session_count: int = 0
+    baseline_mean_satisfaction: float | None = None
+    baseline_mean_ndcg_at_3: float | None = None
+    baseline_session_count: int = 0
+    baseline_comparison_note: str | None = None
+    # Gold-label ABSA technical metrics (from data/artifacts/absa_eval_latest.json)
+    absa_gold_metrics: dict[str, Any] | None = None
     recent_feedback: list[FeedbackOut] = Field(default_factory=list)

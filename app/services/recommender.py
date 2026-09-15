@@ -42,6 +42,77 @@ STRENGTH_THRESHOLD = 0.70
 WEAKNESS_THRESHOLD = 0.45
 
 
+def _pct(score: float | None) -> str:
+    if score is None:
+        return "n/a"
+    return f"{round(float(score) * 100)}%"
+
+
+def build_explanation(
+    *,
+    phone_name: str,
+    breakdown: list[AspectContribution],
+    method: str,
+    site_rating: float | None,
+    site_rating_count: int | None,
+) -> str:
+    """Plain-language why this phone appears in the Top-N list."""
+    if method == "star_rating":
+        rating = f"{site_rating:.1f}" if site_rating is not None else "n/a"
+        count = f"{site_rating_count:,}" if site_rating_count else "few"
+        return (
+            f"{phone_name} is listed here because of its Amazon star rating "
+            f"({rating}/5 from {count} ratings). This is the rating-only baseline — "
+            f"it does not use your feature priorities or review aspect scores."
+        )
+
+    weighted = [
+        item
+        for item in breakdown
+        if item.weight > 0 and not item.imputed and item.score is not None
+    ]
+    weighted.sort(key=lambda c: c.contribution, reverse=True)
+    if not weighted:
+        return (
+            f"{phone_name} is recommended from your priorities, but review evidence "
+            f"for the weighted features is thin, so some scores were estimated."
+        )
+
+    top = weighted[:3]
+    parts = [
+        f"{ASPECT_LABELS.get(item.aspect, item.aspect)} ({_pct(item.score)} positive review score, "
+        f"{round(item.weight * 100)}% of your priority)"
+        for item in top
+    ]
+    if len(parts) == 1:
+        detail = parts[0]
+    elif len(parts) == 2:
+        detail = f"{parts[0]} and {parts[1]}"
+    else:
+        detail = f"{parts[0]}, {parts[1]}, and {parts[2]}"
+
+    lead = (
+        f"{phone_name} is recommended based on your priorities. "
+        f"The strongest matches from reviews are {detail}."
+    )
+    weak = [
+        item
+        for item in breakdown
+        if item.weight > 0
+        and not item.imputed
+        and item.score is not None
+        and item.score <= WEAKNESS_THRESHOLD
+        and item.mention_count > 0
+    ]
+    if weak:
+        w = weak[0]
+        lead += (
+            f" Note: {ASPECT_LABELS.get(w.aspect, w.aspect)} scores lower "
+            f"({_pct(w.score)}) in reviews, so check that trade-off."
+        )
+    return lead
+
+
 def _analysed_review_counts(db: Session, phone_ids: list[int] | None = None) -> dict[int, int]:
     stmt = (
         select(Review.smartphone_id, func.count(Review.id))
@@ -244,6 +315,25 @@ def recommend(
             and item.mention_count >= settings.min_mentions_for_score
         ][:3]
 
+        method = getattr(request, "method", None) or "weighted"
+        explanation = build_explanation(
+            phone_name=vector.name,
+            breakdown=breakdown,
+            method=method,
+            site_rating=vector.site_rating,
+            site_rating_count=vector.site_rating_count,
+        )
+
+        # For the star baseline, final_score mirrors Amazon rating on a 0–1 scale.
+        if method == "star_rating":
+            final = (
+                round((float(vector.site_rating) - 1.0) / 4.0, 4)
+                if vector.site_rating is not None
+                else 0.0
+            )
+        else:
+            final = round(weighted_sum, 4)
+
         scored.append(
             Recommendation(
                 rank=0,
@@ -256,22 +346,38 @@ def recommend(
                 product_url=vector.product_url,
                 site_rating=vector.site_rating,
                 site_rating_count=vector.site_rating_count,
-                final_score=round(weighted_sum, 4),
+                final_score=final,
                 review_count=vector.review_count,
                 coverage=round(real_weight, 4),
                 breakdown=sorted(breakdown, key=lambda c: c.contribution, reverse=True),
                 strengths=strengths,
                 weaknesses=weaknesses,
+                explanation=explanation,
             )
         )
 
-    # Ties broken by evidence volume, so the better-supported phone wins.
-    scored.sort(key=lambda r: (r.final_score, r.coverage, r.review_count), reverse=True)
+    method = getattr(request, "method", None) or "weighted"
+    if method == "star_rating":
+        scored.sort(
+            key=lambda r: (
+                r.site_rating is not None,
+                r.site_rating or 0.0,
+                r.site_rating_count or 0,
+                r.review_count,
+            ),
+            reverse=True,
+        )
+    else:
+        # Ties broken by evidence volume, so the better-supported phone wins.
+        scored.sort(key=lambda r: (r.final_score, r.coverage, r.review_count), reverse=True)
+
     for position, item in enumerate(scored[: request.top_k], start=1):
         item.rank = position
+        # Rebuild explanation with final rank context already in name; keep as-is.
 
     return RecommendResponse(
         weights_used={key: round(value, 4) for key, value in weights.items()},
         candidates_considered=len(candidates),
         results=scored[: request.top_k],
+        method=method,
     )

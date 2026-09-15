@@ -21,8 +21,8 @@ def get_recommendations(
 
     `weights` maps aspects to importance and is normalised internally, so
     `{"battery": 2, "camera": 1}` and `{"battery": 0.67, "camera": 0.33}` are
-    equivalent. Add `"affordability"` to weight the numeric price alongside the
-    review-derived value-for-money score. Omit `weights` entirely to weight all
+    equivalent. Core aspects include design and review-based price. Use budget
+    min/max for list-price filters. Omit `weights` entirely to weight all
     aspects equally.
 
     Each result carries a `breakdown` showing how much every aspect contributed and

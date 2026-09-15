@@ -64,6 +64,13 @@ def _ensure_sqlite_columns() -> None:
             conn.execute(
                 text("ALTER TABLE recommendation_feedback ADD COLUMN phone_ratings JSON")
             )
+        if cols and "ranking_method" not in cols:
+            conn.execute(
+                text(
+                    "ALTER TABLE recommendation_feedback "
+                    "ADD COLUMN ranking_method VARCHAR(32) DEFAULT 'weighted'"
+                )
+            )
 
 
 def get_db() -> Generator[Session, None, None]:

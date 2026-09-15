@@ -16,6 +16,8 @@ from app.models.schemas import (
     ValidationReport,
 )
 from app.nlp.aggregate import validation_report
+from app.services.absa_eval import load_latest_absa_eval
+from app.services.ranking_metrics import session_ranking_metrics
 
 
 def _overall_satisfaction(request: FeedbackRequest) -> int:
@@ -46,6 +48,7 @@ def submit_feedback(db: Session, request: FeedbackRequest) -> RecommendationFeed
         phone_ratings=ratings_payload,
         candidates_considered=request.candidates_considered,
         session_id=(request.session_id or "").strip() or None,
+        ranking_method=(request.ranking_method or "weighted").strip() or "weighted",
     )
     db.add(row)
     db.commit()
@@ -80,6 +83,118 @@ def _iter_phone_scores(rows: list[RecommendationFeedback]) -> list[tuple[int, in
         else:
             out.append((int(row.satisfaction), None))
     return out
+
+
+def _ranking_aggregates(
+    rows: list[RecommendationFeedback],
+) -> tuple[float | None, int, float | None, int, str | None]:
+    ndcgs: list[float] = []
+    spearmans: list[float] = []
+    for row in rows:
+        ratings = row.phone_ratings or []
+        if not isinstance(ratings, list) or not ratings:
+            continue
+        metrics = session_ranking_metrics(ratings)
+        if metrics["ndcg_at_3"] is not None:
+            ndcgs.append(float(metrics["ndcg_at_3"]))
+        if metrics["spearman"] is not None:
+            spearmans.append(float(metrics["spearman"]))
+
+    mean_ndcg = round(sum(ndcgs) / len(ndcgs), 4) if ndcgs else None
+    mean_rho = round(sum(spearmans) / len(spearmans), 4) if spearmans else None
+
+    if mean_ndcg is None:
+        note = (
+            "Ranking quality appears after people rate each recommended phone (1–5). "
+            "Those scores are used to check whether the best-fitting phones were placed near the top."
+        )
+    elif mean_ndcg >= 0.85:
+        note = (
+            f"Ranking quality looks strong (average NDCG@3 = {mean_ndcg:.2f} from {len(ndcgs)} ranking runs). "
+            "Phones users rated highest usually appear near the top of the list."
+        )
+    elif mean_ndcg >= 0.6:
+        note = (
+            f"Ranking quality is moderate (average NDCG@3 = {mean_ndcg:.2f} from {len(ndcgs)} ranking runs). "
+            "Sometimes lower-listed phones fit people better than the top ones."
+        )
+    else:
+        note = (
+            f"Ranking quality looks weak (average NDCG@3 = {mean_ndcg:.2f} from {len(ndcgs)} ranking runs). "
+            "Phones people rated highest often were not near the top of the system list."
+        )
+
+    return mean_ndcg, len(ndcgs), mean_rho, len(spearmans), note
+
+
+def _method_slice_metrics(
+    rows: list[RecommendationFeedback], method: str
+) -> tuple[float | None, float | None, int]:
+    subset = [
+        row
+        for row in rows
+        if (row.ranking_method or "weighted") == method
+        and isinstance(row.phone_ratings, list)
+        and row.phone_ratings
+    ]
+    if not subset:
+        return None, None, 0
+    sats: list[float] = []
+    ndcgs: list[float] = []
+    for row in subset:
+        sats.append(float(row.satisfaction))
+        metrics = session_ranking_metrics(row.phone_ratings or [])
+        if metrics["ndcg_at_3"] is not None:
+            ndcgs.append(float(metrics["ndcg_at_3"]))
+    mean_sat = round(sum(sats) / len(sats), 3) if sats else None
+    mean_ndcg = round(sum(ndcgs) / len(ndcgs), 4) if ndcgs else None
+    return mean_sat, mean_ndcg, len(subset)
+
+
+def _baseline_note(
+    proposed_n: int,
+    baseline_n: int,
+    proposed_sat: float | None,
+    baseline_sat: float | None,
+    proposed_ndcg: float | None,
+    baseline_ndcg: float | None,
+) -> str:
+    if proposed_n == 0 and baseline_n == 0:
+        return (
+            "To compare methods: rank with Your priorities, rate the phones, then rank again "
+            "with Amazon stars (baseline) and rate that list too."
+        )
+    if baseline_n == 0:
+        return (
+            f"Proposed method has {proposed_n} rated run(s). "
+            "Run Rank with “Amazon stars (baseline)” and submit ratings to compare."
+        )
+    if proposed_n == 0:
+        return (
+            f"Baseline has {baseline_n} rated run(s). "
+            "Also rate a list from Your priorities for a fair comparison."
+        )
+    bits = [
+        f"Proposed method: avg rating {proposed_sat}/5"
+        + (f", NDCG@3 {proposed_ndcg}" if proposed_ndcg is not None else "")
+        + f" ({proposed_n} runs).",
+        f"Amazon-star baseline: avg rating {baseline_sat}/5"
+        + (f", NDCG@3 {baseline_ndcg}" if baseline_ndcg is not None else "")
+        + f" ({baseline_n} runs).",
+    ]
+    if (
+        proposed_sat is not None
+        and baseline_sat is not None
+        and proposed_sat > baseline_sat
+    ):
+        bits.append("Users rated the priority-based list higher on average.")
+    elif (
+        proposed_sat is not None
+        and baseline_sat is not None
+        and baseline_sat > proposed_sat
+    ):
+        bits.append("Users rated the Amazon-star list higher on average — review explanations and weights.")
+    return " ".join(bits)
 
 
 def _verdict(mean: float | None) -> str | None:
@@ -132,6 +247,10 @@ def evaluation_summary(db: Session, settings: Settings | None = None) -> Evaluat
     high_rate = (
         round(sum(1 for s, _ in scores if s >= 4) / len(scores), 4) if scores else None
     )
+    mean_ndcg, ndcg_n, mean_rho, rho_n, ranking_note = _ranking_aggregates(all_rows)
+    prop_sat, prop_ndcg, prop_n = _method_slice_metrics(all_rows, "weighted")
+    base_sat, base_ndcg, base_n = _method_slice_metrics(all_rows, "star_rating")
+    absa_gold = load_latest_absa_eval(settings)
 
     return EvaluationReport(
         absa_engine=settings.resolved_absa_engine(),
@@ -145,5 +264,20 @@ def evaluation_summary(db: Session, settings: Settings | None = None) -> Evaluat
         top1_mean_satisfaction=top1_mean,
         high_satisfaction_rate=high_rate,
         evaluation_verdict=_verdict(mean),
+        mean_ndcg_at_3=mean_ndcg,
+        ndcg_session_count=ndcg_n,
+        mean_spearman=mean_rho,
+        spearman_session_count=rho_n,
+        ranking_quality_note=ranking_note,
+        proposed_mean_satisfaction=prop_sat,
+        proposed_mean_ndcg_at_3=prop_ndcg,
+        proposed_session_count=prop_n,
+        baseline_mean_satisfaction=base_sat,
+        baseline_mean_ndcg_at_3=base_ndcg,
+        baseline_session_count=base_n,
+        baseline_comparison_note=_baseline_note(
+            prop_n, base_n, prop_sat, base_sat, prop_ndcg, base_ndcg
+        ),
+        absa_gold_metrics=absa_gold,
         recent_feedback=[FeedbackOut.model_validate(row) for row in feedback_rows],
     )

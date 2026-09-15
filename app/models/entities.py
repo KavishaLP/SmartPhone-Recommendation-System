@@ -292,5 +292,6 @@ class RecommendationFeedback(Base):
     phone_ratings: Mapped[list[Any] | None] = mapped_column(JSON)
     candidates_considered: Mapped[int | None] = mapped_column(Integer)
     session_id: Mapped[str | None] = mapped_column(String(64), index=True)
+    ranking_method: Mapped[str | None] = mapped_column(String(32), default="weighted")
 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)

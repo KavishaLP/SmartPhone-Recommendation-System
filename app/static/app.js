@@ -213,6 +213,7 @@ const state = {
   phoneRatings: {},
   flowStep: 1,
   lastSessionEval: null,
+  rankingMethod: 'weighted',
 };
 
 const VIEW_META = {
@@ -220,9 +221,34 @@ const VIEW_META = {
   phones: ['Phones', 'Browse smartphones with aspect scores from Amazon reviews'],
   evaluation: [
     'Evaluation',
-    'Full model evaluation from all satisfaction scores across ranking sessions',
+    'Simple summary of how happy people were with the phone suggestions',
   ],
 };
+
+function friendlyVerdict(verdict) {
+  if (!verdict) {
+    return 'No ratings yet. Go to Recommend, get a phone list, rate each phone 1–5, then come back here.';
+  }
+  const text = String(verdict);
+  if (text.startsWith('Good')) {
+    return 'Overall: Good — most people were happy with the suggested phones.';
+  }
+  if (text.startsWith('Mixed')) {
+    return 'Overall: Okay — some people liked the suggestions, some did not. There is room to improve.';
+  }
+  if (text.startsWith('Weak')) {
+    return 'Overall: Weak — many people were not happy with the suggested phones.';
+  }
+  return text;
+}
+
+function friendlyMethodLabel(method) {
+  const key = String(method || '');
+  if (key === 'lexicon') return 'Review text reader (rules)';
+  if (key === 'lexicon_fallback') return 'Review text reader (backup)';
+  if (key === 'llm') return 'AI review reader';
+  return key;
+}
 
 function setFlowStep(step) {
   state.flowStep = step;
@@ -250,10 +276,10 @@ function sessionId() {
 
 const PRESETS = {
   Balanced: {},
-  Photography: { camera: 10, display: 6, performance: 4, battery: 4 },
-  'Battery life': { battery: 10, performance: 4, price: 4 },
-  Gaming: { performance: 10, display: 8, battery: 6 },
-  'Best value': { affordability: 8, price: 8, battery: 5, performance: 5 },
+  Photography: { camera: 10, display: 6, performance: 4, battery: 4, design: 5 },
+  'Battery life': { battery: 10, performance: 4, price: 4, design: 3 },
+  Gaming: { performance: 10, display: 8, battery: 6, design: 3 },
+  'Best value': { price: 10, battery: 5, performance: 5, design: 4 },
 };
 
 function setBadges(stats) {
@@ -280,7 +306,10 @@ async function loadBadges() {
 }
 
 function renderWeightControls() {
-  const keys = [...state.aspects.map((a) => a.aspect), 'affordability'];
+  // One slider per ABSA feature (incl. design + review-based price). No separate
+  // numeric "affordability" slider — budget filters cover list price.
+  const keys = state.aspects.map((a) => a.aspect);
+  delete state.weights.affordability;
 
   $('#presets').innerHTML = Object.keys(PRESETS)
     .map((name) => `<div class="preset" data-preset="${esc(name)}">${esc(name)}</div>`)
@@ -288,7 +317,8 @@ function renderWeightControls() {
 
   $('#weights').innerHTML = keys
     .map((key) => {
-      const label = key === 'affordability' ? 'Affordability (price)' : key;
+      const meta = state.aspects.find((a) => a.aspect === key);
+      const label = meta?.label || key;
       state.weights[key] = state.weights[key] ?? 5;
       return `<div class="weight">
         <div class="weight-head">
@@ -344,8 +374,9 @@ async function runRecommend() {
   setFlowStep(2);
   container.innerHTML = skeletons(3);
 
+  const aspectKeys = new Set(state.aspects.map((a) => a.aspect));
   const weights = Object.fromEntries(
-    Object.entries(state.weights).filter(([, value]) => value > 0)
+    Object.entries(state.weights).filter(([key, value]) => aspectKeys.has(key) && value > 0)
   );
 
   const payload = {
@@ -353,6 +384,7 @@ async function runRecommend() {
     top_k: 10,
     min_reviews: 0,
     apply_shrinkage: true,
+    method: state.rankingMethod || 'weighted',
   };
   const budgetMin = $('#budget-min').value;
   const budgetMax = $('#budget-max').value;
@@ -387,18 +419,24 @@ async function runRecommend() {
     state.lastRecommend = response;
     state.phoneRatings = {};
     state.lastSessionEval = null;
+    state.rankingMethod = response.method || state.rankingMethod || 'weighted';
     setFlowStep(3);
+    const methodLabel =
+      state.rankingMethod === 'star_rating'
+        ? 'Amazon stars (baseline)'
+        : 'Your priorities (proposed)';
     container.innerHTML = `
       <div class="card flow-banner">
         <div class="flow-banner-title">Step 2 — Ranked phones</div>
         <div class="row wrap small">
           <span class="dim">Showing ${response.results.length} of ${response.candidates_considered} candidates</span>
-          ${Object.entries(response.weights_used)
+          <span class="chip info">${esc(methodLabel)}</span>
+          ${Object.entries(response.weights_used || {})
             .sort((a, b) => b[1] - a[1])
             .map(([key, value]) => `<span class="chip info">${esc(key)} ${(value * 100).toFixed(0)}%</span>`)
             .join('')}
         </div>
-        <p class="hint" style="margin:10px 0 0">Next: rate every phone (1–5). After submit, scores are saved and the full model evaluation opens in the Evaluation tab.</p>
+        <p class="hint" style="margin:10px 0 0">Each phone includes a plain-language “why recommended” note. Next: rate every phone (1–5).</p>
       </div>
       ${response.results.map(renderRecommendation).join('')}
       ${renderFeedbackForm(response)}`;
@@ -434,7 +472,7 @@ function renderFeedbackForm(response) {
 
   return `<div class="card pad-lg feedback-card" id="feedback-card">
     <div class="card-head"><h3>Step 3 — Rate each recommended phone</h3></div>
-    <p class="hint" style="margin:0">Tap 1 (poor fit) to 5 (great fit) for every phone. Submitting adds these scores to the full model evaluation (Evaluation tab).</p>
+    <p class="hint" style="margin:0">Tap 1 (poor fit) to 5 (great fit) for every phone. These scores are saved for Evaluation and also used to check ranking quality (NDCG@3).</p>
     <div id="phone-rating-list" class="phone-rating-list">${rows}</div>
     <label class="field mt-16" style="margin-bottom:0">
       <span class="lbl">Optional comment</span>
@@ -491,7 +529,7 @@ function sessionEvalHtml(phoneRatings, report) {
   return `
     <div class="card pad-lg flow-banner ok" id="session-eval-card">
       <div class="flow-banner-title">Your scores for this ranking</div>
-      <p class="hint" style="margin:0 0 12px">${esc(verdict)} These scores were added to the full model evaluation.</p>
+      <p class="hint" style="margin:0 0 12px">${esc(verdict)} These ratings were saved and will show on the Evaluation page.</p>
       <div class="eval-grid">
         <div>
           <div class="eval-stat">${score2(mean)}</div>
@@ -513,8 +551,8 @@ function sessionEvalHtml(phoneRatings, report) {
         </table>
       </div>
       <div class="feedback-actions">
-        <button class="btn btn-primary" type="button" id="btn-open-evaluation">Open full model Evaluation →</button>
-        <span class="dim small">Cumulative results live in the Evaluation tab</span>
+        <button class="btn btn-primary" type="button" id="btn-open-evaluation">See overall results on Evaluation →</button>
+        <span class="dim small">That page shows how happy people were with all suggestions</span>
       </div>
     </div>`;
 }
@@ -571,6 +609,7 @@ async function submitFeedback(response) {
         phone_ratings,
         candidates_considered: last.candidates_considered ?? null,
         session_id: sessionId(),
+        ranking_method: last.method || state.rankingMethod || 'weighted',
       }),
     });
 
@@ -599,17 +638,25 @@ function evaluationMarkup(report, { compact = false } = {}) {
   const dist = report.satisfaction_distribution || {};
   const distMax = Math.max(1, ...Object.values(dist).map(Number));
   const methods = Object.entries(report.absa_method_breakdown || {})
-    .map(([m, c]) => `<span class="chip info">${esc(m)} ${num(c)}</span>`)
-    .join('') || '<span class="dim">none yet</span>';
+    .map(([m, c]) => `<span class="chip info">${esc(friendlyMethodLabel(m))}: ${num(c)}</span>`)
+    .join('') || '<span class="dim">No review analysis yet</span>';
   const absa = report.absa_validation || {};
   const byRating = Object.entries(absa.by_rating || {})
     .map(
       ([stars, row]) =>
-        `<tr><td>${esc(stars)}★</td><td>${num(row.reviews)}</td><td>${(row.agreement_rate * 100).toFixed(1)}%</td><td>${score2(row.mean_absolute_error)}</td></tr>`
+        `<tr>
+          <td>${esc(stars)}★ reviews</td>
+          <td>${num(row.reviews)}</td>
+          <td>${(row.agreement_rate * 100).toFixed(1)}% match</td>
+          <td>${score2(row.mean_absolute_error)}</td>
+        </tr>`
     )
     .join('');
   const byRank = Object.entries(report.mean_satisfaction_by_rank || {})
-    .map(([rank, mean]) => `<tr><td>#${esc(rank)}</td><td>${score2(mean)}</td></tr>`)
+    .map(
+      ([rank, mean]) =>
+        `<tr><td>Phone placed #${esc(rank)}</td><td>${score2(mean)} out of 5</td></tr>`
+    )
     .join('');
   const recent = (report.recent_feedback || [])
     .map((f) => {
@@ -617,11 +664,14 @@ function evaluationMarkup(report, { compact = false } = {}) {
       const phones =
         Array.isArray(f.phone_ratings) && f.phone_ratings.length
           ? f.phone_ratings
-              .map((p) => `#${esc(p.rank)} ${esc(p.name)} → <strong>${esc(p.satisfaction)}</strong>/5`)
+              .map(
+                (p) =>
+                  `#${esc(p.rank)} ${esc(p.name)} — rated <strong>${esc(p.satisfaction)}</strong> out of 5`
+              )
               .join('<br>')
           : esc(f.comment || 'No per-phone ratings');
       return `<div class="feedback-item">
-        <div class="meta">${esc(when)} · session mean <strong>${esc(f.satisfaction)}</strong>/5 · ${num((f.phone_ratings || []).length)} phone score(s)</div>
+        <div class="meta">${esc(when)} · average for that list: <strong>${esc(f.satisfaction)}</strong>/5 · ${num((f.phone_ratings || []).length)} phone(s) rated</div>
         <div>${phones}</div>
         ${f.comment ? `<div class="dim small" style="margin-top:8px">${esc(f.comment)}</div>` : ''}
       </div>`;
@@ -633,65 +683,126 @@ function evaluationMarkup(report, { compact = false } = {}) {
       ? '—'
       : `${(report.high_satisfaction_rate * 100).toFixed(0)}%`;
 
+  const meanLabel =
+    report.mean_satisfaction == null ? '—' : score2(report.mean_satisfaction);
+  const top1Label =
+    report.top1_mean_satisfaction == null ? '—' : score2(report.top1_mean_satisfaction);
+  const ndcgLabel =
+    report.mean_ndcg_at_3 == null ? '—' : score2(report.mean_ndcg_at_3);
+  const spearmanLabel =
+    report.mean_spearman == null ? '—' : score2(report.mean_spearman);
+
   return `
     <div class="card pad-lg banner info" style="margin-bottom:16px" id="final-eval-card">
       <div>
-        <strong>Final model evaluation (all sessions)</strong>
-        <div>${esc(
-          report.evaluation_verdict ||
-            'No satisfaction scores yet — rank phones on Recommend, rate each phone, then return here.'
-        )}</div>
-        <p class="hint" style="margin:10px 0 0">Using ${num(report.phone_rating_count)} phone score(s) from ${num(report.feedback_count)} ranking session(s). More responses improve this evaluation.</p>
+        <strong>How good are the phone suggestions?</strong>
+        <div>${esc(friendlyVerdict(report.evaluation_verdict))}</div>
+        <p class="hint" style="margin:10px 0 0">
+          Built from <strong>${num(report.phone_rating_count)}</strong> phone ratings
+          across <strong>${num(report.feedback_count)}</strong> times people used Rank.
+          The more people rate, the clearer this picture becomes.
+        </p>
+      </div>
+    </div>
+    <div class="card pad-lg banner info" style="margin-bottom:16px">
+      <div>
+        <strong>Did the system put the best-fitting phones near the top?</strong>
+        <div>${esc(report.ranking_quality_note || '')}</div>
+        <p class="hint" style="margin:10px 0 0">
+          Your 1–5 phone ratings are also used as “how well each phone fits my needs” to measure ranking quality (NDCG@3).
+          <strong>1.00</strong> = ideal order · closer to <strong>0</strong> = poor order.
+        </p>
       </div>
     </div>
     <div class="eval-grid">
       <div class="card pad-lg">
-        <div class="card-head"><h3>Mean phone satisfaction</h3></div>
-        <div class="eval-stat">${report.mean_satisfaction == null ? '—' : score2(report.mean_satisfaction)}</div>
-        <div class="eval-stat-label">From ${num(report.phone_rating_count)} phone score(s) across ${num(report.feedback_count)} ranking session(s)</div>
+        <div class="card-head"><h3>Ranking quality (NDCG@3)</h3></div>
+        <div class="eval-stat">${ndcgLabel}</div>
+        <div class="eval-stat-label">Average over ${num(report.ndcg_session_count)} ranking run(s) with per-phone scores. Checks whether the top 3 system picks match phones you rated highest.</div>
         <div class="row wrap mt-16" style="gap:8px">
-          <span class="chip info">Top-1 mean ${report.top1_mean_satisfaction == null ? '—' : score2(report.top1_mean_satisfaction)}</span>
-          <span class="chip info">Scores ≥4: ${highPct}</span>
+          <span class="chip info">Order match (Spearman): ${spearmanLabel}</span>
+          <span class="chip info">From ${num(report.spearman_session_count)} run(s)</span>
         </div>
+        <p class="hint mt-16" style="margin:0">Spearman: +1 similar order · 0 no clear link · −1 opposite order. Shown when enough phones were rated in a run.</p>
+      </div>
+      <div class="card pad-lg">
+        <div class="card-head"><h3>Proposed method vs Amazon-star baseline</h3></div>
+        <p class="hint" style="margin:0 0 12px">${esc(report.baseline_comparison_note || '')}</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Method</th><th>Rated runs</th><th>Avg phone rating</th><th>NDCG@3</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Your priorities (proposed)</td>
+                <td>${num(report.proposed_session_count)}</td>
+                <td>${report.proposed_mean_satisfaction == null ? '—' : score2(report.proposed_mean_satisfaction) + '/5'}</td>
+                <td>${report.proposed_mean_ndcg_at_3 == null ? '—' : score2(report.proposed_mean_ndcg_at_3)}</td>
+              </tr>
+              <tr>
+                <td>Amazon stars (baseline)</td>
+                <td>${num(report.baseline_session_count)}</td>
+                <td>${report.baseline_mean_satisfaction == null ? '—' : score2(report.baseline_mean_satisfaction) + '/5'}</td>
+                <td>${report.baseline_mean_ndcg_at_3 == null ? '—' : score2(report.baseline_mean_ndcg_at_3)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card pad-lg">
+        <div class="card-head"><h3>Average happiness with suggested phones</h3></div>
+        <div class="eval-stat">${meanLabel}<span class="eval-stat-unit"> / 5</span></div>
+        <div class="eval-stat-label">1 = poor fit · 5 = great fit. Based on ${num(report.phone_rating_count)} ratings from ${num(report.feedback_count)} ranking runs.</div>
+        <div class="row wrap mt-16" style="gap:8px">
+          <span class="chip info">#1 phone average: ${top1Label}/5</span>
+          <span class="chip info">Liked (4 or 5): ${highPct}</span>
+        </div>
+        <p class="hint mt-16" style="margin:0">How many times each score was given:</p>
         <div class="mt-16">
           ${[5, 4, 3, 2, 1]
             .map((n) => {
               const c = Number(dist[String(n)] || 0);
               const pct = (c / distMax) * 100;
-              return `<div class="dist-row"><span>${n}</span><div class="dist-track"><div class="dist-fill" style="width:${pct}%"></div></div><span class="dim">${c}</span></div>`;
+              const label = n === 5 ? 'Great (5)' : n === 4 ? 'Good (4)' : n === 3 ? 'Okay (3)' : n === 2 ? 'Weak (2)' : 'Poor (1)';
+              return `<div class="dist-row"><span>${label}</span><div class="dist-track"><div class="dist-fill" style="width:${pct}%"></div></div><span class="dim">${c}</span></div>`;
             })
             .join('')}
         </div>
       </div>
       <div class="card pad-lg">
-        <div class="card-head"><h3>Satisfaction by rank position</h3></div>
+        <div class="card-head"><h3>Were higher-ranked phones liked more?</h3></div>
+        <p class="hint" style="margin:0 0 12px">If the system is working well, phones placed near the top (#1, #2) should usually get higher ratings than phones lower on the list.</p>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Rank</th><th>Mean satisfaction</th></tr></thead>
-            <tbody>${byRank || '<tr><td colspan="2" class="dim">Rate recommended phones after ranking</td></tr>'}</tbody>
+            <thead><tr><th>Place in the list</th><th>Average rating from users</th></tr></thead>
+            <tbody>${byRank || '<tr><td colspan="2" class="dim">No ratings yet — rate phones after ranking</td></tr>'}</tbody>
           </table>
         </div>
       </div>
+    </div>
+    <div class="eval-grid mt-16">
       <div class="card pad-lg">
-        <div class="card-head"><h3>ABSA validity</h3></div>
-        <div class="eval-stat">${((absa.agreement_rate || 0) * 100).toFixed(1)}%</div>
-        <div class="eval-stat-label">Agreement vs review stars (${num(absa.reviews_compared)} reviews)</div>
+        <div class="card-head"><h3>Do review opinions match star ratings?</h3></div>
+        <div class="eval-stat">${((absa.agreement_rate || 0) * 100).toFixed(1)}%<span class="eval-stat-unit"> match</span></div>
+        <div class="eval-stat-label">Checked on ${num(absa.reviews_compared)} Amazon reviews. Higher % means the text analysis usually agrees with the reviewer’s star score.</div>
         <div class="row wrap mt-16" style="gap:8px">${methods}</div>
-        <p class="hint mt-16" style="margin:0">Engine: ${esc(report.absa_engine)}</p>
+        <p class="hint mt-16" style="margin:0">Current reading mode: ${esc(report.absa_engine === 'llm' ? 'AI' : report.absa_engine)}</p>
       </div>
     </div>
     <div class="card pad-lg mt-16">
-      <div class="card-head"><h3>ABSA agreement by star rating</h3></div>
+      <div class="card-head"><h3>Match quality for 1★ to 5★ reviews</h3></div>
+      <p class="hint" style="margin:0 0 12px">
+        For each star level: how often the text analysis agreed with the stars, and how far off it was on average (smaller “difference” is better).
+      </p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Stars</th><th>Reviews</th><th>Agreement</th><th>MAE</th></tr></thead>
-          <tbody>${byRating || '<tr><td colspan="4" class="dim">No validation rows yet</td></tr>'}</tbody>
+          <thead><tr><th>Review stars</th><th>How many reviews</th><th>How often they matched</th><th>Average difference</th></tr></thead>
+          <tbody>${byRating || '<tr><td colspan="4" class="dim">No review checks yet</td></tr>'}</tbody>
         </table>
       </div>
     </div>
     <div class="card pad-lg mt-16">
-      <div class="card-head"><h3>Recent recommendation ratings</h3></div>
-      <div class="feedback-list">${recent || '<p class="dim">No ratings yet — use Recommend to rank and score phones.</p>'}</div>
+      <div class="card-head"><h3>Latest ratings people gave</h3></div>
+      <div class="feedback-list">${recent || '<p class="dim">No ratings yet. Use Recommend, then score each suggested phone.</p>'}</div>
     </div>`;
 }
 
@@ -777,6 +888,11 @@ function renderRecommendation(item) {
           </div>
         </div>
         <div class="mt-16">${rows}</div>
+        ${
+          item.explanation
+            ? `<div class="rec-explain mt-16"><strong>Why recommended:</strong> ${esc(item.explanation)}</div>`
+            : ''
+        }
         <div class="row wrap mt-16">
           ${item.strengths.map((s) => `<span class="chip pos">▲ ${esc(s)}</span>`).join('')}
           ${item.weaknesses.map((w) => `<span class="chip neg">▼ ${esc(w)}</span>`).join('')}
@@ -869,12 +985,31 @@ async function openPhone(phoneId) {
       ? `<div class="drawer-hero">${phoneImageMarkup(phone, 'drawer-size')}</div>`
       : '';
 
-    const breakdown = phone.aspect_scores.length
-      ? phone.aspect_scores
-          .map(
-            (s) => `<div style="margin-bottom:14px">
+    const scoreByAspect = Object.fromEntries(
+      (phone.aspect_scores || []).map((s) => [s.aspect, s])
+    );
+    const aspectOrder = state.aspects.length
+      ? state.aspects.map((a) => a.aspect)
+      : Object.keys(scoreByAspect);
+    const breakdown = aspectOrder.length
+      ? aspectOrder
+          .map((aspect) => {
+            const s = scoreByAspect[aspect];
+            const label = state.aspects.find((a) => a.aspect === aspect)?.label || aspect;
+            if (!s || !s.mention_count) {
+              return `<div style="margin-bottom:14px">
         <div class="row" style="margin-bottom:6px">
-          <strong class="cap">${esc(s.aspect)}</strong>
+          <strong class="cap">${esc(label)}</strong>
+          <span class="dim small">no review mentions yet</span>
+          <div class="spacer"></div>
+          <span class="mono dim">—</span>
+        </div>
+        <div class="stacked" style="height:16px"></div>
+      </div>`;
+            }
+            return `<div style="margin-bottom:14px">
+        <div class="row" style="margin-bottom:6px">
+          <strong class="cap">${esc(label)}</strong>
           <span class="dim small">${num(s.mention_count)} mentions</span>
           <div class="spacer"></div>
           <span class="mono" style="color:${scoreColor(s.score)}"><strong>${score2(s.score)}</strong></span>
@@ -884,8 +1019,8 @@ async function openPhone(phoneId) {
           ${s.neutral_count ? `<div style="width:${(s.neutral_count / s.mention_count) * 100}%;background:var(--neutral)"></div>` : ''}
           ${s.negative_count ? `<div style="width:${(s.negative_count / s.mention_count) * 100}%;background:var(--negative)"></div>` : ''}
         </div>
-      </div>`
-          )
+      </div>`;
+          })
           .join('')
       : '<p class="dim small">No aspect scores yet — run analyze.</p>';
 
@@ -949,7 +1084,7 @@ async function init() {
   try {
     state.aspects = await api('/aspects');
   } catch {
-    state.aspects = ['battery', 'camera', 'display', 'performance', 'price'].map((a) => ({
+    state.aspects = ['battery', 'camera', 'display', 'performance', 'design', 'price'].map((a) => ({
       aspect: a, label: a,
     }));
   }
@@ -964,6 +1099,13 @@ async function init() {
   initTheme();
   $('#menu-toggle').onclick = () => $('#sidebar').classList.toggle('open');
   $('#btn-recommend').onclick = runRecommend;
+  $$('input[name="rank-method"]').forEach((radio) => {
+    radio.onchange = () => {
+      if (radio.checked) state.rankingMethod = radio.value;
+    };
+  });
+  const checked = $('input[name="rank-method"]:checked');
+  if (checked) state.rankingMethod = checked.value;
 
   let searchTimer;
   $('#phone-search').oninput = () => {

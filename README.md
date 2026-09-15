@@ -118,7 +118,7 @@ This streams [`McAuley-Lab/Amazon-Reviews-2023`](https://huggingface.co/datasets
 | 6 | Aspect score aggregation → feature table | SQLite `aspect_scores` |
 | — | Weighted recommendation | `/ui/` Recommend page |
 
-Aspects: **battery, camera, display, performance, price**.
+Aspects: **battery, camera, display, performance, design, price**.
 
 ---
 
@@ -160,8 +160,8 @@ Phase 1 (download, preprocess, ABSA) is CLI or Colab, not the browser: `prepare-
 | Output | Feature score database | `GET /features` |
 | — | Recommendation engine | `app/services/recommender.py` |
 
-Aspects (`ASPECT_SET=core`): **battery, camera, display, performance, price**.
-`ASPECT_SET=extended` adds design, software, connectivity, audio, durability.
+Aspects (`ASPECT_SET=core`): **battery, camera, display, performance, design, price**.
+`ASPECT_SET=extended` adds software, connectivity, audio, durability.
 
 ---
 
