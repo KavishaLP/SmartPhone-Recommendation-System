@@ -219,6 +219,10 @@ const state = {
 const VIEW_META = {
   recommend: ['Recommend', '1 Set priorities → 2 Rank → 3 Rate phones → 4 Open Evaluation tab'],
   phones: ['Phones', 'Browse smartphones with aspect scores from Amazon reviews'],
+  evidence: [
+    'Evidence',
+    'Pipeline proof: raw review → preprocess → sentences → ABSA → scores → ranking',
+  ],
   evaluation: [
     'Evaluation',
     'Simple summary of how happy people were with the phone suggestions',
@@ -806,12 +810,351 @@ function evaluationMarkup(report, { compact = false } = {}) {
     </div>`;
 }
 
+function chartsMarkup(chartPayload) {
+  const charts = chartPayload?.charts || [];
+  const note = chartPayload?.note || '';
+  if (!charts.length) {
+    return `<div class="card pad-lg mt-16">
+      <div class="card-head"><h3>Research charts</h3></div>
+      <p class="hint" style="margin:0">${esc(note || 'No charts available yet.')}</p>
+    </div>`;
+  }
+  const cards = charts
+    .map(
+      (c) => `<figure class="eval-chart-card" data-chart-url="${esc(c.url)}" data-chart-title="${esc(c.title)}">
+        <div class="eval-chart-frame">
+          <img src="${esc(c.url)}?v=${encodeURIComponent(state.health?.version || '1')}" alt="${esc(c.title)}" loading="lazy">
+        </div>
+        <figcaption>
+          <strong>${esc(c.title)}</strong>
+          <span class="hint">${esc(c.caption || '')}</span>
+        </figcaption>
+      </figure>`
+    )
+    .join('');
+  return `<div class="card pad-lg mt-16" id="eval-charts">
+      <div class="card-head">
+        <h3>Explainable research charts</h3>
+        <span class="chip info">${num(charts.length)} figures</span>
+      </div>
+      <p class="hint" style="margin:0 0 14px">${esc(note)} Click any chart to enlarge.</p>
+      <div class="eval-chart-grid">${cards}</div>
+    </div>`;
+}
+
+function bindEvaluationCharts() {
+  $$('.eval-chart-card').forEach((card) => {
+    card.onclick = () => {
+      const url = card.dataset.chartUrl;
+      const title = card.dataset.chartTitle || 'Research chart';
+      if (!url) return;
+      openImageLightbox(url, title);
+    };
+  });
+}
+
+function brandBarsMarkup(brands) {
+  const max = Math.max(...(brands || []).map((b) => b.phones), 1);
+  const rows = (brands || [])
+    .map(
+      (b) => `<div class="ev-brand-row">
+        <span>${esc(b.brand)}</span>
+        <div class="ev-brand-track"><div class="ev-brand-fill" style="width:${(b.phones / max) * 100}%"></div></div>
+        <span class="mono">${num(b.phones)}</span>
+      </div>`
+    )
+    .join('');
+  return rows || '<p class="dim">No brand data.</p>';
+}
+
+function funnelMarkup(funnel) {
+  const items = [
+    ['Phones', funnel.phones],
+    ['Raw reviews', funnel.raw_reviews],
+    ['Kept', funnel.kept_reviews],
+    ['Sentences', funnel.sentences],
+    ['Aspect labels', funnel.aspect_labels],
+    ['Scored phones', funnel.scored_phones],
+  ];
+  return `<div class="ev-funnel">${items
+    .map(
+      ([label, value]) => `<div class="ev-funnel-item">
+        <div class="n">${num(value)}</div>
+        <div class="l">${esc(label)}</div>
+      </div>`
+    )
+    .join('')}</div>`;
+}
+
+function tableFromRows(rows) {
+  if (!rows?.length) return '<p class="dim">No sample rows for this stage.</p>';
+  const keys = Object.keys(rows[0]);
+  const head = keys.map((k) => `<th>${esc(k)}</th>`).join('');
+  const body = rows
+    .map(
+      (row) =>
+        `<tr>${keys
+          .map((k) => {
+            const v = row[k];
+            const text = v == null ? '' : String(v);
+            return `<td>${esc(text.length > 160 ? `${text.slice(0, 160)}…` : text)}</td>`;
+          })
+          .join('')}</tr>`
+    )
+    .join('');
+  return `<div class="ev-table-wrap"><table class="ev-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+function walkthroughMarkup(wt) {
+  if (!wt) return '';
+  const sent = (wt.sentences || [])
+    .map((s) => `<li><span class="mono dim">#${s.sentence_id}</span> ${esc(s.text)}</li>`)
+    .join('');
+  const aspects = (wt.aspect_sentiments || [])
+    .map(
+      (a) =>
+        `<span class="chip info">${esc(a.aspect)} · ${esc(a.sentiment)}${
+          a.opinion_term ? ` · ${esc(a.opinion_term)}` : ''
+        }</span>`
+    )
+    .join(' ');
+  const scores = (wt.feature_scores || [])
+    .map(
+      (s) =>
+        `<div class="bar-row" style="grid-template-columns:100px 1fr 72px">
+          <span class="bar-name">${esc(s.aspect)}</span>
+          <span class="bar-track"><span class="bar-fill" style="width:${(s.score || 0) * 100}%;background:${scoreColor(s.score)}"></span></span>
+          <span class="bar-val">${score2(s.score)} <span class="dim">n=${num(s.mentions)}</span></span>
+        </div>`
+    )
+    .join('');
+  const contrib = (wt.user_weighted_contribution || [])
+    .map(
+      (c) =>
+        `<tr><td>${esc(c.aspect)}</td><td>${score2(c.score)}</td><td>${score2(c.weight)}</td><td>${score2(c.contribution)}</td></tr>`
+    )
+    .join('');
+  return `<div class="card pad-lg mt-16 ev-walk" id="ev-walkthrough">
+    <div class="card-head"><h3>One real review through the full pipeline</h3></div>
+    <p class="hint" style="margin:0 0 8px">Use this in a viva: walk top → bottom to prove each stage ran on real data.
+      Phone: <strong>${esc(wt.phone?.name || '—')}</strong> (${esc(wt.phone?.brand || '—')}).</p>
+    <div class="ev-block">
+      <h4>1 · Raw Amazon review</h4>
+      <p class="small dim" style="margin:0 0 4px">Review #${num(wt.raw_review?.review_id)} · rating ${esc(String(wt.raw_review?.rating ?? '—'))} · ${esc(wt.raw_review?.language || '')}</p>
+      <p style="margin:0"><strong>${esc(wt.raw_review?.title || '')}</strong><br>${esc(wt.raw_review?.body || '')}</p>
+    </div>
+    <div class="ev-block">
+      <h4>2 · Preprocessing decision</h4>
+      <p style="margin:0"><span class="chip info">${esc(wt.preprocess?.decision || '')}</span>
+        ${wt.preprocess?.excluded_reason ? ` reason: ${esc(wt.preprocess.excluded_reason)}` : ' → kept for analysis'}</p>
+      <p class="small" style="margin:8px 0 0">${esc(wt.preprocess?.cleaned_body || '')}</p>
+    </div>
+    <div class="ev-block">
+      <h4>3 · Segmented sentences</h4>
+      <ul style="margin:0;padding-left:18px">${sent || '<li class="dim">None</li>'}</ul>
+    </div>
+    <div class="ev-block">
+      <h4>4 · Detected aspect → sentiment</h4>
+      <div class="row wrap" style="gap:6px">${aspects || '<span class="dim">None</span>'}</div>
+    </div>
+    <div class="ev-block">
+      <h4>5 · Feature scores (this phone)</h4>
+      ${scores || '<p class="dim">No scores</p>'}
+    </div>
+    <div class="ev-block">
+      <h4>6 · User-weighted contribution → ranking input</h4>
+      <div class="ev-table-wrap"><table class="ev-table">
+        <thead><tr><th>Aspect</th><th>Score</th><th>Weight</th><th>Contribution</th></tr></thead>
+        <tbody>${contrib}</tbody>
+      </table></div>
+      <p class="hint" style="margin:8px 0 0">${esc(wt.explanation_hint || '')}</p>
+    </div>
+  </div>`;
+}
+
+function evidenceMarkup(summary, stagePayload, walkthrough) {
+  const funnel = summary.funnel || {};
+  const brands = summary.brands || [];
+  const stages = summary.stages || [];
+  const chartUrl = `${summary.brand_chart_url || '/ui/charts/01_phone_brand_distribution.png'}?v=${encodeURIComponent(state.health?.version || '1')}`;
+  const activeId = stagePayload?.stage || stages[0]?.id || 'raw';
+  const activeMeta = stages.find((s) => s.id === activeId) || stagePayload?.meta || {};
+
+  const stepButtons = stages
+    .map(
+      (s, i) => `<button type="button" class="ev-step ${s.id === activeId ? 'active' : ''}" data-stage="${esc(s.id)}">
+        <span class="ev-num">${i + 1}</span>
+        <span class="ev-title">${esc(s.title)}</span>
+      </button>`
+    )
+    .join('');
+
+  const downloads = [...stages, ...(summary.extra_downloads || [])]
+    .map((s) => {
+      const file = s.file;
+      const title = s.title || file;
+      const href = s.download_url || `/evidence/download/${file}`;
+      const ready = s.exists !== false;
+      return `<div class="ev-dl-card">
+        <div class="name">${esc(title)}</div>
+        <div class="file">${esc(file)}</div>
+        ${
+          ready
+            ? `<a class="btn btn-sm" href="${esc(href)}" download>Download CSV</a>`
+            : `<button class="btn btn-sm" type="button" disabled>Not generated yet</button>`
+        }
+      </div>`;
+    })
+    .join('');
+
+  return `
+    <div class="card pad-lg">
+      <div class="card-head">
+        <h3>Corpus funnel (proof numbers)</h3>
+        <button class="btn btn-sm" type="button" id="btn-ev-export">Regenerate CSVs</button>
+      </div>
+      <p class="hint" style="margin:0 0 12px">${esc(summary.note || '')}</p>
+      ${funnelMarkup(funnel)}
+      <p class="dim small" style="margin:10px 0 0">CSV folder: <code class="mono">${esc(summary.folder || '')}</code></p>
+      <span class="dim small" id="ev-export-status"></span>
+    </div>
+
+    <div class="grid cols-2 mt-16" style="gap:16px;align-items:start">
+      <div class="card pad-lg">
+        <div class="card-head"><h3>Brand distribution</h3></div>
+        <p class="hint" style="margin:0 0 8px">How many phones per manufacturer after carrier/manual cleanup.</p>
+        ${brandBarsMarkup(brands)}
+      </div>
+      <div class="card pad-lg">
+        <div class="card-head"><h3>Brand chart</h3></div>
+        <figure class="eval-chart-card" data-chart-url="${esc(summary.brand_chart_url || '/ui/charts/01_phone_brand_distribution.png')}" data-chart-title="Phone distribution by brand" style="margin:0">
+          <div class="eval-chart-frame">
+            <img src="${esc(chartUrl)}" alt="Brand distribution" loading="lazy">
+          </div>
+          <figcaption><strong>Phone distribution by brand</strong><span class="hint">Click to enlarge</span></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="card pad-lg mt-16">
+      <div class="card-head"><h3>Pipeline — click each stage</h3></div>
+      <p class="hint" style="margin:0 0 4px">Raw review → preprocess → sentence → aspect + sentiment → feature score → weighted contribution → ranking.</p>
+      <div class="ev-pipeline" id="ev-pipeline">${stepButtons}</div>
+      <div class="mt-16" id="ev-stage-panel">
+        <h4 style="margin:0 0 6px">${esc(activeMeta.title || activeId)}</h4>
+        <p class="hint" style="margin:0 0 8px">${esc(activeMeta.what || '')} <em>${esc(activeMeta.show || '')}</em></p>
+        ${
+          activeMeta.download_url
+            ? `<p style="margin:0 0 8px"><a class="btn btn-sm" href="${esc(activeMeta.download_url)}" download>Download this stage CSV</a></p>`
+            : ''
+        }
+        <div id="ev-stage-table">${tableFromRows(stagePayload?.rows || [])}</div>
+      </div>
+    </div>
+
+    ${walkthroughMarkup(walkthrough)}
+
+    <div class="card pad-lg mt-16">
+      <div class="card-head"><h3>Download evidence CSVs</h3></div>
+      <p class="hint" style="margin:0">If examiners ask for the preprocessed dataset, give them <strong>03_kept_reviews.csv</strong>.
+        For the full audit trail (kept + dropped + reason), give <strong>02_preprocessed_reviews.csv</strong>.</p>
+      <div class="ev-dl-grid">${downloads}</div>
+    </div>`;
+}
+
+async function loadEvidenceStage(stageId) {
+  return api(`/evidence/stage/${encodeURIComponent(stageId)}?limit=8`);
+}
+
+function bindEvidence(summary) {
+  bindEvaluationCharts();
+  const exportBtn = $('#btn-ev-export');
+  if (exportBtn) {
+    exportBtn.onclick = async () => {
+      const status = $('#ev-export-status');
+      exportBtn.disabled = true;
+      if (status) status.textContent = 'Generating…';
+      try {
+        const result = await api('/evidence/export', { method: 'POST', body: '{}' });
+        if (status) status.textContent = `Wrote ${result.count} files.`;
+        toast('Evidence CSVs ready', `${result.count} files in evidence folder`, 'ok');
+        await renderEvidence();
+      } catch (error) {
+        if (status) status.textContent = error.message;
+        toast('Export failed', error.message, 'err');
+      } finally {
+        exportBtn.disabled = false;
+      }
+    };
+  }
+
+  $$('#ev-pipeline .ev-step').forEach((btn) => {
+    btn.onclick = async () => {
+      const stageId = btn.dataset.stage;
+      $$('#ev-pipeline .ev-step').forEach((b) => b.classList.toggle('active', b === btn));
+      const panel = $('#ev-stage-panel');
+      if (panel) panel.innerHTML = '<p class="dim">Loading…</p>';
+      try {
+        const stagePayload = await loadEvidenceStage(stageId);
+        const meta = summary.stages.find((s) => s.id === stageId) || stagePayload.meta || {};
+        if (panel) {
+          panel.innerHTML = `
+            <h4 style="margin:0 0 6px">${esc(meta.title || stageId)}</h4>
+            <p class="hint" style="margin:0 0 8px">${esc(meta.what || '')} <em>${esc(meta.show || '')}</em></p>
+            ${
+              meta.download_url
+                ? `<p style="margin:0 0 8px"><a class="btn btn-sm" href="${esc(meta.download_url)}" download>Download this stage CSV</a></p>`
+                : ''
+            }
+            <div id="ev-stage-table">${tableFromRows(stagePayload.rows || [])}</div>`;
+        }
+      } catch (error) {
+        if (panel) panel.innerHTML = `<p class="dim">${esc(error.message)}</p>`;
+      }
+    };
+  });
+}
+
+async function renderEvidence() {
+  const root = $('#evidence-content');
+  if (!root) return;
+  root.innerHTML = skeletons(3);
+  try {
+    let summary = await api('/evidence/summary');
+    const missing = (summary.stages || []).some((s) => s.exists === false);
+    if (missing) {
+      try {
+        await api('/evidence/export', { method: 'POST', body: '{}' });
+        summary = await api('/evidence/summary');
+      } catch { /* show UI anyway */ }
+    }
+    const firstStage = summary.stages?.[0]?.id || 'raw';
+    const [stagePayload, walkthrough] = await Promise.all([
+      loadEvidenceStage(firstStage),
+      api('/evidence/walkthrough').catch(() => null),
+    ]);
+    root.innerHTML = evidenceMarkup(summary, stagePayload, walkthrough);
+    bindEvidence(summary);
+  } catch (error) {
+    const msg = String(error.message || error);
+    const hint =
+      msg === 'Not Found' || msg.includes('404')
+        ? 'The Evidence API is missing — restart the server with <code class="mono">python run.py serve</code>, then hard-refresh this page (Ctrl+F5).'
+        : esc(msg);
+    root.innerHTML = emptyState('Evidence unavailable', hint);
+  }
+}
+
 async function renderEvaluation() {
   const root = $('#eval-content');
   root.innerHTML = skeletons(3);
   try {
-    const report = await api('/feedback/evaluation');
-    root.innerHTML = evaluationMarkup(report);
+    const [report, charts] = await Promise.all([
+      api('/feedback/evaluation'),
+      api('/feedback/charts').catch(() => ({ charts: [], note: 'Charts could not be loaded.' })),
+    ]);
+    root.innerHTML = evaluationMarkup(report) + chartsMarkup(charts);
+    bindEvaluationCharts();
   } catch (error) {
     root.innerHTML = emptyState('Evaluation unavailable', esc(error.message));
   }
@@ -1071,6 +1414,7 @@ async function renderView(view) {
     return;
   }
   if (view === 'phones') return renderPhones();
+  if (view === 'evidence') return renderEvidence();
   if (view === 'evaluation') return renderEvaluation();
 }
 

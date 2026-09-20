@@ -227,6 +227,13 @@ def parse_helpful_votes(text: str | None) -> int | None:
 # Brand / model
 # --------------------------------------------------------------------------- #
 def extract_brand(title: str | None, byline: str | None = None, spec_brand: str | None = None) -> str | None:
+    """Return a manufacturer brand when possible.
+
+    Carrier or seller names in the brand field (e.g. ``AT&T Prepaid``, ``Tmobile``)
+    must not win over a real brand present in the product title (e.g. Apple iPhone).
+    Unknown ``spec_brand`` values are only used as a last resort after title/byline.
+    """
+    deferred_unknown: str | None = None
     for candidate in (spec_brand, byline, title):
         if not candidate:
             continue
@@ -235,12 +242,15 @@ def extract_brand(title: str | None, byline: str | None = None, spec_brand: str 
         lowered = text.lower()
         for brand in KNOWN_BRANDS:
             if re.search(rf"(?<!\w){re.escape(brand.lower())}(?!\w)", lowered):
-                return "Apple" if brand.lower() in ("apple",) else brand
+                if brand.lower() in {"apple", "moto"}:
+                    return "Apple" if brand.lower() == "apple" else "Motorola"
+                return brand
         if any(hint in lowered for hint in _APPLE_HINTS):
             return "Apple"
+        # Do not return unknown seller/carrier brands before the title is checked.
         if candidate is spec_brand and text:
-            return text[:64]
-    return None
+            deferred_unknown = text[:64]
+    return deferred_unknown
 
 
 def extract_model(title: str | None, brand: str | None = None, spec_model: str | None = None) -> str | None:

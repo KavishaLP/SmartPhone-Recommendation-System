@@ -51,16 +51,68 @@ DEFAULT_CSV = Path("data") / "full_reviews.csv"
 
 # Title patterns that are books/manuals, not smartphones.
 _MANUAL_TITLE = re.compile(
-    r"\b(?:user\s+guide|user\s+manual|owners?\s+manual|beginners?\s+and\s+seniors|"
-    r"step[- ]by[- ]step\s+manual|complete\s+manual|guidebook|how\s+to\s+use)\b",
+    r"\b(?:"
+    r"user\s+guide|user\s+manual|owners?\s+manual|beginners?\s+and\s+seniors|"
+    r"step[- ]by[- ]step\s+manual|complete\s+manual|guidebook|how\s+to\s+use|"
+    r"manual\s+for\s+beginners|for\s+beginners|unlock\s+features|"
+    r"use\s+it\s+like\s+a\s+pro|\binstruction\s+manual\b|\bguidebook\b|"
+    r"\bmanual\b"
+    r")\b",
     re.IGNORECASE,
 )
+
+# Marketplace carriers / retailers often appear in the CSV "brand" column.
+_CARRIER_OR_RETAIL_BRANDS = {
+    "at&t",
+    "at&t prepaid",
+    "att",
+    "att prepaid",
+    "tmobile",
+    "t-mobile",
+    "t mobile",
+    "verizon",
+    "sprint",
+    "tracfone",
+    "cricket",
+    "metro",
+    "metro by t-mobile",
+    "boost",
+    "boost mobile",
+    "amazon renewed",
+    "amazon",
+    "unlocked",
+}
 
 _KNOWN_BRAND_LOWER = {b.lower() for b in KNOWN_BRANDS} | {
     "apple",
     "moto",
     "amazon renewed",
 }
+
+
+def _is_manual_listing(title: str) -> bool:
+    return bool(_MANUAL_TITLE.search(title or ""))
+
+
+def _resolve_brand(raw_brand: str | None, title: str) -> str | None:
+    brand = (raw_brand or "").strip() or None
+    title_brand = extract_brand(title)
+
+    if brand and brand.lower() in _KNOWN_BRAND_LOWER:
+        if brand.lower() in {"moto"}:
+            return "Motorola"
+        if brand.lower() == "amazon renewed":
+            return title_brand or brand
+        return brand if brand[0].isupper() else brand.title()
+
+    # Carrier / seller names (AT&T Prepaid, Tmobile, Paul Hollman, …) — use title.
+    if brand and (
+        brand.lower() in _CARRIER_OR_RETAIL_BRANDS or brand.lower() not in _KNOWN_BRAND_LOWER
+    ):
+        if title_brand:
+            return title_brand
+
+    return extract_brand(title, spec_brand=brand) or title_brand
 
 
 def _parse_rating(value: Any) -> float | None:
@@ -110,22 +162,6 @@ def _parse_categories(value: Any) -> list[str] | None:
     except json.JSONDecodeError:
         pass
     return [text]
-
-
-def _is_manual_listing(title: str) -> bool:
-    return bool(_MANUAL_TITLE.search(title or ""))
-
-
-def _resolve_brand(raw_brand: str | None, title: str) -> str | None:
-    brand = (raw_brand or "").strip() or None
-    if brand and brand.lower() in _KNOWN_BRAND_LOWER:
-        if brand.lower() in {"moto"}:
-            return "Motorola"
-        if brand.lower() == "amazon renewed":
-            return extract_brand(title) or brand
-        return brand if brand[0].isupper() else brand.title()
-    # Seller names mis-filed as brand (e.g. "Marvin Z. Lewis") — recover from title.
-    return extract_brand(title, spec_brand=brand)
 
 
 def _row_to_product(row: pd.Series) -> ScrapedProduct:

@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 from app.core.config import get_settings
 from app.core.database import get_db
 from app.models.schemas import EvaluationReport, FeedbackOut, FeedbackRequest
+from app.services.eval_charts import list_evaluation_charts
 from app.services.feedback import evaluation_summary, list_feedback, submit_feedback
 
 router = APIRouter(prefix="/feedback", tags=["evaluation"])
@@ -38,3 +39,12 @@ def get_feedback(
 )
 def get_evaluation(db: Session = Depends(get_db)) -> EvaluationReport:
     return evaluation_summary(db, get_settings())
+
+
+@router.get(
+    "/charts",
+    summary="Explainable research charts for the Evaluation tab",
+)
+def get_evaluation_charts() -> dict:
+    """PNG charts (brand mix, ABSA, feature scores, ranking vs baseline) for viva/thesis demos."""
+    return list_evaluation_charts(get_settings())
