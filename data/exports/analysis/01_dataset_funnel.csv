@@ -1,0 +1,9 @@
+Stage,Unit,Count
+Raw Bright Data / local CSV,Review rows / ASINs,4092 / 227
+After dropping manuals/guides,Review rows / ASINs,4080 / 224
+Loaded into SQLite,Phones / reviews,224 / 4080
+After Step 1 preprocessing (kept),Reviews,3389
+Excluded in Step 1,Reviews,691
+Step 2 sentences,Sentences,31685
+Steps 3â€“4 ABSA,Aspectâ€“sentiment records,13914
+Step 6 feature scores,Phones with scores,221

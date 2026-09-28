@@ -1,0 +1,11 @@
+rank,proposed_phone,proposed_score,baseline_phone,baseline_stars
+1,Motorola Moto G,0.8196,Apple iPhone SE,5.0
+2,Apple iPhone 11 Pro,0.8128,Apple iPhone 17 Pro,5.0
+3,Apple iPhone 11 Pro,0.8128,Paul Hollman Google Pixel 10a Manual for Beginners Unlock Features and Use It Like a Pro,5.0
+4,Samsung Galaxy A36 5G,0.7815,OnePlus 7T Pro UK EU HD1913 Haze,4.8
+5,Samsung Galaxy A36 5G,0.7815,Apple iPhone XR,4.6
+6,Apple iPhone 11 Pro,0.776,OnePlus 15 Dual-SIM ROM + RAM,4.6
+7,Apple iPhone 16 Pro,0.7733,Samsung Galaxy Watch 8 Classic,4.6
+8,Apple iPhone 12 Pro Max,0.772,Apple iPhone SE,4.5
+9,Apple iPhone 12,0.7635,Apple iPhone XR,4.4
+10,Google Pixel 9 Pro XL 5G,0.7599,Apple iPhone XR,4.4

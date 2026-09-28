@@ -1,0 +1,1241 @@
+﻿smartphone_id,brand,phone_name,aspect,positive_count,neutral_count,negative_count,mention_count,raw_score,score,confidence
+1,Apple,Apple iPhone 11,battery,1,5,2,8,0.4375,0.5252,0.7273
+1,Apple,Apple iPhone 11,camera,1,2,0,3,0.6667,0.68,0.5
+1,Apple,Apple iPhone 11,design,3,1,0,4,0.875,0.8178,0.5714
+1,Apple,Apple iPhone 11,display,1,5,0,6,0.5833,0.609,0.6667
+1,Apple,Apple iPhone 11,performance,0,0,1,1,0.0,0.58,0.25
+1,Apple,Apple iPhone 11,price,2,2,0,4,0.75,0.7775,0.5714
+2,Apple,Apple iPhone 11,battery,5,10,2,17,0.5882,0.6058,0.85
+2,Apple,Apple iPhone 11,camera,2,3,0,5,0.7,0.694,0.625
+2,Apple,Apple iPhone 11,design,7,2,1,10,0.8,0.7907,0.7692
+2,Apple,Apple iPhone 11,display,2,6,0,8,0.625,0.6307,0.7273
+2,Apple,Apple iPhone 11,performance,0,1,1,2,0.25,0.5686,0.4
+2,Apple,Apple iPhone 11,price,3,2,0,5,0.8,0.7998,0.625
+3,Apple,Apple iPhone 11,battery,4,5,0,9,0.7222,0.702,0.75
+3,Apple,Apple iPhone 11,camera,1,1,0,2,0.75,0.7057,0.4
+3,Apple,Apple iPhone 11,design,4,1,1,6,0.75,0.7601,0.6667
+3,Apple,Apple iPhone 11,display,1,1,0,2,0.75,0.6713,0.4
+3,Apple,Apple iPhone 11,performance,0,1,0,1,0.5,0.6633,0.25
+3,Apple,Apple iPhone 11,price,1,0,0,1,1.0,0.833,0.25
+4,Apple,Apple iPhone 11,battery,8,17,5,30,0.55,0.5665,0.9091
+4,Apple,Apple iPhone 11,camera,2,3,1,6,0.5833,0.6309,0.6667
+4,Apple,Apple iPhone 11,design,7,2,1,10,0.8,0.7907,0.7692
+4,Apple,Apple iPhone 11,display,5,8,1,14,0.6429,0.642,0.8235
+4,Apple,Apple iPhone 11,performance,1,1,2,4,0.375,0.5533,0.5714
+4,Apple,Apple iPhone 11,price,7,3,0,10,0.85,0.8332,0.7692
+5,Apple,Apple iPhone 11,battery,8,17,5,30,0.55,0.5665,0.9091
+5,Apple,Apple iPhone 11,camera,2,3,1,6,0.5833,0.6309,0.6667
+5,Apple,Apple iPhone 11,design,7,2,1,10,0.8,0.7907,0.7692
+5,Apple,Apple iPhone 11,display,5,8,1,14,0.6429,0.642,0.8235
+5,Apple,Apple iPhone 11,performance,1,1,2,4,0.375,0.5533,0.5714
+5,Apple,Apple iPhone 11,price,7,3,0,10,0.85,0.8332,0.7692
+6,Apple,Apple iPhone 11,battery,8,17,5,30,0.55,0.5665,0.9091
+6,Apple,Apple iPhone 11,camera,2,3,1,6,0.5833,0.6309,0.6667
+6,Apple,Apple iPhone 11,design,7,2,1,10,0.8,0.7907,0.7692
+6,Apple,Apple iPhone 11,display,5,8,1,14,0.6429,0.642,0.8235
+6,Apple,Apple iPhone 11,performance,1,1,2,4,0.375,0.5533,0.5714
+6,Apple,Apple iPhone 11,price,7,3,0,10,0.85,0.8332,0.7692
+7,Apple,Apple iPhone XR,battery,8,4,2,14,0.7143,0.7015,0.8235
+7,Apple,Apple iPhone XR,camera,4,7,1,12,0.625,0.6435,0.8
+7,Apple,Apple iPhone XR,design,6,1,0,7,0.9286,0.8634,0.7
+7,Apple,Apple iPhone XR,display,4,5,0,9,0.7222,0.6928,0.75
+7,Apple,Apple iPhone XR,performance,1,0,0,1,1.0,0.7467,0.25
+7,Apple,Apple iPhone XR,price,3,1,2,6,0.5833,0.6816,0.6667
+8,Apple,Apple iPhone XR,battery,14,11,6,31,0.629,0.6341,0.9118
+8,Apple,Apple iPhone XR,camera,6,8,2,16,0.625,0.64,0.8421
+8,Apple,Apple iPhone XR,design,6,3,1,10,0.75,0.7574,0.7692
+8,Apple,Apple iPhone XR,display,7,9,2,18,0.6389,0.6391,0.8571
+8,Apple,Apple iPhone XR,performance,8,3,0,11,0.8636,0.8113,0.7857
+8,Apple,Apple iPhone XR,price,10,4,3,17,0.7059,0.7272,0.85
+9,Apple,Apple iPhone XR,battery,14,11,6,31,0.629,0.6341,0.9118
+9,Apple,Apple iPhone XR,camera,6,8,2,16,0.625,0.64,0.8421
+9,Apple,Apple iPhone XR,design,6,3,1,10,0.75,0.7574,0.7692
+9,Apple,Apple iPhone XR,display,7,9,2,18,0.6389,0.6391,0.8571
+9,Apple,Apple iPhone XR,performance,8,3,0,11,0.8636,0.8113,0.7857
+9,Apple,Apple iPhone XR,price,10,4,3,17,0.7059,0.7272,0.85
+10,Apple,Apple iPhone XR,battery,13,10,6,29,0.6207,0.6273,0.9062
+10,Apple,Apple iPhone XR,camera,6,8,2,16,0.625,0.64,0.8421
+10,Apple,Apple iPhone XR,design,4,3,1,8,0.6875,0.72,0.7273
+10,Apple,Apple iPhone XR,display,8,8,2,18,0.6667,0.6608,0.8571
+10,Apple,Apple iPhone XR,performance,9,4,2,15,0.7333,0.724,0.8333
+10,Apple,Apple iPhone XR,price,11,5,3,19,0.7105,0.7291,0.8636
+11,Apple,Apple iPhone XR,battery,13,10,6,29,0.6207,0.6273,0.9062
+11,Apple,Apple iPhone XR,camera,6,8,2,16,0.625,0.64,0.8421
+11,Apple,Apple iPhone XR,design,4,3,1,8,0.6875,0.72,0.7273
+11,Apple,Apple iPhone XR,display,8,8,2,18,0.6667,0.6608,0.8571
+11,Apple,Apple iPhone XR,performance,9,4,2,15,0.7333,0.724,0.8333
+11,Apple,Apple iPhone XR,price,11,5,3,19,0.7105,0.7291,0.8636
+12,Apple,Apple iPhone 12,battery,13,8,3,24,0.7083,0.701,0.8889
+12,Apple,Apple iPhone 12,camera,4,4,1,9,0.6667,0.6743,0.75
+12,Apple,Apple iPhone 12,design,2,0,2,4,0.5,0.6512,0.5714
+12,Apple,Apple iPhone 12,display,5,4,2,11,0.6364,0.6374,0.7857
+12,Apple,Apple iPhone 12,performance,8,1,0,9,0.9444,0.8557,0.75
+12,Apple,Apple iPhone 12,price,10,4,0,14,0.8571,0.842,0.8235
+13,Apple,Apple iPhone 12,battery,13,8,3,24,0.7083,0.701,0.8889
+13,Apple,Apple iPhone 12,camera,4,4,1,9,0.6667,0.6743,0.75
+13,Apple,Apple iPhone 12,design,2,0,2,4,0.5,0.6512,0.5714
+13,Apple,Apple iPhone 12,display,5,4,2,11,0.6364,0.6374,0.7857
+13,Apple,Apple iPhone 12,performance,8,1,0,9,0.9444,0.8557,0.75
+13,Apple,Apple iPhone 12,price,10,4,0,14,0.8571,0.842,0.8235
+14,Apple,Apple iPhone 12,battery,18,14,3,35,0.7143,0.7082,0.9211
+14,Apple,Apple iPhone 12,camera,6,7,3,16,0.5938,0.6162,0.8421
+14,Apple,Apple iPhone 12,design,4,0,2,6,0.6667,0.7146,0.6667
+14,Apple,Apple iPhone 12,display,6,5,2,13,0.6538,0.6499,0.8125
+14,Apple,Apple iPhone 12,performance,10,1,0,11,0.9545,0.8738,0.7857
+14,Apple,Apple iPhone 12,price,12,5,0,17,0.8529,0.8408,0.85
+15,Apple,Apple iPhone 13,battery,3,14,1,18,0.5556,0.5795,0.8571
+15,Apple,Apple iPhone 13,camera,3,6,1,10,0.6,0.6293,0.7692
+15,Apple,Apple iPhone 13,design,1,2,0,3,0.6667,0.7326,0.5
+15,Apple,Apple iPhone 13,display,4,8,1,13,0.6154,0.6222,0.8125
+15,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+15,Apple,Apple iPhone 13,price,8,4,0,12,0.8333,0.8234,0.8
+16,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+16,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+16,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+16,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+16,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+16,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+17,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+17,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+17,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+17,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+17,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+17,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+18,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+18,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+18,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+18,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+18,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+18,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+19,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+19,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+19,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+19,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+19,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+19,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+20,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+20,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+20,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+20,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+20,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+20,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+21,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+21,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+21,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+21,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+21,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+21,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+22,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+22,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+22,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+22,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+22,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+22,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+23,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+23,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+23,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+23,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+23,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+23,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+24,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+24,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+24,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+24,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+24,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+24,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+25,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+25,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+25,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+25,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+25,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+25,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+26,Apple,Apple iPhone 13,battery,10,22,1,33,0.6364,0.6402,0.9167
+26,Apple,Apple iPhone 13,camera,3,8,1,12,0.5833,0.6141,0.8
+26,Apple,Apple iPhone 13,design,2,3,0,5,0.7,0.7361,0.625
+26,Apple,Apple iPhone 13,display,7,9,1,17,0.6765,0.6681,0.85
+26,Apple,Apple iPhone 13,performance,2,2,2,6,0.5,0.5891,0.6667
+26,Apple,Apple iPhone 13,price,13,4,0,17,0.8824,0.8635,0.85
+27,Apple,Apple iPhone SE 2nd Generation,battery,7,11,2,20,0.625,0.6331,0.8696
+27,Apple,Apple iPhone SE 2nd Generation,camera,0,2,0,2,0.5,0.6343,0.4
+27,Apple,Apple iPhone SE 2nd Generation,design,2,1,0,3,0.8333,0.7951,0.5
+27,Apple,Apple iPhone SE 2nd Generation,display,2,4,0,6,0.6667,0.6544,0.6667
+27,Apple,Apple iPhone SE 2nd Generation,performance,2,0,0,2,1.0,0.7829,0.4
+27,Apple,Apple iPhone SE 2nd Generation,price,11,5,0,16,0.8438,0.8332,0.8421
+28,Apple,Apple iPhone SE,battery,13,30,7,50,0.56,0.5696,0.9434
+28,Apple,Apple iPhone SE,camera,0,4,0,4,0.5,0.6044,0.5714
+28,Apple,Apple iPhone SE,design,2,2,0,4,0.75,0.7623,0.5714
+28,Apple,Apple iPhone SE,display,3,6,0,9,0.6667,0.6571,0.75
+28,Apple,Apple iPhone SE,performance,3,1,0,4,0.875,0.7756,0.5714
+28,Apple,Apple iPhone SE,price,17,6,0,23,0.8696,0.8571,0.8846
+29,Apple,Apple iPhone SE 2nd Generation,battery,13,30,7,50,0.56,0.5696,0.9434
+29,Apple,Apple iPhone SE 2nd Generation,camera,0,4,0,4,0.5,0.6044,0.5714
+29,Apple,Apple iPhone SE 2nd Generation,design,2,2,0,4,0.75,0.7623,0.5714
+29,Apple,Apple iPhone SE 2nd Generation,display,3,6,0,9,0.6667,0.6571,0.75
+29,Apple,Apple iPhone SE 2nd Generation,performance,3,1,0,4,0.875,0.7756,0.5714
+29,Apple,Apple iPhone SE 2nd Generation,price,17,6,0,23,0.8696,0.8571,0.8846
+30,Apple,Apple iPhone SE 2nd Generation,battery,7,11,2,20,0.625,0.6331,0.8696
+30,Apple,Apple iPhone SE 2nd Generation,camera,0,2,0,2,0.5,0.6343,0.4
+30,Apple,Apple iPhone SE 2nd Generation,design,2,1,0,3,0.8333,0.7951,0.5
+30,Apple,Apple iPhone SE 2nd Generation,display,2,4,0,6,0.6667,0.6544,0.6667
+30,Apple,Apple iPhone SE 2nd Generation,performance,2,0,0,2,1.0,0.7829,0.4
+30,Apple,Apple iPhone SE 2nd Generation,price,11,5,0,16,0.8438,0.8332,0.8421
+31,Apple,Apple iPhone 11 Pro,battery,3,7,3,13,0.5,0.546,0.8125
+31,Apple,Apple iPhone 11 Pro,camera,8,3,0,11,0.8636,0.8087,0.7857
+31,Apple,Apple iPhone 11 Pro,design,5,2,0,7,0.8571,0.8217,0.7
+31,Apple,Apple iPhone 11 Pro,display,6,4,0,10,0.8,0.7466,0.7692
+31,Apple,Apple iPhone 11 Pro,performance,8,0,0,8,1.0,0.8831,0.7273
+31,Apple,Apple iPhone 11 Pro,price,4,1,0,5,0.9,0.8498,0.625
+32,Apple,Apple iPhone 11 Pro,battery,12,14,3,29,0.6552,0.6567,0.9062
+32,Apple,Apple iPhone 11 Pro,camera,16,4,0,20,0.9,0.8576,0.8696
+32,Apple,Apple iPhone 11 Pro,design,8,3,0,11,0.8636,0.835,0.7857
+32,Apple,Apple iPhone 11 Pro,display,10,8,0,18,0.7778,0.7478,0.8571
+32,Apple,Apple iPhone 11 Pro,performance,14,2,0,16,0.9375,0.88,0.8421
+32,Apple,Apple iPhone 11 Pro,price,9,1,0,10,0.95,0.8999,0.7692
+33,Apple,Apple iPhone 11 Pro,battery,12,14,3,29,0.6552,0.6567,0.9062
+33,Apple,Apple iPhone 11 Pro,camera,16,4,0,20,0.9,0.8576,0.8696
+33,Apple,Apple iPhone 11 Pro,design,8,3,0,11,0.8636,0.835,0.7857
+33,Apple,Apple iPhone 11 Pro,display,10,8,0,18,0.7778,0.7478,0.8571
+33,Apple,Apple iPhone 11 Pro,performance,14,2,0,16,0.9375,0.88,0.8421
+33,Apple,Apple iPhone 11 Pro,price,9,1,0,10,0.95,0.8999,0.7692
+34,Apple,Apple iPhone 12 Mini,battery,11,12,13,36,0.4722,0.4958,0.9231
+34,Apple,Apple iPhone 12 Mini,camera,7,13,3,23,0.587,0.605,0.8846
+34,Apple,Apple iPhone 12 Mini,design,8,0,1,9,0.8889,0.8472,0.75
+34,Apple,Apple iPhone 12 Mini,display,7,10,2,19,0.6316,0.6333,0.8636
+34,Apple,Apple iPhone 12 Mini,performance,5,1,3,9,0.6111,0.6414,0.75
+34,Apple,Apple iPhone 12 Mini,price,8,2,3,13,0.6923,0.7221,0.8125
+35,Apple,Apple iPhone 12 Mini,battery,11,12,13,36,0.4722,0.4958,0.9231
+35,Apple,Apple iPhone 12 Mini,camera,7,13,3,23,0.587,0.605,0.8846
+35,Apple,Apple iPhone 12 Mini,design,8,0,1,9,0.8889,0.8472,0.75
+35,Apple,Apple iPhone 12 Mini,display,7,10,2,19,0.6316,0.6333,0.8636
+35,Apple,Apple iPhone 12 Mini,performance,5,1,3,9,0.6111,0.6414,0.75
+35,Apple,Apple iPhone 12 Mini,price,8,2,3,13,0.6923,0.7221,0.8125
+36,Apple,Apple iPhone 12 Mini,battery,11,12,13,36,0.4722,0.4958,0.9231
+36,Apple,Apple iPhone 12 Mini,camera,7,13,3,23,0.587,0.605,0.8846
+36,Apple,Apple iPhone 12 Mini,design,8,0,1,9,0.8889,0.8472,0.75
+36,Apple,Apple iPhone 12 Mini,display,7,10,2,19,0.6316,0.6333,0.8636
+36,Apple,Apple iPhone 12 Mini,performance,5,1,3,9,0.6111,0.6414,0.75
+36,Apple,Apple iPhone 12 Mini,price,8,2,3,13,0.6923,0.7221,0.8125
+37,Apple,Apple iPhone 12 Mini,battery,7,6,9,22,0.4545,0.4936,0.88
+37,Apple,Apple iPhone 12 Mini,camera,4,6,3,13,0.5385,0.58,0.8125
+37,Apple,Apple iPhone 12 Mini,design,4,0,0,4,1.0,0.8734,0.5714
+37,Apple,Apple iPhone 12 Mini,display,4,7,2,13,0.5769,0.5944,0.8125
+37,Apple,Apple iPhone 12 Mini,performance,2,1,2,5,0.5,0.598,0.625
+37,Apple,Apple iPhone 12 Mini,price,4,1,2,7,0.6429,0.7082,0.7
+38,Apple,Apple iPhone 11 Pro Max,battery,13,20,5,38,0.6053,0.6123,0.9268
+38,Apple,Apple iPhone 11 Pro Max,camera,11,15,1,27,0.6852,0.6856,0.9
+38,Apple,Apple iPhone 11 Pro Max,design,4,6,0,10,0.7,0.724,0.7692
+38,Apple,Apple iPhone 11 Pro Max,display,8,15,1,24,0.6458,0.6448,0.8889
+38,Apple,Apple iPhone 11 Pro Max,performance,9,3,1,13,0.8077,0.7767,0.8125
+38,Apple,Apple iPhone 11 Pro Max,price,10,4,2,16,0.75,0.7618,0.8421
+39,Apple,Apple iPhone 11 Pro Max,battery,9,10,2,21,0.6667,0.6665,0.875
+39,Apple,Apple iPhone 11 Pro Max,camera,5,3,0,8,0.8125,0.7646,0.7273
+39,Apple,Apple iPhone 11 Pro Max,design,2,4,0,6,0.6667,0.7146,0.6667
+39,Apple,Apple iPhone 11 Pro Max,display,3,1,0,4,0.875,0.7443,0.5714
+39,Apple,Apple iPhone 11 Pro Max,performance,6,2,0,8,0.875,0.8062,0.7273
+39,Apple,Apple iPhone 11 Pro Max,price,9,4,1,14,0.7857,0.7894,0.8235
+40,Apple,Apple iPhone 11 Pro Max,battery,13,20,5,38,0.6053,0.6123,0.9268
+40,Apple,Apple iPhone 11 Pro Max,camera,11,15,1,27,0.6852,0.6856,0.9
+40,Apple,Apple iPhone 11 Pro Max,design,4,6,0,10,0.7,0.724,0.7692
+40,Apple,Apple iPhone 11 Pro Max,display,8,15,1,24,0.6458,0.6448,0.8889
+40,Apple,Apple iPhone 11 Pro Max,performance,9,3,1,13,0.8077,0.7767,0.8125
+40,Apple,Apple iPhone 11 Pro Max,price,10,4,2,16,0.75,0.7618,0.8421
+41,Apple,Apple iPhone XS,battery,8,15,4,27,0.5741,0.5884,0.9
+41,Apple,Apple iPhone XS,camera,5,2,0,7,0.8571,0.7867,0.7
+41,Apple,Apple iPhone XS,design,3,0,0,3,1.0,0.8576,0.5
+41,Apple,Apple iPhone XS,display,2,5,1,8,0.5625,0.5922,0.7273
+41,Apple,Apple iPhone XS,performance,6,0,1,7,0.8571,0.79,0.7
+41,Apple,Apple iPhone XS,price,6,2,4,12,0.5833,0.6469,0.8
+42,Apple,Apple iPhone 12 Pro,battery,5,9,1,15,0.6333,0.6414,0.8333
+42,Apple,Apple iPhone 12 Pro,camera,1,3,1,5,0.5,0.594,0.625
+42,Apple,Apple iPhone 12 Pro,design,2,2,0,4,0.75,0.7623,0.5714
+42,Apple,Apple iPhone 12 Pro,display,1,8,1,10,0.5,0.5466,0.7692
+42,Apple,Apple iPhone 12 Pro,performance,0,0,1,1,0.0,0.58,0.25
+42,Apple,Apple iPhone 12 Pro,price,4,4,3,11,0.5455,0.6249,0.7857
+43,Apple,Apple iPhone 12 Pro,battery,10,19,1,30,0.65,0.6522,0.9091
+43,Apple,Apple iPhone 12 Pro,camera,4,4,1,9,0.6667,0.6743,0.75
+43,Apple,Apple iPhone 12 Pro,design,6,3,1,10,0.75,0.7574,0.7692
+43,Apple,Apple iPhone 12 Pro,display,3,9,3,15,0.5,0.5349,0.8333
+43,Apple,Apple iPhone 12 Pro,performance,1,1,3,5,0.3,0.498,0.625
+43,Apple,Apple iPhone 12 Pro,price,5,5,3,13,0.5769,0.6388,0.8125
+44,Apple,Apple iPhone 12 Pro,battery,10,19,1,30,0.65,0.6522,0.9091
+44,Apple,Apple iPhone 12 Pro,camera,4,4,1,9,0.6667,0.6743,0.75
+44,Apple,Apple iPhone 12 Pro,design,6,3,1,10,0.75,0.7574,0.7692
+44,Apple,Apple iPhone 12 Pro,display,3,9,3,15,0.5,0.5349,0.8333
+44,Apple,Apple iPhone 12 Pro,performance,1,1,3,5,0.3,0.498,0.625
+44,Apple,Apple iPhone 12 Pro,price,5,5,3,13,0.5769,0.6388,0.8125
+45,Apple,Apple iPhone 12 Pro,battery,10,19,1,30,0.65,0.6522,0.9091
+45,Apple,Apple iPhone 12 Pro,camera,4,4,1,9,0.6667,0.6743,0.75
+45,Apple,Apple iPhone 12 Pro,design,6,3,1,10,0.75,0.7574,0.7692
+45,Apple,Apple iPhone 12 Pro,display,3,9,3,15,0.5,0.5349,0.8333
+45,Apple,Apple iPhone 12 Pro,performance,1,1,3,5,0.3,0.498,0.625
+45,Apple,Apple iPhone 12 Pro,price,5,5,3,13,0.5769,0.6388,0.8125
+46,Apple,Apple iPhone 14,battery,6,6,8,20,0.45,0.4931,0.8696
+46,Apple,Apple iPhone 14,camera,1,1,0,2,0.75,0.7057,0.4
+46,Apple,Apple iPhone 14,design,1,1,0,2,0.75,0.7658,0.4
+46,Apple,Apple iPhone 14,display,1,0,1,2,0.5,0.5998,0.4
+46,Apple,Apple iPhone 14,performance,0,0,1,1,0.0,0.58,0.25
+46,Apple,Apple iPhone 14,price,2,0,0,2,1.0,0.8568,0.4
+47,Apple,Apple iPhone 14,battery,3,3,2,8,0.5625,0.6022,0.7273
+47,Apple,Apple iPhone 14,camera,0,2,0,2,0.5,0.6343,0.4
+47,Apple,Apple iPhone 14,display,0,4,0,4,0.5,0.5777,0.5714
+47,Apple,Apple iPhone 14,performance,0,1,0,1,0.5,0.6633,0.25
+47,Apple,Apple iPhone 14,price,6,1,2,9,0.7222,0.7498,0.75
+48,Apple,Apple iPhone 14,battery,16,11,10,37,0.5811,0.5911,0.925
+48,Apple,Apple iPhone 14,camera,3,4,0,7,0.7143,0.7033,0.7
+48,Apple,Apple iPhone 14,design,4,4,1,9,0.6667,0.7043,0.75
+48,Apple,Apple iPhone 14,display,2,4,1,7,0.5714,0.5999,0.7
+48,Apple,Apple iPhone 14,performance,1,2,1,4,0.5,0.6089,0.5714
+48,Apple,Apple iPhone 14,price,8,1,2,11,0.7727,0.7811,0.7857
+49,Apple,Apple iPhone 14,battery,16,11,10,37,0.5811,0.5911,0.925
+49,Apple,Apple iPhone 14,camera,3,4,0,7,0.7143,0.7033,0.7
+49,Apple,Apple iPhone 14,design,4,4,1,9,0.6667,0.7043,0.75
+49,Apple,Apple iPhone 14,display,2,4,1,7,0.5714,0.5999,0.7
+49,Apple,Apple iPhone 14,performance,1,2,1,4,0.5,0.6089,0.5714
+49,Apple,Apple iPhone 14,price,8,1,2,11,0.7727,0.7811,0.7857
+50,Apple,Apple iPhone 14,battery,16,11,10,37,0.5811,0.5911,0.925
+50,Apple,Apple iPhone 14,camera,3,4,0,7,0.7143,0.7033,0.7
+50,Apple,Apple iPhone 14,design,4,4,1,9,0.6667,0.7043,0.75
+50,Apple,Apple iPhone 14,display,2,4,1,7,0.5714,0.5999,0.7
+50,Apple,Apple iPhone 14,performance,1,2,1,4,0.5,0.6089,0.5714
+50,Apple,Apple iPhone 14,price,8,1,2,11,0.7727,0.7811,0.7857
+51,Apple,Apple iPhone 14,battery,16,11,10,37,0.5811,0.5911,0.925
+51,Apple,Apple iPhone 14,camera,3,4,0,7,0.7143,0.7033,0.7
+51,Apple,Apple iPhone 14,design,4,4,1,9,0.6667,0.7043,0.75
+51,Apple,Apple iPhone 14,display,2,4,1,7,0.5714,0.5999,0.7
+51,Apple,Apple iPhone 14,performance,1,2,1,4,0.5,0.6089,0.5714
+51,Apple,Apple iPhone 14,price,8,1,2,11,0.7727,0.7811,0.7857
+52,Apple,Apple iPhone 14,battery,16,11,10,37,0.5811,0.5911,0.925
+52,Apple,Apple iPhone 14,camera,3,4,0,7,0.7143,0.7033,0.7
+52,Apple,Apple iPhone 14,design,4,4,1,9,0.6667,0.7043,0.75
+52,Apple,Apple iPhone 14,display,2,4,1,7,0.5714,0.5999,0.7
+52,Apple,Apple iPhone 14,performance,1,2,1,4,0.5,0.6089,0.5714
+52,Apple,Apple iPhone 14,price,8,1,2,11,0.7727,0.7811,0.7857
+53,Apple,Apple iPhone 14,battery,16,11,10,37,0.5811,0.5911,0.925
+53,Apple,Apple iPhone 14,camera,3,4,0,7,0.7143,0.7033,0.7
+53,Apple,Apple iPhone 14,design,4,4,1,9,0.6667,0.7043,0.75
+53,Apple,Apple iPhone 14,display,2,4,1,7,0.5714,0.5999,0.7
+53,Apple,Apple iPhone 14,performance,1,2,1,4,0.5,0.6089,0.5714
+53,Apple,Apple iPhone 14,price,8,1,2,11,0.7727,0.7811,0.7857
+54,Apple,Apple iPhone 14,battery,16,11,10,37,0.5811,0.5911,0.925
+54,Apple,Apple iPhone 14,camera,3,4,0,7,0.7143,0.7033,0.7
+54,Apple,Apple iPhone 14,design,4,4,1,9,0.6667,0.7043,0.75
+54,Apple,Apple iPhone 14,display,2,4,1,7,0.5714,0.5999,0.7
+54,Apple,Apple iPhone 14,performance,1,2,1,4,0.5,0.6089,0.5714
+54,Apple,Apple iPhone 14,price,8,1,2,11,0.7727,0.7811,0.7857
+55,Apple,Apple iPhone 14,battery,16,11,10,37,0.5811,0.5911,0.925
+55,Apple,Apple iPhone 14,camera,3,4,0,7,0.7143,0.7033,0.7
+55,Apple,Apple iPhone 14,design,4,4,1,9,0.6667,0.7043,0.75
+55,Apple,Apple iPhone 14,display,2,4,1,7,0.5714,0.5999,0.7
+55,Apple,Apple iPhone 14,performance,1,2,1,4,0.5,0.6089,0.5714
+55,Apple,Apple iPhone 14,price,8,1,2,11,0.7727,0.7811,0.7857
+56,Apple,Apple iPhone XS Max,battery,9,17,2,28,0.625,0.6312,0.9032
+56,Apple,Apple iPhone XS Max,camera,4,3,0,7,0.7857,0.745,0.7
+56,Apple,Apple iPhone XS Max,design,5,3,0,8,0.8125,0.797,0.7273
+56,Apple,Apple iPhone XS Max,display,7,17,3,27,0.5741,0.5843,0.9
+56,Apple,Apple iPhone XS Max,performance,7,2,0,9,0.8889,0.82,0.75
+56,Apple,Apple iPhone XS Max,price,3,8,2,13,0.5385,0.611,0.8125
+57,Apple,Apple iPhone XS Max,battery,3,9,1,13,0.5769,0.6016,0.8125
+57,Apple,Apple iPhone XS Max,camera,2,3,0,5,0.7,0.694,0.625
+57,Apple,Apple iPhone XS Max,design,1,2,0,3,0.6667,0.7326,0.5
+57,Apple,Apple iPhone XS Max,display,4,14,2,20,0.55,0.568,0.8696
+57,Apple,Apple iPhone XS Max,performance,4,1,0,5,0.9,0.798,0.625
+57,Apple,Apple iPhone XS Max,price,3,7,1,11,0.5909,0.6561,0.7857
+58,Apple,Apple iPhone 12 Pro Max,battery,12,19,2,33,0.6515,0.6534,0.9167
+58,Apple,Apple iPhone 12 Pro Max,camera,9,4,0,13,0.8462,0.8022,0.8125
+58,Apple,Apple iPhone 12 Pro Max,design,5,1,0,6,0.9167,0.851,0.6667
+58,Apple,Apple iPhone 12 Pro Max,display,10,12,2,24,0.6667,0.662,0.8889
+58,Apple,Apple iPhone 12 Pro Max,performance,12,2,0,14,0.9286,0.8674,0.8235
+58,Apple,Apple iPhone 12 Pro Max,price,14,7,1,22,0.7955,0.7962,0.88
+59,Apple,Apple iPhone 13 Pro,battery,8,11,4,23,0.587,0.601,0.8846
+59,Apple,Apple iPhone 13 Pro,camera,8,5,1,14,0.75,0.7337,0.8235
+59,Apple,Apple iPhone 13 Pro,design,4,2,2,8,0.625,0.6816,0.7273
+59,Apple,Apple iPhone 13 Pro,display,5,7,0,12,0.7083,0.6882,0.8
+59,Apple,Apple iPhone 13 Pro,performance,3,2,2,7,0.5714,0.6233,0.7
+59,Apple,Apple iPhone 13 Pro,price,6,9,2,17,0.6176,0.659,0.85
+60,Apple,Apple iPhone 13 Pro,battery,15,20,8,43,0.5814,0.5902,0.9348
+60,Apple,Apple iPhone 13 Pro,camera,9,9,2,20,0.675,0.6776,0.8696
+60,Apple,Apple iPhone 13 Pro,design,6,2,4,12,0.5833,0.6389,0.8
+60,Apple,Apple iPhone 13 Pro,display,7,11,0,18,0.6944,0.6826,0.8571
+60,Apple,Apple iPhone 13 Pro,performance,3,3,2,8,0.5625,0.6138,0.7273
+60,Apple,Apple iPhone 13 Pro,price,11,11,4,26,0.6346,0.6612,0.8966
+61,Apple,Apple iPhone 13 Pro Max,battery,16,14,7,37,0.6216,0.6269,0.925
+61,Apple,Apple iPhone 13 Pro Max,camera,10,8,1,19,0.7368,0.7267,0.8636
+61,Apple,Apple iPhone 13 Pro Max,design,7,3,2,12,0.7083,0.7271,0.8
+61,Apple,Apple iPhone 13 Pro Max,display,10,10,0,20,0.75,0.728,0.8696
+61,Apple,Apple iPhone 13 Pro Max,performance,7,1,2,10,0.75,0.732,0.7692
+61,Apple,Apple iPhone 13 Pro Max,price,5,2,2,9,0.6667,0.7141,0.75
+62,Apple,Apple iPhone 13 Pro Max,battery,3,6,4,13,0.4615,0.5182,0.8125
+62,Apple,Apple iPhone 13 Pro Max,camera,2,2,0,4,0.75,0.7156,0.5714
+62,Apple,Apple iPhone 13 Pro Max,design,1,2,0,3,0.6667,0.7326,0.5
+62,Apple,Apple iPhone 13 Pro Max,display,2,2,0,4,0.75,0.6888,0.5714
+62,Apple,Apple iPhone 13 Pro Max,performance,1,0,1,2,0.5,0.64,0.4
+62,Apple,Apple iPhone 13 Pro Max,price,0,0,1,1,0.0,0.6663,0.25
+63,Apple,Apple iPhone 13 Pro Max,battery,6,7,1,14,0.6786,0.6752,0.8235
+63,Apple,Apple iPhone 13 Pro Max,camera,4,3,0,7,0.7857,0.745,0.7
+63,Apple,Apple iPhone 13 Pro Max,design,2,1,2,5,0.5,0.6361,0.625
+63,Apple,Apple iPhone 13 Pro Max,display,3,9,1,13,0.5769,0.5944,0.8125
+63,Apple,Apple iPhone 13 Pro Max,performance,1,0,1,2,0.5,0.64,0.4
+63,Apple,Apple iPhone 13 Pro Max,price,2,1,0,3,0.8333,0.8122,0.5
+64,Apple,Apple iPhone 14 Plus,battery,18,11,2,31,0.7581,0.7452,0.9118
+64,Apple,Apple iPhone 14 Plus,camera,5,0,0,5,1.0,0.844,0.625
+64,Apple,Apple iPhone 14 Plus,design,2,1,0,3,0.8333,0.7951,0.5
+64,Apple,Apple iPhone 14 Plus,display,6,2,4,12,0.5833,0.5999,0.8
+64,Apple,Apple iPhone 14 Plus,performance,4,0,2,6,0.6667,0.68,0.6667
+64,Apple,Apple iPhone 14 Plus,price,11,0,3,14,0.7857,0.7894,0.8235
+65,Apple,Apple iPhone 14 Plus,battery,18,11,2,31,0.7581,0.7452,0.9118
+65,Apple,Apple iPhone 14 Plus,camera,5,0,0,5,1.0,0.844,0.625
+65,Apple,Apple iPhone 14 Plus,design,2,1,0,3,0.8333,0.7951,0.5
+65,Apple,Apple iPhone 14 Plus,display,6,2,4,12,0.5833,0.5999,0.8
+65,Apple,Apple iPhone 14 Plus,performance,4,0,2,6,0.6667,0.68,0.6667
+65,Apple,Apple iPhone 14 Plus,price,11,0,3,14,0.7857,0.7894,0.8235
+66,Apple,Apple iPhone 14 Plus,battery,18,11,2,31,0.7581,0.7452,0.9118
+66,Apple,Apple iPhone 14 Plus,camera,5,0,0,5,1.0,0.844,0.625
+66,Apple,Apple iPhone 14 Plus,design,2,1,0,3,0.8333,0.7951,0.5
+66,Apple,Apple iPhone 14 Plus,display,6,2,4,12,0.5833,0.5999,0.8
+66,Apple,Apple iPhone 14 Plus,performance,4,0,2,6,0.6667,0.68,0.6667
+66,Apple,Apple iPhone 14 Plus,price,11,0,3,14,0.7857,0.7894,0.8235
+67,Apple,Apple iPhone 14 Plus,battery,12,7,1,20,0.775,0.7531,0.8696
+67,Apple,Apple iPhone 14 Plus,camera,5,0,0,5,1.0,0.844,0.625
+67,Apple,Apple iPhone 14 Plus,design,2,1,0,3,0.8333,0.7951,0.5
+67,Apple,Apple iPhone 14 Plus,display,5,0,4,9,0.5556,0.5856,0.75
+67,Apple,Apple iPhone 14 Plus,performance,3,0,2,5,0.6,0.648,0.625
+67,Apple,Apple iPhone 14 Plus,price,8,0,3,11,0.7273,0.7499,0.7857
+68,Apple,Apple iPhone 14 Plus,battery,18,11,2,31,0.7581,0.7452,0.9118
+68,Apple,Apple iPhone 14 Plus,camera,5,0,0,5,1.0,0.844,0.625
+68,Apple,Apple iPhone 14 Plus,design,2,1,0,3,0.8333,0.7951,0.5
+68,Apple,Apple iPhone 14 Plus,display,6,2,4,12,0.5833,0.5999,0.8
+68,Apple,Apple iPhone 14 Plus,performance,4,0,2,6,0.6667,0.68,0.6667
+68,Apple,Apple iPhone 14 Plus,price,11,0,3,14,0.7857,0.7894,0.8235
+69,Apple,Apple iPhone 13 Mini,battery,18,40,1,59,0.6441,0.6458,0.9516
+69,Apple,Apple iPhone 13 Mini,camera,4,6,0,10,0.7,0.696,0.7692
+69,Apple,Apple iPhone 13 Mini,design,5,7,5,17,0.5,0.5618,0.85
+69,Apple,Apple iPhone 13 Mini,display,7,11,0,18,0.6944,0.6826,0.8571
+69,Apple,Apple iPhone 13 Mini,performance,6,3,1,10,0.75,0.732,0.7692
+69,Apple,Apple iPhone 13 Mini,price,5,3,3,11,0.5909,0.6561,0.7857
+70,Apple,Apple iPhone 13 Mini,battery,23,46,2,71,0.6479,0.6491,0.9595
+70,Apple,Apple iPhone 13 Mini,camera,6,6,0,12,0.75,0.7318,0.8
+70,Apple,Apple iPhone 13 Mini,design,7,9,5,21,0.5476,0.5908,0.875
+70,Apple,Apple iPhone 13 Mini,display,8,18,1,27,0.6296,0.6312,0.9
+70,Apple,Apple iPhone 13 Mini,performance,8,3,2,13,0.7308,0.7211,0.8125
+70,Apple,Apple iPhone 13 Mini,price,7,5,4,16,0.5938,0.6428,0.8421
+71,Apple,Apple iPhone 13 Mini,battery,23,46,2,71,0.6479,0.6491,0.9595
+71,Apple,Apple iPhone 13 Mini,camera,6,6,0,12,0.75,0.7318,0.8
+71,Apple,Apple iPhone 13 Mini,design,7,9,5,21,0.5476,0.5908,0.875
+71,Apple,Apple iPhone 13 Mini,display,8,18,1,27,0.6296,0.6312,0.9
+71,Apple,Apple iPhone 13 Mini,performance,8,3,2,13,0.7308,0.7211,0.8125
+71,Apple,Apple iPhone 13 Mini,price,7,5,4,16,0.5938,0.6428,0.8421
+72,Apple,Apple iPhone XS,battery,3,10,2,15,0.5333,0.5664,0.8333
+72,Apple,Apple iPhone XS,camera,2,1,0,3,0.8333,0.7425,0.5
+72,Apple,Apple iPhone XS,design,4,0,0,4,1.0,0.8734,0.5714
+72,Apple,Apple iPhone XS,display,1,0,1,2,0.5,0.5998,0.4
+72,Apple,Apple iPhone XS,performance,4,0,0,4,1.0,0.8311,0.5714
+72,Apple,Apple iPhone XS,price,6,0,0,6,1.0,0.9089,0.6667
+73,Apple,Apple iPhone 15 Pro Max,battery,7,3,1,11,0.7727,0.7393,0.7857
+73,Apple,Apple iPhone 15 Pro Max,camera,3,8,1,12,0.5833,0.6141,0.8
+73,Apple,Apple iPhone 15 Pro Max,design,2,0,0,2,1.0,0.8372,0.4
+73,Apple,Apple iPhone 15 Pro Max,display,4,3,1,8,0.6875,0.6691,0.7273
+73,Apple,Apple iPhone 15 Pro Max,performance,5,1,1,7,0.7857,0.7483,0.7
+73,Apple,Apple iPhone 15 Pro Max,price,9,2,0,11,0.9091,0.8749,0.7857
+74,Apple,Apple iPhone 15 Pro Max,battery,16,15,3,34,0.6912,0.6879,0.9189
+74,Apple,Apple iPhone 15 Pro Max,camera,7,8,2,17,0.6471,0.6564,0.85
+74,Apple,Apple iPhone 15 Pro Max,design,5,1,0,6,0.9167,0.851,0.6667
+74,Apple,Apple iPhone 15 Pro Max,display,7,4,1,12,0.75,0.7176,0.8
+74,Apple,Apple iPhone 15 Pro Max,performance,7,2,3,12,0.6667,0.6753,0.8
+74,Apple,Apple iPhone 15 Pro Max,price,11,4,0,15,0.8667,0.8499,0.8333
+75,Apple,Apple iPhone 15,battery,16,18,1,35,0.7143,0.7082,0.9211
+75,Apple,Apple iPhone 15,camera,4,8,2,14,0.5714,0.6021,0.8235
+75,Apple,Apple iPhone 15,design,4,0,1,5,0.8,0.7861,0.625
+75,Apple,Apple iPhone 15,display,6,9,1,16,0.6562,0.6523,0.8421
+75,Apple,Apple iPhone 15,performance,2,4,2,8,0.5,0.5754,0.7273
+75,Apple,Apple iPhone 15,price,10,2,1,13,0.8462,0.8332,0.8125
+76,Apple,Apple iPhone 15,battery,11,13,1,25,0.7,0.6943,0.8929
+76,Apple,Apple iPhone 15,camera,3,5,0,8,0.6875,0.6877,0.7273
+76,Apple,Apple iPhone 15,design,2,0,0,2,1.0,0.8372,0.4
+76,Apple,Apple iPhone 15,display,4,7,0,11,0.6818,0.6687,0.7857
+76,Apple,Apple iPhone 15,performance,2,3,1,6,0.5833,0.6345,0.6667
+76,Apple,Apple iPhone 15,price,10,2,0,12,0.9167,0.8822,0.8
+77,Apple,Apple iPhone 15,battery,1,0,0,1,1.0,0.7214,0.25
+77,Apple,Apple iPhone 15,camera,0,1,0,1,0.5,0.6567,0.25
+77,Apple,Apple iPhone 15,display,0,1,1,2,0.25,0.5284,0.4
+78,Apple,Apple iPhone 15,battery,16,18,1,35,0.7143,0.7082,0.9211
+78,Apple,Apple iPhone 15,camera,4,8,2,14,0.5714,0.6021,0.8235
+78,Apple,Apple iPhone 15,design,4,0,1,5,0.8,0.7861,0.625
+78,Apple,Apple iPhone 15,display,6,9,1,16,0.6562,0.6523,0.8421
+78,Apple,Apple iPhone 15,performance,2,4,2,8,0.5,0.5754,0.7273
+78,Apple,Apple iPhone 15,price,10,2,1,13,0.8462,0.8332,0.8125
+79,Apple,Apple iPhone 15,battery,16,18,1,35,0.7143,0.7082,0.9211
+79,Apple,Apple iPhone 15,camera,4,8,2,14,0.5714,0.6021,0.8235
+79,Apple,Apple iPhone 15,design,4,0,1,5,0.8,0.7861,0.625
+79,Apple,Apple iPhone 15,display,6,9,1,16,0.6562,0.6523,0.8421
+79,Apple,Apple iPhone 15,performance,2,4,2,8,0.5,0.5754,0.7273
+79,Apple,Apple iPhone 15,price,10,2,1,13,0.8462,0.8332,0.8125
+80,Apple,Apple iPhone 15,battery,16,18,1,35,0.7143,0.7082,0.9211
+80,Apple,Apple iPhone 15,camera,4,8,2,14,0.5714,0.6021,0.8235
+80,Apple,Apple iPhone 15,design,4,0,1,5,0.8,0.7861,0.625
+80,Apple,Apple iPhone 15,display,6,9,1,16,0.6562,0.6523,0.8421
+80,Apple,Apple iPhone 15,performance,2,4,2,8,0.5,0.5754,0.7273
+80,Apple,Apple iPhone 15,price,10,2,1,13,0.8462,0.8332,0.8125
+81,Apple,Apple iPhone 15,battery,16,18,1,35,0.7143,0.7082,0.9211
+81,Apple,Apple iPhone 15,camera,4,8,2,14,0.5714,0.6021,0.8235
+81,Apple,Apple iPhone 15,design,4,0,1,5,0.8,0.7861,0.625
+81,Apple,Apple iPhone 15,display,6,9,1,16,0.6562,0.6523,0.8421
+81,Apple,Apple iPhone 15,performance,2,4,2,8,0.5,0.5754,0.7273
+81,Apple,Apple iPhone 15,price,10,2,1,13,0.8462,0.8332,0.8125
+82,Apple,Apple iPhone 14 Pro,battery,9,14,1,24,0.6667,0.6665,0.8889
+82,Apple,Apple iPhone 14 Pro,camera,7,3,2,12,0.7083,0.7024,0.8
+82,Apple,Apple iPhone 14 Pro,design,5,4,0,9,0.7778,0.7758,0.75
+82,Apple,Apple iPhone 14 Pro,display,4,5,0,9,0.7222,0.6928,0.75
+82,Apple,Apple iPhone 14 Pro,performance,6,0,0,6,1.0,0.8618,0.6667
+82,Apple,Apple iPhone 14 Pro,price,5,1,2,8,0.6875,0.7306,0.7273
+83,Apple,Apple iPhone 14 Pro,battery,18,25,1,44,0.6932,0.6904,0.9362
+83,Apple,Apple iPhone 14 Pro,camera,9,5,2,16,0.7188,0.7114,0.8421
+83,Apple,Apple iPhone 14 Pro,design,6,5,0,11,0.7727,0.7725,0.7857
+83,Apple,Apple iPhone 14 Pro,display,7,11,0,18,0.6944,0.6826,0.8571
+83,Apple,Apple iPhone 14 Pro,performance,9,1,0,10,0.95,0.8653,0.7692
+83,Apple,Apple iPhone 14 Pro,price,7,2,3,12,0.6667,0.7058,0.8
+84,Apple,Apple iPhone 14 Pro,battery,18,25,1,44,0.6932,0.6904,0.9362
+84,Apple,Apple iPhone 14 Pro,camera,9,5,2,16,0.7188,0.7114,0.8421
+84,Apple,Apple iPhone 14 Pro,design,6,5,0,11,0.7727,0.7725,0.7857
+84,Apple,Apple iPhone 14 Pro,display,7,11,0,18,0.6944,0.6826,0.8571
+84,Apple,Apple iPhone 14 Pro,performance,9,1,0,10,0.95,0.8653,0.7692
+84,Apple,Apple iPhone 14 Pro,price,7,2,3,12,0.6667,0.7058,0.8
+85,Apple,Apple iPhone 14 Pro Max,battery,1,1,0,2,0.75,0.6897,0.4
+85,Apple,Apple iPhone 14 Pro Max,display,0,6,2,8,0.375,0.4768,0.7273
+85,Apple,Apple iPhone 14 Pro Max,price,1,2,0,3,0.6667,0.7497,0.5
+86,Apple,Apple iPhone 14 Pro Max,battery,7,15,0,22,0.6591,0.6603,0.88
+86,Apple,Apple iPhone 14 Pro Max,camera,6,11,3,20,0.575,0.5976,0.8696
+86,Apple,Apple iPhone 14 Pro Max,design,4,1,0,5,0.9,0.8361,0.625
+86,Apple,Apple iPhone 14 Pro Max,display,4,12,3,19,0.5263,0.55,0.8636
+86,Apple,Apple iPhone 14 Pro Max,performance,6,2,3,11,0.6364,0.655,0.7857
+86,Apple,Apple iPhone 14 Pro Max,price,3,7,0,10,0.65,0.6999,0.7692
+87,Apple,Apple iPhone 14 Pro Max,battery,4,10,0,14,0.6429,0.6488,0.8235
+87,Apple,Apple iPhone 14 Pro Max,camera,5,9,3,17,0.5588,0.5882,0.85
+87,Apple,Apple iPhone 14 Pro Max,design,1,0,0,1,1.0,0.8101,0.25
+87,Apple,Apple iPhone 14 Pro Max,display,2,3,0,5,0.7,0.6699,0.625
+87,Apple,Apple iPhone 14 Pro Max,performance,4,1,1,6,0.75,0.7255,0.6667
+87,Apple,Apple iPhone 14 Pro Max,price,1,3,0,4,0.625,0.722,0.5714
+88,Apple,Apple iPhone SE 3rd Gen,battery,8,21,4,33,0.5606,0.5744,0.9167
+88,Apple,Apple iPhone SE 3rd Gen,camera,2,0,0,2,1.0,0.7771,0.4
+88,Apple,Apple iPhone SE 3rd Gen,design,11,9,1,21,0.7381,0.7446,0.875
+88,Apple,Apple iPhone SE 3rd Gen,display,4,5,0,9,0.7222,0.6928,0.75
+88,Apple,Apple iPhone SE 3rd Gen,performance,5,0,0,5,1.0,0.848,0.625
+88,Apple,Apple iPhone SE 3rd Gen,price,13,3,0,16,0.9062,0.8808,0.8421
+89,Apple,Apple iPhone SE 3rd Gen,battery,5,9,0,14,0.6786,0.6752,0.8235
+89,Apple,Apple iPhone SE 3rd Gen,camera,1,0,0,1,1.0,0.74,0.25
+89,Apple,Apple iPhone SE 3rd Gen,design,1,6,0,7,0.5714,0.6551,0.7
+89,Apple,Apple iPhone SE 3rd Gen,display,1,3,0,4,0.625,0.6332,0.5714
+89,Apple,Apple iPhone SE 3rd Gen,performance,5,0,0,5,1.0,0.848,0.625
+89,Apple,Apple iPhone SE 3rd Gen,price,10,2,0,12,0.9167,0.8822,0.8
+90,Apple,Apple iPhone SE 3rd Gen,battery,8,21,4,33,0.5606,0.5744,0.9167
+90,Apple,Apple iPhone SE 3rd Gen,camera,2,0,0,2,1.0,0.7771,0.4
+90,Apple,Apple iPhone SE 3rd Gen,design,11,9,1,21,0.7381,0.7446,0.875
+90,Apple,Apple iPhone SE 3rd Gen,display,4,5,0,9,0.7222,0.6928,0.75
+90,Apple,Apple iPhone SE 3rd Gen,performance,5,0,0,5,1.0,0.848,0.625
+90,Apple,Apple iPhone SE 3rd Gen,price,13,3,0,16,0.9062,0.8808,0.8421
+91,Google,Google Pixel 6 5G,battery,3,8,2,13,0.5385,0.5738,0.8125
+91,Google,Google Pixel 6 5G,camera,7,5,0,12,0.7917,0.7612,0.8
+91,Google,Google Pixel 6 5G,design,1,0,0,1,1.0,0.8101,0.25
+91,Google,Google Pixel 6 5G,display,3,4,3,10,0.5,0.5466,0.7692
+91,Google,Google Pixel 6 5G,performance,2,2,3,7,0.4286,0.54,0.7
+91,Google,Google Pixel 6 5G,price,4,0,3,7,0.5714,0.6665,0.7
+92,Google,Google Pixel 6 5G,battery,5,19,6,30,0.4833,0.5094,0.9091
+92,Google,Google Pixel 6 5G,camera,9,7,0,16,0.7812,0.759,0.8421
+92,Google,Google Pixel 6 5G,design,3,2,1,6,0.6667,0.7146,0.6667
+92,Google,Google Pixel 6 5G,display,4,9,4,17,0.5,0.5318,0.85
+92,Google,Google Pixel 6 5G,performance,4,3,4,11,0.5,0.5613,0.7857
+92,Google,Google Pixel 6 5G,price,8,2,4,14,0.6429,0.6841,0.8235
+93,Apple,Apple iPhone 15 Pro,battery,17,18,2,37,0.7027,0.6983,0.925
+93,Apple,Apple iPhone 15 Pro,camera,6,7,2,15,0.6333,0.647,0.8333
+93,Apple,Apple iPhone 15 Pro,design,6,1,1,8,0.8125,0.797,0.7273
+93,Apple,Apple iPhone 15 Pro,display,6,12,4,22,0.5455,0.5629,0.88
+93,Apple,Apple iPhone 15 Pro,performance,6,1,4,11,0.5909,0.6238,0.7857
+93,Apple,Apple iPhone 15 Pro,price,12,10,1,23,0.7391,0.7499,0.8846
+94,Apple,Apple iPhone,battery,17,18,2,37,0.7027,0.6983,0.925
+94,Apple,Apple iPhone,camera,6,7,2,15,0.6333,0.647,0.8333
+94,Apple,Apple iPhone,design,6,1,1,8,0.8125,0.797,0.7273
+94,Apple,Apple iPhone,display,6,12,4,22,0.5455,0.5629,0.88
+94,Apple,Apple iPhone,performance,6,1,4,11,0.5909,0.6238,0.7857
+94,Apple,Apple iPhone,price,12,10,1,23,0.7391,0.7499,0.8846
+95,Apple,Apple iPhone 15 Pro,battery,6,9,1,16,0.6562,0.6585,0.8421
+95,Apple,Apple iPhone 15 Pro,camera,3,3,0,6,0.75,0.7218,0.6667
+95,Apple,Apple iPhone 15 Pro,design,3,0,0,3,1.0,0.8576,0.5
+95,Apple,Apple iPhone 15 Pro,display,4,9,1,14,0.6071,0.6157,0.8235
+95,Apple,Apple iPhone 15 Pro,performance,2,0,0,2,1.0,0.7829,0.4
+95,Apple,Apple iPhone 15 Pro,price,6,6,1,13,0.6923,0.7221,0.8125
+96,Apple,Apple iPhone 11,battery,1,1,0,2,0.75,0.6897,0.4
+96,Apple,Apple iPhone 11,camera,1,0,0,1,1.0,0.74,0.25
+96,Apple,Apple iPhone 11,design,1,0,0,1,1.0,0.8101,0.25
+96,Apple,Apple iPhone 11,display,0,1,0,1,0.5,0.6165,0.25
+96,Apple,Apple iPhone 11,performance,2,0,0,2,1.0,0.7829,0.4
+96,Apple,Apple iPhone 11,price,1,2,0,3,0.6667,0.7497,0.5
+97,Apple,Apple iPhone 16 Pro Max,battery,13,11,1,25,0.74,0.7276,0.8929
+97,Apple,Apple iPhone 16 Pro Max,camera,9,12,1,22,0.6818,0.683,0.88
+97,Apple,Apple iPhone 16 Pro Max,design,7,10,0,17,0.7059,0.7209,0.85
+97,Apple,Apple iPhone 16 Pro Max,display,9,6,0,15,0.8,0.7599,0.8333
+97,Apple,Apple iPhone 16 Pro Max,performance,8,5,2,15,0.7,0.699,0.8333
+97,Apple,Apple iPhone 16 Pro Max,price,15,1,2,18,0.8611,0.8477,0.8571
+98,Apple,Apple iPhone 16 Pro Max,battery,8,5,1,14,0.75,0.7278,0.8235
+98,Apple,Apple iPhone 16 Pro Max,camera,8,9,0,17,0.7353,0.7245,0.85
+98,Apple,Apple iPhone 16 Pro Max,design,7,7,0,14,0.75,0.7558,0.8235
+98,Apple,Apple iPhone 16 Pro Max,display,8,3,0,11,0.8636,0.7937,0.7857
+98,Apple,Apple iPhone 16 Pro Max,performance,6,4,1,11,0.7273,0.7175,0.7857
+98,Apple,Apple iPhone 16 Pro Max,price,9,1,2,12,0.7917,0.794,0.8
+99,Samsung,Samsung Galaxy S20 5G,battery,5,12,4,21,0.5238,0.5511,0.875
+99,Samsung,Samsung Galaxy S20 5G,camera,4,1,2,7,0.6429,0.6617,0.7
+99,Samsung,Samsung Galaxy S20 5G,design,3,4,1,8,0.625,0.6816,0.7273
+99,Samsung,Samsung Galaxy S20 5G,display,6,6,2,14,0.6429,0.642,0.8235
+99,Samsung,Samsung Galaxy S20 5G,performance,4,8,3,15,0.5333,0.574,0.8333
+99,Samsung,Samsung Galaxy S20 5G,price,9,6,0,15,0.8,0.7999,0.8333
+100,Apple,Apple iPhone Xs Max,battery,9,5,0,14,0.8214,0.7804,0.8235
+100,Apple,Apple iPhone Xs Max,camera,1,1,0,2,0.75,0.7057,0.4
+100,Apple,Apple iPhone Xs Max,design,0,1,0,1,0.5,0.7268,0.25
+100,Apple,Apple iPhone Xs Max,display,2,3,1,6,0.5833,0.609,0.6667
+100,Apple,Apple iPhone Xs Max,performance,1,1,1,3,0.5,0.6225,0.5
+100,Apple,Apple iPhone Xs Max,price,2,0,0,2,1.0,0.8568,0.4
+101,Motorola,Motorola Moto G 5G,battery,13,22,1,36,0.6667,0.6665,0.9231
+101,Motorola,Motorola Moto G 5G,camera,15,15,2,32,0.7031,0.7011,0.9143
+101,Motorola,Motorola Moto G 5G,design,5,9,2,16,0.5938,0.6362,0.8421
+101,Motorola,Motorola Moto G 5G,display,13,10,0,23,0.7826,0.7571,0.8846
+101,Motorola,Motorola Moto G 5G,performance,21,11,1,33,0.803,0.7889,0.9167
+101,Motorola,Motorola Moto G 5G,price,28,12,3,43,0.7907,0.7916,0.9348
+102,Motorola,Motorola Moto G Power,battery,13,22,1,36,0.6667,0.6665,0.9231
+102,Motorola,Motorola Moto G Power,camera,15,15,2,32,0.7031,0.7011,0.9143
+102,Motorola,Motorola Moto G Power,design,5,9,2,16,0.5938,0.6362,0.8421
+102,Motorola,Motorola Moto G Power,display,13,10,0,23,0.7826,0.7571,0.8846
+102,Motorola,Motorola Moto G Power,performance,21,11,1,33,0.803,0.7889,0.9167
+102,Motorola,Motorola Moto G Power,price,28,12,3,43,0.7907,0.7916,0.9348
+103,Samsung,Samsung Galaxy S21 FE 5G,battery,1,5,2,8,0.4375,0.5252,0.7273
+103,Samsung,Samsung Galaxy S21 FE 5G,camera,4,0,0,4,1.0,0.8267,0.5714
+103,Samsung,Samsung Galaxy S21 FE 5G,design,2,0,0,2,1.0,0.8372,0.4
+103,Samsung,Samsung Galaxy S21 FE 5G,display,4,3,3,10,0.55,0.5799,0.7692
+103,Samsung,Samsung Galaxy S21 FE 5G,performance,4,2,0,6,0.8333,0.7709,0.6667
+103,Samsung,Samsung Galaxy S21 FE 5G,price,3,2,2,7,0.5714,0.6665,0.7
+104,Google,Google Pixel 6 Pro 5G,battery,15,13,3,31,0.6935,0.6897,0.9118
+104,Google,Google Pixel 6 Pro 5G,camera,21,16,6,43,0.6744,0.6758,0.9348
+104,Google,Google Pixel 6 Pro 5G,design,9,2,4,15,0.6667,0.693,0.8333
+104,Google,Google Pixel 6 Pro 5G,display,16,28,4,48,0.625,0.6264,0.9412
+104,Google,Google Pixel 6 Pro 5G,performance,12,1,6,19,0.6579,0.6658,0.8636
+104,Google,Google Pixel 6 Pro 5G,price,4,10,0,14,0.6429,0.6841,0.8235
+105,Apple,Apple iPhone 15 Plus,battery,6,7,1,14,0.6786,0.6752,0.8235
+105,Apple,Apple iPhone 15 Plus,camera,3,4,0,7,0.7143,0.7033,0.7
+105,Apple,Apple iPhone 15 Plus,design,4,5,0,9,0.7222,0.74,0.75
+105,Apple,Apple iPhone 15 Plus,display,5,2,3,10,0.6,0.6133,0.7692
+105,Apple,Apple iPhone 15 Plus,performance,2,0,0,2,1.0,0.7829,0.4
+105,Apple,Apple iPhone 15 Plus,price,8,1,2,11,0.7727,0.7811,0.7857
+106,Apple,Apple iPhone 15 Plus,battery,12,8,2,22,0.7273,0.7159,0.88
+106,Apple,Apple iPhone 15 Plus,camera,3,4,0,7,0.7143,0.7033,0.7
+106,Apple,Apple iPhone 15 Plus,design,4,5,0,9,0.7222,0.74,0.75
+106,Apple,Apple iPhone 15 Plus,display,7,4,3,14,0.6429,0.642,0.8235
+106,Apple,Apple iPhone 15 Plus,performance,3,0,1,4,0.75,0.72,0.5714
+106,Apple,Apple iPhone 15 Plus,price,9,1,2,12,0.7917,0.794,0.8
+107,Apple,Apple iPhone 15 Plus,battery,12,8,2,22,0.7273,0.7159,0.88
+107,Apple,Apple iPhone 15 Plus,camera,3,4,0,7,0.7143,0.7033,0.7
+107,Apple,Apple iPhone 15 Plus,design,4,5,0,9,0.7222,0.74,0.75
+107,Apple,Apple iPhone 15 Plus,display,7,4,3,14,0.6429,0.642,0.8235
+107,Apple,Apple iPhone 15 Plus,performance,3,0,1,4,0.75,0.72,0.5714
+107,Apple,Apple iPhone 15 Plus,price,9,1,2,12,0.7917,0.794,0.8
+108,Apple,Apple iPhone 15 Plus,battery,12,8,2,22,0.7273,0.7159,0.88
+108,Apple,Apple iPhone 15 Plus,camera,3,4,0,7,0.7143,0.7033,0.7
+108,Apple,Apple iPhone 15 Plus,design,4,5,0,9,0.7222,0.74,0.75
+108,Apple,Apple iPhone 15 Plus,display,7,4,3,14,0.6429,0.642,0.8235
+108,Apple,Apple iPhone 15 Plus,performance,3,0,1,4,0.75,0.72,0.5714
+108,Apple,Apple iPhone 15 Plus,price,9,1,2,12,0.7917,0.794,0.8
+109,Motorola,Motorola Moto G Stylus,battery,10,10,2,22,0.6818,0.6788,0.88
+109,Motorola,Motorola Moto G Stylus,camera,24,16,7,47,0.6809,0.6815,0.94
+109,Motorola,Motorola Moto G Stylus,design,4,3,0,7,0.7857,0.7801,0.7
+109,Motorola,Motorola Moto G Stylus,display,12,15,0,27,0.7222,0.7093,0.9
+109,Motorola,Motorola Moto G Stylus,performance,8,4,2,14,0.7143,0.7095,0.8235
+109,Motorola,Motorola Moto G Stylus,price,13,4,2,19,0.7895,0.7916,0.8636
+110,Motorola,Motorola Moto G Stylus 5G,battery,16,14,5,35,0.6571,0.6582,0.9211
+110,Motorola,Motorola Moto G Stylus 5G,camera,36,34,11,81,0.6543,0.6563,0.9643
+110,Motorola,Motorola Moto G Stylus 5G,design,7,6,0,13,0.7692,0.77,0.8125
+110,Motorola,Motorola Moto G Stylus 5G,display,25,18,0,43,0.7907,0.775,0.9348
+110,Motorola,Motorola Moto G Stylus 5G,performance,17,5,5,27,0.7222,0.7181,0.9
+110,Motorola,Motorola Moto G Stylus 5G,price,14,10,6,30,0.6333,0.6571,0.9091
+111,Google,Google Pixel 7 Pro 5G,battery,4,6,2,12,0.5833,0.6075,0.8
+111,Google,Google Pixel 7 Pro 5G,camera,16,13,2,31,0.7258,0.7206,0.9118
+111,Google,Google Pixel 7 Pro 5G,design,4,4,0,8,0.75,0.7585,0.7273
+111,Google,Google Pixel 7 Pro 5G,display,9,6,4,19,0.6316,0.6333,0.8636
+111,Google,Google Pixel 7 Pro 5G,performance,10,1,2,13,0.8077,0.7767,0.8125
+111,Google,Google Pixel 7 Pro 5G,price,7,1,1,9,0.8333,0.8213,0.75
+112,Google,Google Pixel 7 Pro,battery,7,11,3,21,0.5952,0.6088,0.875
+112,Google,Google Pixel 7 Pro,camera,16,16,4,36,0.6667,0.6693,0.9231
+112,Google,Google Pixel 7 Pro,design,5,6,0,11,0.7273,0.7413,0.7857
+112,Google,Google Pixel 7 Pro,display,13,7,5,25,0.66,0.6566,0.8929
+112,Google,Google Pixel 7 Pro,performance,11,1,2,14,0.8214,0.7884,0.8235
+112,Google,Google Pixel 7 Pro,price,9,1,1,11,0.8636,0.8436,0.7857
+113,Apple,Apple iPhone 16 Pro,battery,9,15,1,25,0.66,0.6609,0.8929
+113,Apple,Apple iPhone 16 Pro,camera,9,4,1,14,0.7857,0.76,0.8235
+113,Apple,Apple iPhone 16 Pro,design,11,4,0,15,0.8667,0.843,0.8333
+113,Apple,Apple iPhone 16 Pro,display,9,13,1,23,0.6739,0.6678,0.8846
+113,Apple,Apple iPhone 16 Pro,performance,16,1,0,17,0.9706,0.9082,0.85
+113,Apple,Apple iPhone 16 Pro,price,7,2,1,10,0.8,0.7999,0.7692
+114,Apple,Apple iPhone 16,battery,1,4,0,5,0.6,0.6328,0.625
+114,Apple,Apple iPhone 16,display,0,1,0,1,0.5,0.6165,0.25
+114,Apple,Apple iPhone 16,performance,1,0,1,2,0.5,0.64,0.4
+114,Apple,Apple iPhone 16,price,6,0,0,6,1.0,0.9089,0.6667
+115,Apple,Apple iPhone 16,battery,3,7,0,10,0.65,0.6552,0.7692
+115,Apple,Apple iPhone 16,camera,0,2,0,2,0.5,0.6343,0.4
+115,Apple,Apple iPhone 16,display,0,2,0,2,0.5,0.5998,0.4
+115,Apple,Apple iPhone 16,performance,1,0,1,2,0.5,0.64,0.4
+115,Apple,Apple iPhone 16,price,10,0,0,10,1.0,0.9332,0.7692
+116,Apple,Apple iPhone 16,battery,3,3,0,6,0.75,0.7116,0.6667
+116,Apple,Apple iPhone 16,camera,0,2,0,2,0.5,0.6343,0.4
+116,Apple,Apple iPhone 16,display,0,1,0,1,0.5,0.6165,0.25
+116,Apple,Apple iPhone 16,performance,1,0,0,1,1.0,0.7467,0.25
+116,Apple,Apple iPhone 16,price,4,0,0,4,1.0,0.8886,0.5714
+117,Apple,Apple iPhone 16,battery,5,14,0,19,0.6316,0.6387,0.8636
+117,Apple,Apple iPhone 16,camera,2,4,0,6,0.6667,0.6764,0.6667
+117,Apple,Apple iPhone 16,design,1,0,0,1,1.0,0.8101,0.25
+117,Apple,Apple iPhone 16,display,1,6,2,9,0.4444,0.5142,0.75
+117,Apple,Apple iPhone 16,performance,2,1,1,4,0.625,0.6644,0.5714
+117,Apple,Apple iPhone 16,price,14,1,0,15,0.9667,0.9249,0.8333
+118,Apple,Apple iPhone 16,battery,5,14,0,19,0.6316,0.6387,0.8636
+118,Apple,Apple iPhone 16,camera,2,4,0,6,0.6667,0.6764,0.6667
+118,Apple,Apple iPhone 16,design,1,0,0,1,1.0,0.8101,0.25
+118,Apple,Apple iPhone 16,display,1,6,2,9,0.4444,0.5142,0.75
+118,Apple,Apple iPhone 16,performance,2,1,1,4,0.625,0.6644,0.5714
+118,Apple,Apple iPhone 16,price,14,1,0,15,0.9667,0.9249,0.8333
+119,Apple,Apple iPhone 16,battery,5,14,0,19,0.6316,0.6387,0.8636
+119,Apple,Apple iPhone 16,camera,2,4,0,6,0.6667,0.6764,0.6667
+119,Apple,Apple iPhone 16,design,1,0,0,1,1.0,0.8101,0.25
+119,Apple,Apple iPhone 16,display,1,6,2,9,0.4444,0.5142,0.75
+119,Apple,Apple iPhone 16,performance,2,1,1,4,0.625,0.6644,0.5714
+119,Apple,Apple iPhone 16,price,14,1,0,15,0.9667,0.9249,0.8333
+120,Apple,Apple iPhone 12,battery,13,5,0,18,0.8611,0.8186,0.8571
+120,Apple,Apple iPhone 12,camera,4,2,0,6,0.8333,0.7673,0.6667
+120,Apple,Apple iPhone 12,design,4,0,0,4,1.0,0.8734,0.5714
+120,Apple,Apple iPhone 12,display,2,2,0,4,0.75,0.6888,0.5714
+120,Apple,Apple iPhone 12,performance,0,1,0,1,0.5,0.6633,0.25
+120,Apple,Apple iPhone 12,price,5,4,1,10,0.7,0.7332,0.7692
+121,Apple,Apple iPhone 12,battery,17,9,0,26,0.8269,0.8009,0.8966
+121,Apple,Apple iPhone 12,camera,4,3,0,7,0.7857,0.745,0.7
+121,Apple,Apple iPhone 12,design,5,1,0,6,0.9167,0.851,0.6667
+121,Apple,Apple iPhone 12,display,3,4,0,7,0.7143,0.6832,0.7
+121,Apple,Apple iPhone 12,performance,1,1,0,2,0.75,0.7114,0.4
+121,Apple,Apple iPhone 12,price,9,4,1,14,0.7857,0.7894,0.8235
+122,OnePlus,OnePlus 13R ROM + RAM,battery,5,0,0,5,1.0,0.8328,0.625
+122,OnePlus,OnePlus 13R ROM + RAM,camera,7,5,7,19,0.5,0.5392,0.8636
+122,OnePlus,OnePlus 13R ROM + RAM,design,3,1,1,5,0.7,0.7361,0.625
+122,OnePlus,OnePlus 13R ROM + RAM,display,3,4,0,7,0.7143,0.6832,0.7
+122,OnePlus,OnePlus 13R ROM + RAM,performance,11,0,3,14,0.7857,0.7621,0.8235
+122,OnePlus,OnePlus 13R ROM + RAM,price,2,2,0,4,0.75,0.7775,0.5714
+123,Samsung,Samsung Galaxy S20+ 5G,battery,2,4,5,11,0.3636,0.458,0.7857
+123,Samsung,Samsung Galaxy S20+ 5G,camera,1,1,1,3,0.5,0.6175,0.5
+123,Samsung,Samsung Galaxy S20+ 5G,design,1,0,0,1,1.0,0.8101,0.25
+123,Samsung,Samsung Galaxy S20+ 5G,display,1,5,0,6,0.5833,0.609,0.6667
+123,Samsung,Samsung Galaxy S20+ 5G,performance,4,1,1,6,0.75,0.7255,0.6667
+123,Samsung,Samsung Galaxy S20+ 5G,price,3,1,1,5,0.7,0.7498,0.625
+124,Samsung,Samsung Galaxy S23+ Plus 5G,battery,12,11,1,24,0.7292,0.7182,0.8889
+124,Samsung,Samsung Galaxy S23+ Plus 5G,camera,4,5,0,9,0.7222,0.71,0.75
+124,Samsung,Samsung Galaxy S23+ Plus 5G,design,2,2,0,4,0.75,0.7623,0.5714
+124,Samsung,Samsung Galaxy S23+ Plus 5G,display,6,5,1,12,0.7083,0.6882,0.8
+124,Samsung,Samsung Galaxy S23+ Plus 5G,performance,7,1,0,8,0.9375,0.8446,0.7273
+124,Samsung,Samsung Galaxy S23+ Plus 5G,price,5,2,0,7,0.8571,0.8332,0.7
+125,Samsung,Samsung Galaxy S23+ Plus 5G,battery,15,15,3,33,0.6818,0.6797,0.9167
+125,Samsung,Samsung Galaxy S23+ Plus 5G,camera,6,7,0,13,0.7308,0.7189,0.8125
+125,Samsung,Samsung Galaxy S23+ Plus 5G,design,4,3,0,7,0.7857,0.7801,0.7
+125,Samsung,Samsung Galaxy S23+ Plus 5G,display,7,7,1,15,0.7,0.6849,0.8333
+125,Samsung,Samsung Galaxy S23+ Plus 5G,performance,10,2,1,13,0.8462,0.8044,0.8125
+125,Samsung,Samsung Galaxy S23+ Plus 5G,price,9,2,0,11,0.9091,0.8749,0.7857
+126,Motorola,Motorola Moto G Power 5G,battery,18,22,6,46,0.6304,0.6339,0.9388
+126,Motorola,Motorola Moto G Power 5G,camera,12,13,0,25,0.74,0.7313,0.8929
+126,Motorola,Motorola Moto G Power 5G,design,3,1,1,5,0.7,0.7361,0.625
+126,Motorola,Motorola Moto G Power 5G,display,11,7,2,20,0.725,0.708,0.8696
+126,Motorola,Motorola Moto G Power 5G,performance,14,10,8,32,0.5938,0.6076,0.9143
+126,Motorola,Motorola Moto G Power 5G,price,14,6,2,22,0.7727,0.7777,0.88
+127,Apple,Apple iPhone 14,battery,13,8,0,21,0.8095,0.7819,0.875
+127,Apple,Apple iPhone 14,camera,0,1,1,2,0.25,0.5629,0.4
+127,Apple,Apple iPhone 14,design,2,2,0,4,0.75,0.7623,0.5714
+127,Apple,Apple iPhone 14,display,2,0,0,2,1.0,0.7427,0.4
+127,Apple,Apple iPhone 14,performance,1,0,0,1,1.0,0.7467,0.25
+127,Apple,Apple iPhone 14,price,5,6,1,12,0.6667,0.7058,0.8
+128,Apple,Apple iPhone 16e,battery,7,7,1,15,0.7,0.6914,0.8333
+128,Apple,Apple iPhone 16e,camera,2,4,0,6,0.6667,0.6764,0.6667
+128,Apple,Apple iPhone 16e,design,5,1,1,7,0.7857,0.7801,0.7
+128,Apple,Apple iPhone 16e,display,8,2,1,11,0.8182,0.7624,0.7857
+128,Apple,Apple iPhone 16e,performance,5,1,1,7,0.7857,0.7483,0.7
+128,Apple,Apple iPhone 16e,price,6,4,1,11,0.7273,0.7499,0.7857
+129,Apple,Apple iPhone 16e,battery,3,1,0,4,0.875,0.7587,0.5714
+129,Apple,Apple iPhone 16e,display,0,5,0,5,0.5,0.5699,0.625
+129,Apple,Apple iPhone 16e,performance,1,0,0,1,1.0,0.7467,0.25
+129,Apple,Apple iPhone 16e,price,1,0,0,1,1.0,0.833,0.25
+130,Apple,Apple iPhone 16e,battery,11,8,1,20,0.75,0.7331,0.8696
+130,Apple,Apple iPhone 16e,camera,2,4,0,6,0.6667,0.6764,0.6667
+130,Apple,Apple iPhone 16e,design,4,1,1,6,0.75,0.7601,0.6667
+130,Apple,Apple iPhone 16e,display,8,7,1,16,0.7188,0.6999,0.8421
+130,Apple,Apple iPhone 16e,performance,6,1,1,8,0.8125,0.7677,0.7273
+130,Apple,Apple iPhone 16e,price,7,4,1,12,0.75,0.7646,0.8
+131,Apple,Apple iPhone 16e,battery,11,8,1,20,0.75,0.7331,0.8696
+131,Apple,Apple iPhone 16e,camera,2,4,0,6,0.6667,0.6764,0.6667
+131,Apple,Apple iPhone 16e,design,4,1,1,6,0.75,0.7601,0.6667
+131,Apple,Apple iPhone 16e,display,8,7,1,16,0.7188,0.6999,0.8421
+131,Apple,Apple iPhone 16e,performance,6,1,1,8,0.8125,0.7677,0.7273
+131,Apple,Apple iPhone 16e,price,7,4,1,12,0.75,0.7646,0.8
+132,Apple,Apple iPhone 13 Pro Max,battery,1,6,1,8,0.5,0.5637,0.7273
+132,Apple,Apple iPhone 13 Pro Max,camera,1,5,0,6,0.5833,0.6309,0.6667
+132,Apple,Apple iPhone 13 Pro Max,design,2,0,0,2,1.0,0.8372,0.4
+132,Apple,Apple iPhone 13 Pro Max,display,1,0,0,1,1.0,0.6998,0.25
+132,Apple,Apple iPhone 13 Pro Max,performance,1,1,0,2,0.75,0.7114,0.4
+132,Apple,Apple iPhone 13 Pro Max,price,1,1,0,2,0.75,0.7854,0.4
+133,Apple,Apple iPhone 13 Pro Max,battery,9,11,1,21,0.6905,0.6857,0.875
+133,Apple,Apple iPhone 13 Pro Max,camera,2,6,0,8,0.625,0.6492,0.7273
+133,Apple,Apple iPhone 13 Pro Max,design,5,1,0,6,0.9167,0.851,0.6667
+133,Apple,Apple iPhone 13 Pro Max,display,3,3,0,6,0.75,0.6999,0.6667
+133,Apple,Apple iPhone 13 Pro Max,performance,1,1,0,2,0.75,0.7114,0.4
+133,Apple,Apple iPhone 13 Pro Max,price,3,2,1,6,0.6667,0.7271,0.6667
+134,Motorola,Motorola Moto G Play LTE,battery,10,5,2,17,0.7353,0.7195,0.85
+134,Motorola,Motorola Moto G Play LTE,camera,12,12,5,29,0.6207,0.6306,0.9062
+134,Motorola,Motorola Moto G Play LTE,design,9,5,4,18,0.6389,0.6679,0.8571
+134,Motorola,Motorola Moto G Play LTE,display,15,12,2,29,0.7241,0.7117,0.9062
+134,Motorola,Motorola Moto G Play LTE,performance,15,13,3,31,0.6935,0.6939,0.9118
+134,Motorola,Motorola Moto G Play LTE,price,25,13,6,44,0.7159,0.7244,0.9362
+135,Apple,Apple iPhone 16 Plus,battery,5,9,0,14,0.6786,0.6752,0.8235
+135,Apple,Apple iPhone 16 Plus,camera,3,2,0,5,0.8,0.744,0.625
+135,Apple,Apple iPhone 16 Plus,design,1,0,0,1,1.0,0.8101,0.25
+135,Apple,Apple iPhone 16 Plus,display,4,9,0,13,0.6538,0.6499,0.8125
+135,Apple,Apple iPhone 16 Plus,performance,0,1,0,1,0.5,0.6633,0.25
+135,Apple,Apple iPhone 16 Plus,price,16,1,0,17,0.9706,0.9317,0.85
+136,Apple,Apple iPhone 16 Plus,battery,3,5,0,8,0.6875,0.6791,0.7273
+136,Apple,Apple iPhone 16 Plus,camera,3,2,0,5,0.8,0.744,0.625
+136,Apple,Apple iPhone 16 Plus,design,1,0,0,1,1.0,0.8101,0.25
+136,Apple,Apple iPhone 16 Plus,display,2,9,0,11,0.5909,0.6062,0.7857
+136,Apple,Apple iPhone 16 Plus,price,9,0,0,9,1.0,0.9284,0.75
+137,Apple,Apple iPhone 16 Plus,battery,5,9,0,14,0.6786,0.6752,0.8235
+137,Apple,Apple iPhone 16 Plus,camera,3,2,0,5,0.8,0.744,0.625
+137,Apple,Apple iPhone 16 Plus,design,1,0,0,1,1.0,0.8101,0.25
+137,Apple,Apple iPhone 16 Plus,display,4,9,0,13,0.6538,0.6499,0.8125
+137,Apple,Apple iPhone 16 Plus,performance,0,1,0,1,0.5,0.6633,0.25
+137,Apple,Apple iPhone 16 Plus,price,16,1,0,17,0.9706,0.9317,0.85
+138,Apple,Apple iPhone 16 Plus,battery,5,9,0,14,0.6786,0.6752,0.8235
+138,Apple,Apple iPhone 16 Plus,camera,3,2,0,5,0.8,0.744,0.625
+138,Apple,Apple iPhone 16 Plus,design,1,0,0,1,1.0,0.8101,0.25
+138,Apple,Apple iPhone 16 Plus,display,4,9,0,13,0.6538,0.6499,0.8125
+138,Apple,Apple iPhone 16 Plus,performance,0,1,0,1,0.5,0.6633,0.25
+138,Apple,Apple iPhone 16 Plus,price,16,1,0,17,0.9706,0.9317,0.85
+139,Apple,Apple iPhone 16 Plus,battery,5,9,0,14,0.6786,0.6752,0.8235
+139,Apple,Apple iPhone 16 Plus,camera,3,2,0,5,0.8,0.744,0.625
+139,Apple,Apple iPhone 16 Plus,design,1,0,0,1,1.0,0.8101,0.25
+139,Apple,Apple iPhone 16 Plus,display,4,9,0,13,0.6538,0.6499,0.8125
+139,Apple,Apple iPhone 16 Plus,performance,0,1,0,1,0.5,0.6633,0.25
+139,Apple,Apple iPhone 16 Plus,price,16,1,0,17,0.9706,0.9317,0.85
+140,Motorola,Motorola Moto g,battery,10,5,0,15,0.8333,0.7914,0.8333
+140,Motorola,Motorola Moto g,camera,5,1,1,7,0.7857,0.745,0.7
+140,Motorola,Motorola Moto g,design,1,1,0,2,0.75,0.7658,0.4
+140,Motorola,Motorola Moto g,display,6,5,0,11,0.7727,0.7312,0.7857
+140,Motorola,Motorola Moto g,performance,8,2,5,15,0.6,0.624,0.8333
+140,Motorola,Motorola Moto g,price,12,1,2,15,0.8333,0.8249,0.8333
+141,Motorola,Motorola Moto G,battery,8,2,0,10,0.9,0.8219,0.7692
+141,Motorola,Motorola Moto G,camera,5,1,0,6,0.9167,0.8127,0.6667
+141,Motorola,Motorola Moto G,design,1,1,0,2,0.75,0.7658,0.4
+141,Motorola,Motorola Moto G,display,5,4,0,9,0.7778,0.7285,0.75
+141,Motorola,Motorola Moto G,performance,8,1,0,9,0.9444,0.8557,0.75
+141,Motorola,Motorola Moto G,price,10,0,0,10,1.0,0.9332,0.7692
+142,Motorola,Motorola Moto G,battery,10,5,0,15,0.8333,0.7914,0.8333
+142,Motorola,Motorola Moto G,camera,5,1,1,7,0.7857,0.745,0.7
+142,Motorola,Motorola Moto G,design,1,1,0,2,0.75,0.7658,0.4
+142,Motorola,Motorola Moto G,display,6,5,0,11,0.7727,0.7312,0.7857
+142,Motorola,Motorola Moto G,performance,8,2,5,15,0.6,0.624,0.8333
+142,Motorola,Motorola Moto G,price,12,1,2,15,0.8333,0.8249,0.8333
+143,Apple,Apple iPhone 14 Pro,battery,7,4,0,11,0.8182,0.7705,0.7857
+143,Apple,Apple iPhone 14 Pro,camera,4,2,0,6,0.8333,0.7673,0.6667
+143,Apple,Apple iPhone 14 Pro,design,2,2,0,4,0.75,0.7623,0.5714
+143,Apple,Apple iPhone 14 Pro,display,7,5,0,12,0.7917,0.747,0.8
+143,Apple,Apple iPhone 14 Pro,performance,3,0,1,4,0.75,0.72,0.5714
+143,Apple,Apple iPhone 14 Pro,price,5,5,1,11,0.6818,0.7186,0.7857
+144,Apple,Apple iPhone XR,battery,4,5,0,9,0.7222,0.702,0.75
+144,Apple,Apple iPhone XR,camera,1,1,0,2,0.75,0.7057,0.4
+144,Apple,Apple iPhone XR,design,2,2,0,4,0.75,0.7623,0.5714
+144,Apple,Apple iPhone XR,display,0,2,0,2,0.5,0.5998,0.4
+144,Apple,Apple iPhone XR,performance,1,0,0,1,1.0,0.7467,0.25
+144,Apple,Apple iPhone XR,price,5,2,0,7,0.8571,0.8332,0.7
+145,Motorola,Motorola Moto E5,battery,7,5,0,12,0.7917,0.7546,0.8
+145,Motorola,Motorola Moto E5,camera,3,7,1,11,0.5909,0.6212,0.7857
+145,Motorola,Motorola Moto E5,design,3,0,1,4,0.75,0.7623,0.5714
+145,Motorola,Motorola Moto E5,display,4,1,0,5,0.9,0.7699,0.625
+145,Motorola,Motorola Moto E5,performance,3,1,0,4,0.875,0.7756,0.5714
+145,Motorola,Motorola Moto E5,price,10,3,2,15,0.7667,0.7749,0.8333
+146,OnePlus,OnePlus 9 Winter Mist,battery,10,12,0,22,0.7273,0.7159,0.88
+146,OnePlus,OnePlus 9 Winter Mist,camera,11,11,2,24,0.6875,0.6876,0.8889
+146,OnePlus,OnePlus 9 Winter Mist,design,5,1,0,6,0.9167,0.851,0.6667
+146,OnePlus,OnePlus 9 Winter Mist,display,8,5,3,16,0.6562,0.6523,0.8421
+146,OnePlus,OnePlus 9 Winter Mist,performance,16,6,4,26,0.7308,0.7252,0.8966
+146,OnePlus,OnePlus 9 Winter Mist,price,5,5,0,10,0.75,0.7665,0.7692
+147,OnePlus,OnePlus 9 Winter Mist,battery,10,13,2,25,0.66,0.6609,0.8929
+147,OnePlus,OnePlus 9 Winter Mist,camera,13,13,4,30,0.65,0.6554,0.9091
+147,OnePlus,OnePlus 9 Winter Mist,design,5,3,0,8,0.8125,0.797,0.7273
+147,OnePlus,OnePlus 9 Winter Mist,display,9,9,4,22,0.6136,0.6185,0.88
+147,OnePlus,OnePlus 9 Winter Mist,performance,16,9,10,35,0.5857,0.5995,0.9211
+147,OnePlus,OnePlus 9 Winter Mist,price,5,5,1,11,0.6818,0.7186,0.7857
+148,Google,Google Pixel 8 Pro,battery,7,6,2,15,0.6667,0.6664,0.8333
+148,Google,Google Pixel 8 Pro,camera,3,4,0,7,0.7143,0.7033,0.7
+148,Google,Google Pixel 8 Pro,design,0,3,0,3,0.5,0.6701,0.5
+148,Google,Google Pixel 8 Pro,display,2,10,0,12,0.5833,0.5999,0.8
+148,Google,Google Pixel 8 Pro,performance,3,1,2,6,0.5833,0.6345,0.6667
+148,Google,Google Pixel 8 Pro,price,5,2,1,8,0.75,0.7691,0.7273
+149,Apple,Apple iPhone 14 Pro Max,battery,7,5,0,12,0.7917,0.7546,0.8
+149,Apple,Apple iPhone 14 Pro Max,camera,2,2,0,4,0.75,0.7156,0.5714
+149,Apple,Apple iPhone 14 Pro Max,design,2,0,0,2,1.0,0.8372,0.4
+149,Apple,Apple iPhone 14 Pro Max,display,1,5,0,6,0.5833,0.609,0.6667
+149,Apple,Apple iPhone 14 Pro Max,performance,3,0,0,3,1.0,0.81,0.5
+149,Apple,Apple iPhone 14 Pro Max,price,3,2,0,5,0.8,0.7998,0.625
+150,Google,Google Pixel 8 5G,battery,6,6,1,13,0.6923,0.6849,0.8125
+150,Google,Google Pixel 8 5G,camera,3,3,2,8,0.5625,0.6108,0.7273
+150,Google,Google Pixel 8 5G,design,0,0,2,2,0.0,0.5515,0.4
+150,Google,Google Pixel 8 5G,display,3,3,2,8,0.5625,0.5922,0.7273
+150,Google,Google Pixel 8 5G,performance,2,2,2,6,0.5,0.5891,0.6667
+150,Google,Google Pixel 8 5G,price,3,0,0,3,1.0,0.8747,0.5
+151,Google,Google Pixel 8 5G,battery,10,8,1,19,0.7368,0.722,0.8636
+151,Google,Google Pixel 8 5G,camera,4,4,2,10,0.6,0.6293,0.7692
+151,Google,Google Pixel 8 5G,design,0,0,2,2,0.0,0.5515,0.4
+151,Google,Google Pixel 8 5G,display,3,10,4,17,0.4706,0.509,0.85
+151,Google,Google Pixel 8 5G,performance,5,2,2,9,0.6667,0.6771,0.75
+151,Google,Google Pixel 8 5G,price,5,2,0,7,0.8571,0.8332,0.7
+152,Google,Google Pixel 8 5G,battery,10,8,1,19,0.7368,0.722,0.8636
+152,Google,Google Pixel 8 5G,camera,4,4,2,10,0.6,0.6293,0.7692
+152,Google,Google Pixel 8 5G,design,0,0,2,2,0.0,0.5515,0.4
+152,Google,Google Pixel 8 5G,display,3,10,4,17,0.4706,0.509,0.85
+152,Google,Google Pixel 8 5G,performance,5,2,2,9,0.6667,0.6771,0.75
+152,Google,Google Pixel 8 5G,price,5,2,0,7,0.8571,0.8332,0.7
+153,Apple,Apple iPhone 12 Pro,battery,1,1,1,3,0.5,0.6035,0.5
+153,Apple,Apple iPhone 12 Pro,camera,0,1,0,1,0.5,0.6567,0.25
+153,Apple,Apple iPhone 12 Pro,design,1,0,0,1,1.0,0.8101,0.25
+153,Apple,Apple iPhone 12 Pro,display,2,0,0,2,1.0,0.7427,0.4
+153,Apple,Apple iPhone 12 Pro,price,2,1,0,3,0.8333,0.8122,0.5
+154,Apple,Apple iPhone 12 Mini,battery,2,10,0,12,0.5833,0.6075,0.8
+154,Apple,Apple iPhone 12 Mini,camera,1,1,0,2,0.75,0.7057,0.4
+154,Apple,Apple iPhone 12 Mini,design,2,0,0,2,1.0,0.8372,0.4
+154,Apple,Apple iPhone 12 Mini,display,0,6,1,7,0.4286,0.5166,0.7
+154,Apple,Apple iPhone 12 Mini,performance,1,1,1,3,0.5,0.6225,0.5
+154,Apple,Apple iPhone 12 Mini,price,1,0,0,1,1.0,0.833,0.25
+155,Apple,Apple iPhone 16 Pro,battery,11,20,3,34,0.6176,0.6238,0.9189
+155,Apple,Apple iPhone 16 Pro,camera,5,6,2,13,0.6154,0.6356,0.8125
+155,Apple,Apple iPhone 16 Pro,design,5,5,3,13,0.5769,0.6311,0.8125
+155,Apple,Apple iPhone 16 Pro,display,6,11,2,19,0.6053,0.6125,0.8636
+155,Apple,Apple iPhone 16 Pro,performance,10,1,0,11,0.9545,0.8738,0.7857
+155,Apple,Apple iPhone 16 Pro,price,8,3,1,12,0.7917,0.794,0.8
+156,Apple,Apple iPhone 16 Pro,battery,11,20,3,34,0.6176,0.6238,0.9189
+156,Apple,Apple iPhone 16 Pro,camera,5,6,2,13,0.6154,0.6356,0.8125
+156,Apple,Apple iPhone 16 Pro,design,5,5,3,13,0.5769,0.6311,0.8125
+156,Apple,Apple iPhone 16 Pro,display,6,11,2,19,0.6053,0.6125,0.8636
+156,Apple,Apple iPhone 16 Pro,performance,10,1,0,11,0.9545,0.8738,0.7857
+156,Apple,Apple iPhone 16 Pro,price,8,3,1,12,0.7917,0.794,0.8
+157,Motorola,Motorola Moto G 5G 2024,battery,5,4,2,11,0.6364,0.6455,0.7857
+157,Motorola,Motorola Moto G 5G 2024,camera,2,4,0,6,0.6667,0.6764,0.6667
+157,Motorola,Motorola Moto G 5G 2024,design,2,2,0,4,0.75,0.7623,0.5714
+157,Motorola,Motorola Moto G 5G 2024,display,3,2,0,5,0.8,0.7199,0.625
+157,Motorola,Motorola Moto G 5G 2024,performance,3,4,1,8,0.625,0.6523,0.7273
+157,Motorola,Motorola Moto G 5G 2024,price,9,5,1,15,0.7667,0.7749,0.8333
+158,Apple,Apple iPhone XR,battery,1,0,0,1,1.0,0.7214,0.25
+158,Apple,Apple iPhone XR,camera,1,0,0,1,1.0,0.74,0.25
+158,Apple,Apple iPhone XR,display,2,0,0,2,1.0,0.7427,0.4
+158,Apple,Apple iPhone XR,performance,0,0,1,1,0.0,0.58,0.25
+158,Apple,Apple iPhone XR,price,6,0,0,6,1.0,0.9089,0.6667
+159,Apple,Apple iPhone 13 Mini,battery,6,18,1,25,0.6,0.6109,0.8929
+159,Apple,Apple iPhone 13 Mini,camera,3,2,1,6,0.6667,0.6764,0.6667
+159,Apple,Apple iPhone 13 Mini,design,6,3,0,9,0.8333,0.8115,0.75
+159,Apple,Apple iPhone 13 Mini,display,4,8,0,12,0.6667,0.6588,0.8
+159,Apple,Apple iPhone 13 Mini,performance,3,1,3,7,0.5,0.5817,0.7
+159,Apple,Apple iPhone 13 Mini,price,4,1,2,7,0.6429,0.7082,0.7
+160,Apple,Apple iPhone 13 Mini,battery,10,26,1,37,0.6216,0.6269,0.925
+160,Apple,Apple iPhone 13 Mini,camera,6,2,1,9,0.7778,0.7457,0.75
+160,Apple,Apple iPhone 13 Mini,design,8,3,2,13,0.7308,0.7423,0.8125
+160,Apple,Apple iPhone 13 Mini,display,6,16,0,22,0.6364,0.637,0.88
+160,Apple,Apple iPhone 13 Mini,performance,3,1,3,7,0.5,0.5817,0.7
+160,Apple,Apple iPhone 13 Mini,price,4,2,2,8,0.625,0.6921,0.7273
+161,Samsung,Samsung Galaxy A16 5G,battery,0,1,0,1,0.5,0.638,0.25
+161,Samsung,Samsung Galaxy A16 5G,camera,2,0,1,3,0.6667,0.68,0.5
+161,Samsung,Samsung Galaxy A16 5G,design,2,1,0,3,0.8333,0.7951,0.5
+161,Samsung,Samsung Galaxy A16 5G,display,2,3,2,7,0.5,0.5582,0.7
+161,Samsung,Samsung Galaxy A16 5G,performance,1,1,2,4,0.375,0.5533,0.5714
+161,Samsung,Samsung Galaxy A16 5G,price,8,7,1,16,0.7188,0.738,0.8421
+162,Google,Google Pixel 9 Pro XL 5G,battery,4,3,0,7,0.7857,0.7357,0.7
+162,Google,Google Pixel 9 Pro XL 5G,camera,2,1,0,3,0.8333,0.7425,0.5
+162,Google,Google Pixel 9 Pro XL 5G,design,3,1,0,4,0.875,0.8178,0.5714
+162,Google,Google Pixel 9 Pro XL 5G,display,4,2,0,6,0.8333,0.7454,0.6667
+162,Google,Google Pixel 9 Pro XL 5G,performance,1,2,0,3,0.6667,0.685,0.5
+162,Google,Google Pixel 9 Pro XL 5G,price,5,2,0,7,0.8571,0.8332,0.7
+163,Google,Google Pixel 9 Pro XL,battery,5,4,0,9,0.7778,0.7377,0.75
+163,Google,Google Pixel 9 Pro XL,camera,2,4,0,6,0.6667,0.6764,0.6667
+163,Google,Google Pixel 9 Pro XL,design,5,3,0,8,0.8125,0.797,0.7273
+163,Google,Google Pixel 9 Pro XL,display,7,6,3,16,0.625,0.6285,0.8421
+163,Google,Google Pixel 9 Pro XL,performance,2,2,0,4,0.75,0.72,0.5714
+163,Google,Google Pixel 9 Pro XL,price,7,2,0,9,0.8889,0.857,0.75
+164,Motorola,Motorola razr,battery,8,14,1,23,0.6522,0.6546,0.8846
+164,Motorola,Motorola razr,camera,12,6,3,21,0.7143,0.7092,0.875
+164,Motorola,Motorola razr,design,5,6,0,11,0.7273,0.7413,0.7857
+164,Motorola,Motorola razr,display,20,27,4,51,0.6569,0.6553,0.9444
+164,Motorola,Motorola razr,performance,8,8,2,18,0.6667,0.673,0.8571
+164,Motorola,Motorola razr,price,6,5,0,11,0.7727,0.7811,0.7857
+165,Motorola,Motorola razr,battery,8,14,1,23,0.6522,0.6546,0.8846
+165,Motorola,Motorola razr,camera,12,6,3,21,0.7143,0.7092,0.875
+165,Motorola,Motorola razr,design,5,6,0,11,0.7273,0.7413,0.7857
+165,Motorola,Motorola razr,display,20,27,4,51,0.6569,0.6553,0.9444
+165,Motorola,Motorola razr,performance,8,8,2,18,0.6667,0.673,0.8571
+165,Motorola,Motorola razr,price,6,5,0,11,0.7727,0.7811,0.7857
+166,OnePlus,OnePlus 10 Pro,battery,11,3,0,14,0.8929,0.8331,0.8235
+166,OnePlus,OnePlus 10 Pro,camera,9,7,1,17,0.7353,0.7245,0.85
+166,OnePlus,OnePlus 10 Pro,design,2,1,0,3,0.8333,0.7951,0.5
+166,OnePlus,OnePlus 10 Pro,display,6,6,4,16,0.5625,0.5809,0.8421
+166,OnePlus,OnePlus 10 Pro,performance,16,6,3,25,0.76,0.7493,0.8929
+166,OnePlus,OnePlus 10 Pro,price,5,3,2,10,0.65,0.6999,0.7692
+167,Apple,Apple iPhone 11,battery,4,4,3,11,0.5455,0.583,0.7857
+167,Apple,Apple iPhone 11,design,2,1,0,3,0.8333,0.7951,0.5
+167,Apple,Apple iPhone 11,display,2,1,2,5,0.5,0.5699,0.625
+167,Apple,Apple iPhone 11,performance,0,1,2,3,0.1667,0.4975,0.5
+167,Apple,Apple iPhone 11,price,6,0,0,6,1.0,0.9089,0.6667
+168,Apple,Apple iPhone 11,battery,6,8,4,18,0.5556,0.5795,0.8571
+168,Apple,Apple iPhone 11,camera,0,0,1,1,0.0,0.5733,0.25
+168,Apple,Apple iPhone 11,design,2,1,0,3,0.8333,0.7951,0.5
+168,Apple,Apple iPhone 11,display,2,1,2,5,0.5,0.5699,0.625
+168,Apple,Apple iPhone 11,performance,0,2,2,4,0.25,0.4978,0.5714
+168,Apple,Apple iPhone 11,price,8,0,1,9,0.8889,0.857,0.75
+169,Apple,Apple iPhone XR,battery,1,2,0,3,0.6667,0.666,0.5
+169,Apple,Apple iPhone XR,camera,2,0,0,2,1.0,0.7771,0.4
+169,Apple,Apple iPhone XR,design,1,0,0,1,1.0,0.8101,0.25
+169,Apple,Apple iPhone XR,display,1,2,0,3,0.6667,0.6499,0.5
+169,Apple,Apple iPhone XR,performance,1,0,0,1,1.0,0.7467,0.25
+169,Apple,Apple iPhone XR,price,2,1,0,3,0.8333,0.8122,0.5
+170,Samsung,Samsung Galaxy A32 5G,battery,2,2,0,4,0.75,0.7031,0.5714
+170,Samsung,Samsung Galaxy A32 5G,camera,0,1,0,1,0.5,0.6567,0.25
+170,Samsung,Samsung Galaxy A32 5G,display,2,3,2,7,0.5,0.5582,0.7
+170,Samsung,Samsung Galaxy A32 5G,performance,1,1,0,2,0.75,0.7114,0.4
+170,Samsung,Samsung Galaxy A32 5G,price,6,2,0,8,0.875,0.846,0.7273
+171,Samsung,Samsung Galaxy A12,battery,1,0,0,1,1.0,0.7214,0.25
+171,Samsung,Samsung Galaxy A12,display,0,1,0,1,0.5,0.6165,0.25
+171,Samsung,Samsung Galaxy A12,performance,1,0,0,1,1.0,0.7467,0.25
+171,Samsung,Samsung Galaxy A12,price,1,1,0,2,0.75,0.7854,0.4
+172,Apple,Apple iPhone 17 Pro Max,battery,6,2,2,10,0.7,0.6885,0.7692
+172,Apple,Apple iPhone 17 Pro Max,camera,1,0,0,1,1.0,0.74,0.25
+172,Apple,Apple iPhone 17 Pro Max,design,2,2,0,4,0.75,0.7623,0.5714
+172,Apple,Apple iPhone 17 Pro Max,display,2,2,1,5,0.6,0.6199,0.625
+172,Apple,Apple iPhone 17 Pro Max,performance,3,0,0,3,1.0,0.81,0.5
+172,Apple,Apple iPhone 17 Pro Max,price,3,3,0,6,0.75,0.7725,0.6667
+173,Apple,Apple iPhone 17 Pro Max,battery,6,2,2,10,0.7,0.6885,0.7692
+173,Apple,Apple iPhone 17 Pro Max,camera,1,0,0,1,1.0,0.74,0.25
+173,Apple,Apple iPhone 17 Pro Max,design,2,2,0,4,0.75,0.7623,0.5714
+173,Apple,Apple iPhone 17 Pro Max,display,2,2,1,5,0.6,0.6199,0.625
+173,Apple,Apple iPhone 17 Pro Max,performance,3,0,0,3,1.0,0.81,0.5
+173,Apple,Apple iPhone 17 Pro Max,price,3,3,0,6,0.75,0.7725,0.6667
+174,Apple,Apple iPhone 17 Pro Max,battery,1,0,0,1,1.0,0.7214,0.25
+174,Apple,Apple iPhone 17 Pro Max,design,1,0,0,1,1.0,0.8101,0.25
+174,Apple,Apple iPhone 17 Pro Max,display,0,1,1,2,0.25,0.5284,0.4
+174,Apple,Apple iPhone 17 Pro Max,performance,1,0,0,1,1.0,0.7467,0.25
+174,Apple,Apple iPhone 17 Pro Max,price,2,0,0,2,1.0,0.8568,0.4
+175,Apple,Apple iPhone 17 Pro Max,battery,4,0,1,5,0.8,0.7328,0.625
+175,Apple,Apple iPhone 17 Pro Max,camera,1,0,0,1,1.0,0.74,0.25
+175,Apple,Apple iPhone 17 Pro Max,design,1,1,0,2,0.75,0.7658,0.4
+175,Apple,Apple iPhone 17 Pro Max,display,2,1,0,3,0.8333,0.7124,0.5
+175,Apple,Apple iPhone 17 Pro Max,performance,1,0,0,1,1.0,0.7467,0.25
+175,Apple,Apple iPhone 17 Pro Max,price,3,2,0,5,0.8,0.7998,0.625
+176,Google,Google Pixel 8 Pro,battery,3,2,2,7,0.5714,0.6107,0.7
+176,Google,Google Pixel 8 Pro,camera,5,3,2,10,0.65,0.6627,0.7692
+176,Google,Google Pixel 8 Pro,design,1,0,0,1,1.0,0.8101,0.25
+176,Google,Google Pixel 8 Pro,display,2,6,1,9,0.5556,0.5856,0.75
+176,Google,Google Pixel 8 Pro,performance,0,0,1,1,0.0,0.58,0.25
+176,Google,Google Pixel 8 Pro,price,2,0,0,2,1.0,0.8568,0.4
+177,Apple,Apple iPhone 17 Pro,battery,2,5,1,8,0.5625,0.6022,0.7273
+177,Apple,Apple iPhone 17 Pro,camera,3,4,1,8,0.625,0.6492,0.7273
+177,Apple,Apple iPhone 17 Pro,design,1,1,0,2,0.75,0.7658,0.4
+177,Apple,Apple iPhone 17 Pro,display,2,0,0,2,1.0,0.7427,0.4
+177,Apple,Apple iPhone 17 Pro,performance,2,0,0,2,1.0,0.7829,0.4
+177,Apple,Apple iPhone 17 Pro,price,3,4,0,7,0.7143,0.7498,0.7
+178,Apple,Apple iPhone 17 Pro,battery,6,6,1,13,0.6923,0.6849,0.8125
+178,Apple,Apple iPhone 17 Pro,camera,3,4,1,8,0.625,0.6492,0.7273
+178,Apple,Apple iPhone 17 Pro,design,3,1,0,4,0.875,0.8178,0.5714
+178,Apple,Apple iPhone 17 Pro,display,3,0,0,3,1.0,0.7749,0.5
+178,Apple,Apple iPhone 17 Pro,performance,3,0,0,3,1.0,0.81,0.5
+178,Apple,Apple iPhone 17 Pro,price,6,4,0,10,0.8,0.7999,0.7692
+179,Apple,Apple iPhone 17 Pro,battery,6,6,1,13,0.6923,0.6849,0.8125
+179,Apple,Apple iPhone 17 Pro,camera,3,4,1,8,0.625,0.6492,0.7273
+179,Apple,Apple iPhone 17 Pro,design,3,1,0,4,0.875,0.8178,0.5714
+179,Apple,Apple iPhone 17 Pro,display,3,0,0,3,1.0,0.7749,0.5
+179,Apple,Apple iPhone 17 Pro,performance,3,0,0,3,1.0,0.81,0.5
+179,Apple,Apple iPhone 17 Pro,price,6,4,0,10,0.8,0.7999,0.7692
+180,Google,Google Pixel 8a 5G,battery,3,4,2,9,0.5556,0.5949,0.75
+180,Google,Google Pixel 8a 5G,camera,5,4,1,10,0.7,0.696,0.7692
+180,Google,Google Pixel 8a 5G,design,7,4,1,12,0.75,0.7565,0.8
+180,Google,Google Pixel 8a 5G,display,5,6,0,11,0.7273,0.6999,0.7857
+180,Google,Google Pixel 8a 5G,performance,3,2,2,7,0.5714,0.6233,0.7
+180,Google,Google Pixel 8a 5G,price,7,4,0,11,0.8182,0.8124,0.7857
+181,Google,Google Pixel 8a 5G,battery,2,4,2,8,0.5,0.5637,0.7273
+181,Google,Google Pixel 8a 5G,camera,5,4,1,10,0.7,0.696,0.7692
+181,Google,Google Pixel 8a 5G,design,5,3,1,9,0.7222,0.74,0.75
+181,Google,Google Pixel 8a 5G,display,5,5,0,10,0.75,0.7133,0.7692
+181,Google,Google Pixel 8a 5G,performance,3,2,2,7,0.5714,0.6233,0.7
+181,Google,Google Pixel 8a 5G,price,7,3,0,10,0.85,0.8332,0.7692
+182,Apple,Apple iPhone 14 Pro Max,battery,3,4,0,7,0.7143,0.694,0.7
+182,Apple,Apple iPhone 14 Pro Max,camera,1,7,2,10,0.45,0.5293,0.7692
+182,Apple,Apple iPhone 14 Pro Max,design,2,2,0,4,0.75,0.7623,0.5714
+182,Apple,Apple iPhone 14 Pro Max,display,1,2,0,3,0.6667,0.6499,0.5
+182,Apple,Apple iPhone 14 Pro Max,performance,1,2,1,4,0.5,0.6089,0.5714
+182,Apple,Apple iPhone 14 Pro Max,price,4,3,1,8,0.6875,0.7306,0.7273
+183,Apple,Apple iPhone XR,battery,3,4,0,7,0.7143,0.694,0.7
+183,Apple,Apple iPhone XR,design,2,1,0,3,0.8333,0.7951,0.5
+183,Apple,Apple iPhone XR,display,0,1,1,2,0.25,0.5284,0.4
+183,Apple,Apple iPhone XR,price,1,2,1,4,0.5,0.6664,0.5714
+184,Apple,Apple iPhone 17,battery,5,6,1,12,0.6667,0.6664,0.8
+184,Apple,Apple iPhone 17,camera,1,1,2,4,0.375,0.5489,0.5714
+184,Apple,Apple iPhone 17,design,3,1,0,4,0.875,0.8178,0.5714
+184,Apple,Apple iPhone 17,display,1,3,2,6,0.4167,0.5181,0.6667
+184,Apple,Apple iPhone 17,price,5,0,0,5,1.0,0.8998,0.625
+185,Apple,Apple iPhone 17,battery,3,4,0,7,0.7143,0.694,0.7
+185,Apple,Apple iPhone 17,camera,1,1,2,4,0.375,0.5489,0.5714
+185,Apple,Apple iPhone 17,design,2,1,0,3,0.8333,0.7951,0.5
+185,Apple,Apple iPhone 17,display,0,3,1,4,0.375,0.5221,0.5714
+185,Apple,Apple iPhone 17,price,3,0,0,3,1.0,0.8747,0.5
+186,Apple,Apple iPhone 17,battery,5,6,1,12,0.6667,0.6664,0.8
+186,Apple,Apple iPhone 17,camera,1,1,2,4,0.375,0.5489,0.5714
+186,Apple,Apple iPhone 17,design,3,1,0,4,0.875,0.8178,0.5714
+186,Apple,Apple iPhone 17,display,1,3,2,6,0.4167,0.5181,0.6667
+186,Apple,Apple iPhone 17,price,5,0,0,5,1.0,0.8998,0.625
+187,Apple,Apple iPhone 17,battery,4,7,1,12,0.625,0.6369,0.8
+187,Apple,Apple iPhone 17,camera,1,1,2,4,0.375,0.5489,0.5714
+187,Apple,Apple iPhone 17,design,3,1,0,4,0.875,0.8178,0.5714
+187,Apple,Apple iPhone 17,display,1,3,2,6,0.4167,0.5181,0.6667
+187,Apple,Apple iPhone 17,price,4,0,0,4,1.0,0.8886,0.5714
+188,Apple,Apple iPhone 17,battery,4,7,1,12,0.625,0.6369,0.8
+188,Apple,Apple iPhone 17,camera,1,1,2,4,0.375,0.5489,0.5714
+188,Apple,Apple iPhone 17,design,3,1,0,4,0.875,0.8178,0.5714
+188,Apple,Apple iPhone 17,display,1,3,2,6,0.4167,0.5181,0.6667
+188,Apple,Apple iPhone 17,price,4,0,0,4,1.0,0.8886,0.5714
+189,OnePlus,OnePlus 7T Pro UK EU HD1913 Haze,battery,9,3,1,13,0.8077,0.7682,0.8125
+189,OnePlus,OnePlus 7T Pro UK EU HD1913 Haze,camera,1,2,1,4,0.5,0.6044,0.5714
+189,OnePlus,OnePlus 7T Pro UK EU HD1913 Haze,design,3,2,0,5,0.8,0.7861,0.625
+189,OnePlus,OnePlus 7T Pro UK EU HD1913 Haze,display,7,5,0,12,0.7917,0.747,0.8
+189,OnePlus,OnePlus 7T Pro UK EU HD1913 Haze,performance,5,1,0,6,0.9167,0.8164,0.6667
+189,OnePlus,OnePlus 7T Pro UK EU HD1913 Haze,price,1,1,0,2,0.75,0.7854,0.4
+190,Google,Google Pixel 6a,camera,2,0,0,2,1.0,0.7771,0.4
+190,Google,Google Pixel 6a,design,2,0,0,2,1.0,0.8372,0.4
+190,Google,Google Pixel 6a,performance,2,0,0,2,1.0,0.7829,0.4
+190,Google,Google Pixel 6a,price,5,2,1,8,0.75,0.7691,0.7273
+191,Google,Google Pixel 6a,battery,1,2,5,8,0.25,0.4099,0.7273
+191,Google,Google Pixel 6a,camera,2,2,0,4,0.75,0.7156,0.5714
+191,Google,Google Pixel 6a,design,2,0,0,2,1.0,0.8372,0.4
+191,Google,Google Pixel 6a,display,0,4,0,4,0.5,0.5777,0.5714
+191,Google,Google Pixel 6a,performance,2,0,0,2,1.0,0.7829,0.4
+191,Google,Google Pixel 6a,price,5,2,1,8,0.75,0.7691,0.7273
+192,Samsung,Samsung Galaxy A36 5G,battery,4,1,0,5,0.9,0.7828,0.625
+192,Samsung,Samsung Galaxy A36 5G,camera,3,0,0,3,1.0,0.805,0.5
+192,Samsung,Samsung Galaxy A36 5G,design,2,1,0,3,0.8333,0.7951,0.5
+192,Samsung,Samsung Galaxy A36 5G,display,3,0,0,3,1.0,0.7749,0.5
+192,Samsung,Samsung Galaxy A36 5G,performance,1,2,0,3,0.6667,0.685,0.5
+192,Samsung,Samsung Galaxy A36 5G,price,6,2,0,8,0.875,0.846,0.7273
+193,Samsung,Samsung Galaxy A36 5G,battery,4,1,0,5,0.9,0.7828,0.625
+193,Samsung,Samsung Galaxy A36 5G,camera,3,0,0,3,1.0,0.805,0.5
+193,Samsung,Samsung Galaxy A36 5G,design,2,1,0,3,0.8333,0.7951,0.5
+193,Samsung,Samsung Galaxy A36 5G,display,3,0,0,3,1.0,0.7749,0.5
+193,Samsung,Samsung Galaxy A36 5G,performance,1,2,0,3,0.6667,0.685,0.5
+193,Samsung,Samsung Galaxy A36 5G,price,6,2,0,8,0.875,0.846,0.7273
+194,Apple,Apple iPhone Air,battery,13,10,3,26,0.6923,0.688,0.8966
+194,Apple,Apple iPhone Air,camera,6,4,2,12,0.6667,0.6729,0.8
+194,Apple,Apple iPhone Air,design,5,7,0,12,0.7083,0.7271,0.8
+194,Apple,Apple iPhone Air,display,4,3,2,9,0.6111,0.6213,0.75
+194,Apple,Apple iPhone Air,performance,4,0,1,5,0.8,0.748,0.625
+194,Apple,Apple iPhone Air,price,4,0,0,4,1.0,0.8886,0.5714
+195,Apple,Apple iPhone Air,battery,15,10,3,28,0.7143,0.7069,0.9032
+195,Apple,Apple iPhone Air,camera,6,4,2,12,0.6667,0.6729,0.8
+195,Apple,Apple iPhone Air,design,6,7,0,13,0.7308,0.7423,0.8125
+195,Apple,Apple iPhone Air,display,4,4,2,10,0.6,0.6133,0.7692
+195,Apple,Apple iPhone Air,performance,4,0,1,5,0.8,0.748,0.625
+195,Apple,Apple iPhone Air,price,8,0,0,8,1.0,0.9229,0.7273
+196,Apple,Apple iPhone Air,battery,15,10,3,28,0.7143,0.7069,0.9032
+196,Apple,Apple iPhone Air,camera,6,4,2,12,0.6667,0.6729,0.8
+196,Apple,Apple iPhone Air,design,6,7,0,13,0.7308,0.7423,0.8125
+196,Apple,Apple iPhone Air,display,4,4,2,10,0.6,0.6133,0.7692
+196,Apple,Apple iPhone Air,performance,4,0,1,5,0.8,0.748,0.625
+196,Apple,Apple iPhone Air,price,8,0,0,8,1.0,0.9229,0.7273
+197,Apple,Apple iPhone Air,battery,15,10,3,28,0.7143,0.7069,0.9032
+197,Apple,Apple iPhone Air,camera,6,4,2,12,0.6667,0.6729,0.8
+197,Apple,Apple iPhone Air,design,6,7,0,13,0.7308,0.7423,0.8125
+197,Apple,Apple iPhone Air,display,4,4,2,10,0.6,0.6133,0.7692
+197,Apple,Apple iPhone Air,performance,4,0,1,5,0.8,0.748,0.625
+197,Apple,Apple iPhone Air,price,8,0,0,8,1.0,0.9229,0.7273
+198,Apple,Apple iPhone Air,battery,15,10,3,28,0.7143,0.7069,0.9032
+198,Apple,Apple iPhone Air,camera,6,4,2,12,0.6667,0.6729,0.8
+198,Apple,Apple iPhone Air,design,6,7,0,13,0.7308,0.7423,0.8125
+198,Apple,Apple iPhone Air,display,4,4,2,10,0.6,0.6133,0.7692
+198,Apple,Apple iPhone Air,performance,4,0,1,5,0.8,0.748,0.625
+198,Apple,Apple iPhone Air,price,8,0,0,8,1.0,0.9229,0.7273
+199,Samsung,Samsung Galaxy Tab A9 Plus 5G,battery,0,1,0,1,0.5,0.638,0.25
+199,Samsung,Samsung Galaxy Tab A9 Plus 5G,design,1,0,0,1,1.0,0.8101,0.25
+199,Samsung,Samsung Galaxy Tab A9 Plus 5G,display,0,0,1,1,0.0,0.5331,0.25
+199,Samsung,Samsung Galaxy Tab A9 Plus 5G,price,1,4,0,5,0.6,0.6998,0.625
+200,Apple,Apple iPhone 8 Plus,battery,1,1,0,2,0.75,0.6897,0.4
+200,Apple,Apple iPhone 8 Plus,performance,2,0,0,2,1.0,0.7829,0.4
+200,Apple,Apple iPhone 8 Plus,price,1,0,0,1,1.0,0.833,0.25
+201,Apple,Apple iPhone 15 Plus,battery,3,4,1,8,0.625,0.6406,0.7273
+201,Apple,Apple iPhone 15 Plus,camera,1,1,0,2,0.75,0.7057,0.4
+201,Apple,Apple iPhone 15 Plus,design,2,1,0,3,0.8333,0.7951,0.5
+201,Apple,Apple iPhone 15 Plus,display,0,2,0,2,0.5,0.5998,0.4
+201,Apple,Apple iPhone 15 Plus,performance,2,0,0,2,1.0,0.7829,0.4
+201,Apple,Apple iPhone 15 Plus,price,1,1,1,3,0.5,0.6872,0.5
+202,Apple,Apple iPhone 15 Plus,battery,3,4,1,8,0.625,0.6406,0.7273
+202,Apple,Apple iPhone 15 Plus,camera,1,1,0,2,0.75,0.7057,0.4
+202,Apple,Apple iPhone 15 Plus,design,2,1,0,3,0.8333,0.7951,0.5
+202,Apple,Apple iPhone 15 Plus,display,0,2,0,2,0.5,0.5998,0.4
+202,Apple,Apple iPhone 15 Plus,performance,2,0,0,2,1.0,0.7829,0.4
+202,Apple,Apple iPhone 15 Plus,price,1,1,1,3,0.5,0.6872,0.5
+203,Apple,Apple iPhone 15 Plus,battery,3,4,1,8,0.625,0.6406,0.7273
+203,Apple,Apple iPhone 15 Plus,camera,1,1,0,2,0.75,0.7057,0.4
+203,Apple,Apple iPhone 15 Plus,design,2,1,0,3,0.8333,0.7951,0.5
+203,Apple,Apple iPhone 15 Plus,display,0,2,0,2,0.5,0.5998,0.4
+203,Apple,Apple iPhone 15 Plus,performance,2,0,0,2,1.0,0.7829,0.4
+203,Apple,Apple iPhone 15 Plus,price,1,1,1,3,0.5,0.6872,0.5
+204,OnePlus,OnePlus 15 Dual-SIM ROM + RAM,battery,1,0,0,1,1.0,0.7214,0.25
+204,OnePlus,OnePlus 15 Dual-SIM ROM + RAM,camera,1,0,0,1,1.0,0.74,0.25
+204,OnePlus,OnePlus 15 Dual-SIM ROM + RAM,performance,2,0,0,2,1.0,0.7829,0.4
+205,Samsung,Samsung Galaxy Watch 8 Classic,battery,3,6,0,9,0.6667,0.6663,0.75
+205,Samsung,Samsung Galaxy Watch 8 Classic,camera,1,0,0,1,1.0,0.74,0.25
+205,Samsung,Samsung Galaxy Watch 8 Classic,design,2,3,0,5,0.7,0.7361,0.625
+205,Samsung,Samsung Galaxy Watch 8 Classic,display,5,6,0,11,0.7273,0.6999,0.7857
+205,Samsung,Samsung Galaxy Watch 8 Classic,price,6,0,0,6,1.0,0.9089,0.6667
+206,Motorola,Motorola Moto G Stylus 5G 2025,battery,4,3,1,8,0.6875,0.6791,0.7273
+206,Motorola,Motorola Moto G Stylus 5G 2025,camera,1,1,0,2,0.75,0.7057,0.4
+206,Motorola,Motorola Moto G Stylus 5G 2025,design,2,3,0,5,0.7,0.7361,0.625
+206,Motorola,Motorola Moto G Stylus 5G 2025,display,5,2,1,8,0.75,0.7076,0.7273
+206,Motorola,Motorola Moto G Stylus 5G 2025,performance,3,2,0,5,0.8,0.748,0.625
+206,Motorola,Motorola Moto G Stylus 5G 2025,price,13,0,0,13,1.0,0.9443,0.8125
+207,Apple,Apple iPhone X,battery,2,1,2,5,0.5,0.5828,0.625
+207,Apple,Apple iPhone X,display,0,1,0,1,0.5,0.6165,0.25
+207,Apple,Apple iPhone X,performance,0,1,0,1,0.5,0.6633,0.25
+207,Apple,Apple iPhone X,price,4,1,0,5,0.9,0.8498,0.625
+208,Apple,Apple iPhone XS,battery,2,1,0,3,0.8333,0.7285,0.5
+208,Apple,Apple iPhone XS,camera,0,0,1,1,0.0,0.5733,0.25
+208,Apple,Apple iPhone XS,display,1,1,0,2,0.75,0.6713,0.4
+208,Apple,Apple iPhone XS,price,1,0,1,2,0.5,0.714,0.4
+209,Apple,Apple iPhone 8,battery,0,1,0,1,0.5,0.638,0.25
+209,Apple,Apple iPhone 8,performance,1,0,0,1,1.0,0.7467,0.25
+209,Apple,Apple iPhone 8,price,2,0,0,2,1.0,0.8568,0.4
+210,Apple,Apple iPhone 17e,battery,1,4,0,5,0.6,0.6328,0.625
+210,Apple,Apple iPhone 17e,design,1,1,0,2,0.75,0.7658,0.4
+210,Apple,Apple iPhone 17e,performance,1,1,0,2,0.75,0.7114,0.4
+211,Apple,Apple iPhone XS,battery,2,3,0,5,0.7,0.6828,0.625
+211,Apple,Apple iPhone XS,performance,2,0,0,2,1.0,0.7829,0.4
+211,Apple,Apple iPhone XS,price,3,0,0,3,1.0,0.8747,0.5
+212,Apple,Apple iPhone 16 Plus,battery,2,0,0,2,1.0,0.7612,0.4
+212,Apple,Apple iPhone 16 Plus,design,1,0,0,1,1.0,0.8101,0.25
+212,Apple,Apple iPhone 16 Plus,performance,1,0,0,1,1.0,0.7467,0.25
+212,Apple,Apple iPhone 16 Plus,price,0,1,0,1,0.5,0.7496,0.25
+213,Apple,Apple iPhone 15,battery,1,1,0,2,0.75,0.6897,0.4
+213,Apple,Apple iPhone 15,design,1,0,1,2,0.5,0.6944,0.4
+213,Apple,Apple iPhone 15,display,1,0,0,1,1.0,0.6998,0.25
+213,Apple,Apple iPhone 15,price,1,0,0,1,1.0,0.833,0.25
+214,Apple,Apple iPhone 15,battery,1,1,0,2,0.75,0.6897,0.4
+214,Apple,Apple iPhone 15,design,1,0,1,2,0.5,0.6944,0.4
+214,Apple,Apple iPhone 15,display,1,0,0,1,1.0,0.6998,0.25
+214,Apple,Apple iPhone 15,price,1,0,0,1,1.0,0.833,0.25
+215,Apple,Apple iPhone 12 Mini,display,0,1,0,1,0.5,0.6165,0.25
+215,Apple,Apple iPhone 12 Mini,price,1,0,0,1,1.0,0.833,0.25
+216,Apple,Apple iPhone SE,battery,0,3,0,3,0.5,0.6035,0.5
+216,Apple,Apple iPhone SE,performance,0,1,0,1,0.5,0.6633,0.25
+216,Apple,Apple iPhone SE,price,0,1,0,1,0.5,0.7496,0.25
+217,Apple,Apple iPhone 13 Pro,battery,1,1,0,2,0.75,0.6897,0.4
+217,Apple,Apple iPhone 13 Pro,camera,1,2,0,3,0.6667,0.68,0.5
+217,Apple,Apple iPhone 13 Pro,display,1,2,0,3,0.6667,0.6499,0.5
+218,Apple,Apple iPhone 16 Pro Max,battery,1,1,0,2,0.75,0.6897,0.4
+219,Apple,Apple iPhone 15 Pro,design,0,1,0,1,0.5,0.7268,0.25
+220,Apple,Apple iPhone SE,battery,0,5,0,5,0.5,0.5828,0.625
+224,Apple,Apple iPhone 17e,battery,1,4,0,5,0.6,0.6328,0.625
+224,Apple,Apple iPhone 17e,design,1,1,0,2,0.75,0.7658,0.4
+224,Apple,Apple iPhone 17e,performance,1,1,0,2,0.75,0.7114,0.4

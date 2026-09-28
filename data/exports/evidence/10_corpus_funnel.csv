@@ -1,0 +1,10 @@
+﻿stage,count
+phones,223
+raw_reviews,4079
+spam,25
+excluded,691
+kept_reviews,3388
+sentences,31683
+aspect_labels,13914
+aspect_score_rows,1240
+scored_phones,221

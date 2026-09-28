@@ -1,0 +1,857 @@
+{
+  "generated_on": "2026-09-18",
+  "corpus": {
+    "stats": {
+      "phones": 224,
+      "reviews_total": 4080,
+      "reviews_usable": 3389,
+      "reviews_excluded": 691,
+      "exclusion_breakdown": {
+        "all_caps": 12,
+        "generic_only": 3,
+        "language_filtered": 663,
+        "no_alpha_content": 10,
+        "too_short": 3
+      },
+      "sentences": 31685,
+      "aspect_sentiments": 13914,
+      "sentiment_distribution": {
+        "negative": 1434,
+        "neutral": 5744,
+        "positive": 6736
+      },
+      "aspect_distribution": {
+        "battery": 4479,
+        "camera": 2019,
+        "design": 1250,
+        "display": 2450,
+        "performance": 1403,
+        "price": 2313
+      },
+      "mean_sentences_per_review": 7.77,
+      "mean_aspects_per_sentence": 0.44,
+      "pipeline_version": "1.0.0",
+      "absa_engine": "llm",
+      "currency_breakdown": {
+        "USD": 218
+      },
+      "sources": [
+        "amazon_scraped"
+      ],
+      "has_demo_data": false
+    },
+    "phones_scored": 221,
+    "reviews_per_phone": {
+      "phones": 223,
+      "min": 1,
+      "mean": 15.2,
+      "max": 24
+    },
+    "brands": [
+      {
+        "brand": "Apple",
+        "phones": 173
+      },
+      {
+        "brand": "Google",
+        "phones": 16
+      },
+      {
+        "brand": "Motorola",
+        "phones": 14
+      },
+      {
+        "brand": "Samsung",
+        "phones": 12
+      },
+      {
+        "brand": "OnePlus",
+        "phones": 6
+      },
+      {
+        "brand": "AT&T Prepaid",
+        "phones": 1
+      },
+      {
+        "brand": "Paul Hollman",
+        "phones": 1
+      },
+      {
+        "brand": "Tmobile",
+        "phones": 1
+      }
+    ]
+  },
+  "absa": {
+    "per_aspect": [
+      [
+        "Battery",
+        1789,
+        2233,
+        457,
+        4479,
+        "32.19%"
+      ],
+      [
+        "Display",
+        955,
+        1258,
+        237,
+        2450,
+        "17.61%"
+      ],
+      [
+        "Price",
+        1562,
+        550,
+        201,
+        2313,
+        "16.62%"
+      ],
+      [
+        "Camera",
+        898,
+        928,
+        193,
+        2019,
+        "14.51%"
+      ],
+      [
+        "Performance",
+        835,
+        323,
+        245,
+        1403,
+        "10.08%"
+      ],
+      [
+        "Design",
+        697,
+        452,
+        101,
+        1250,
+        "8.98%"
+      ],
+      [
+        "Total",
+        6736,
+        5744,
+        1434,
+        13914,
+        "100%"
+      ]
+    ],
+    "examples": [
+      {
+        "aspect": "battery",
+        "sentiment": "positive",
+        "sentence": "I will say to buy a usb-c to usb-c fast charger for this phone because the one sent in box is not and it's very slow charging which might seem like it has a bad battery, but it is just important to use the right charger.",
+        "phone": "Google Pixel 6 Pro 5G",
+        "asin": "B0HCZD65TV"
+      },
+      {
+        "aspect": "battery",
+        "sentiment": "negative",
+        "sentence": "I came from a Pixel 2 XL, which was having an issue with it's battery charging port, which was driving me nuts, especially as I am very forgetful when it comes to remembering to charge the thing.",
+        "phone": "OnePlus 7T Pro UK EU HD1913 Haze",
+        "asin": "B07XHJV7K2"
+      },
+      {
+        "aspect": "display",
+        "sentiment": "positive",
+        "sentence": "Performance & Battery: It functions perfectly! fast loading, smooth touch response, and great battery health that easily lasts through the day and if I'm not in my phone watching videos will likely last more than a day!",
+        "phone": "Apple iPhone XR",
+        "asin": "B07N9HM41P"
+      },
+      {
+        "aspect": "display",
+        "sentiment": "negative",
+        "sentence": "I got it as a replacement for my 2020 SE that I cracked, since I don't want to do the screen replacement myself and patching that up as a spare and around the house phone made much more sense than having the repair done.",
+        "phone": "Apple iPhone XS",
+        "asin": "B07K4V35TJ"
+      },
+      {
+        "aspect": "price",
+        "sentiment": "positive",
+        "sentence": "I used to work for a local tech service company that fixed these exact phones etc. yes the description states refurbished but they use after market cheap replacement parts and that is the reason it popped off so quick.",
+        "phone": "Apple iPhone 11 Pro",
+        "asin": "B085QNDSHL"
+      },
+      {
+        "aspect": "price",
+        "sentiment": "negative",
+        "sentence": "I would never waste time writing a review for the countless overpriced, fragile phones I've owned - the ones that look pretty but shatter or die at the smallest accident and leave you with a huge repair bill.",
+        "phone": "Motorola Moto G 5G",
+        "asin": "B0CWHXVLXG"
+      },
+      {
+        "aspect": "camera",
+        "sentiment": "positive",
+        "sentence": "Performance & Battery: It functions perfectly! fast loading, smooth touch response, and great battery health that easily lasts through the day and if I'm not in my phone watching videos will likely last more than a day!",
+        "phone": "Apple iPhone XR",
+        "asin": "B07N9HM41P"
+      },
+      {
+        "aspect": "camera",
+        "sentiment": "negative",
+        "sentence": "even though it got warm on FaceTime, my iPhone camera wasn't glitching now it's two days later my iPhone is overheating once again, but now this time the camera is glitching but everything else is running smoothly.",
+        "phone": "Apple iPhone 15",
+        "asin": "B0CRJ13WM7"
+      },
+      {
+        "aspect": "performance",
+        "sentiment": "positive",
+        "sentence": "I will say to buy a usb-c to usb-c fast charger for this phone because the one sent in box is not and it's very slow charging which might seem like it has a bad battery, but it is just important to use the right charger.",
+        "phone": "Google Pixel 6 Pro 5G",
+        "asin": "B0HCZD65TV"
+      },
+      {
+        "aspect": "performance",
+        "sentiment": "negative",
+        "sentence": "My iPhone SE 2 was started to get quite slow after about 5 years and I didn't want to buy a new phone, so I figured I'd try the last small iPhone that was produced (also to extend the life of an already used product).",
+        "phone": "Apple iPhone 13 Mini",
+        "asin": "B09LKTXKXQ"
+      },
+      {
+        "aspect": "design",
+        "sentiment": "positive",
+        "sentence": "Absolutely great. Alright so look the phone I got it in excellent condition and also I made sure the seller was Amazon and my phone arrived today I opened it was genuinely almost perfect a little blemish here and there",
+        "phone": "Apple iPhone 15 Pro",
+        "asin": "B0CMZ5LT14"
+      },
+      {
+        "aspect": "design",
+        "sentiment": "negative",
+        "sentence": "I buy the good condition one and it arrived with 98% battery life (i have buyed excellent condition before and it arrived at less than 90%) and the phone has zero crashes on the screen and the body looks brand new.",
+        "phone": "Apple iPhone 12 Pro",
+        "asin": "B0GQZCJZC1"
+      }
+    ],
+    "total": 13914
+  },
+  "feature_scores": {
+    "rows": 1240,
+    "sample_profiles": [
+      {
+        "asin": "B0FNS5XW5W",
+        "name": "Motorola Moto G Stylus 5G",
+        "aspects": [
+          [
+            "battery",
+            16,
+            14,
+            5,
+            35,
+            0.6571,
+            0.6582,
+            0.9211
+          ],
+          [
+            "camera",
+            36,
+            34,
+            11,
+            81,
+            0.6543,
+            0.6563,
+            0.9643
+          ],
+          [
+            "design",
+            7,
+            6,
+            0,
+            13,
+            0.7692,
+            0.77,
+            0.8125
+          ],
+          [
+            "display",
+            25,
+            18,
+            0,
+            43,
+            0.7907,
+            0.775,
+            0.9348
+          ],
+          [
+            "performance",
+            17,
+            5,
+            5,
+            27,
+            0.7222,
+            0.7181,
+            0.9
+          ],
+          [
+            "price",
+            14,
+            10,
+            6,
+            30,
+            0.6333,
+            0.6571,
+            0.9091
+          ]
+        ]
+      },
+      {
+        "asin": "B0CWHXVLXG",
+        "name": "Motorola Moto G 5G",
+        "aspects": [
+          [
+            "battery",
+            13,
+            22,
+            1,
+            36,
+            0.6667,
+            0.6665,
+            0.9231
+          ],
+          [
+            "camera",
+            15,
+            15,
+            2,
+            32,
+            0.7031,
+            0.7011,
+            0.9143
+          ],
+          [
+            "design",
+            5,
+            9,
+            2,
+            16,
+            0.5938,
+            0.6362,
+            0.8421
+          ],
+          [
+            "display",
+            13,
+            10,
+            0,
+            23,
+            0.7826,
+            0.7571,
+            0.8846
+          ],
+          [
+            "performance",
+            21,
+            11,
+            1,
+            33,
+            0.803,
+            0.7889,
+            0.9167
+          ],
+          [
+            "price",
+            28,
+            12,
+            3,
+            43,
+            0.7907,
+            0.7916,
+            0.9348
+          ]
+        ]
+      },
+      {
+        "asin": "B0DP5FW9QQ",
+        "name": "Motorola Moto G Power",
+        "aspects": [
+          [
+            "battery",
+            13,
+            22,
+            1,
+            36,
+            0.6667,
+            0.6665,
+            0.9231
+          ],
+          [
+            "camera",
+            15,
+            15,
+            2,
+            32,
+            0.7031,
+            0.7011,
+            0.9143
+          ],
+          [
+            "design",
+            5,
+            9,
+            2,
+            16,
+            0.5938,
+            0.6362,
+            0.8421
+          ],
+          [
+            "display",
+            13,
+            10,
+            0,
+            23,
+            0.7826,
+            0.7571,
+            0.8846
+          ],
+          [
+            "performance",
+            21,
+            11,
+            1,
+            33,
+            0.803,
+            0.7889,
+            0.9167
+          ],
+          [
+            "price",
+            28,
+            12,
+            3,
+            43,
+            0.7907,
+            0.7916,
+            0.9348
+          ]
+        ]
+      }
+    ],
+    "high_confidence": [
+      [
+        "Motorola Moto G Stylus 5G",
+        "camera",
+        81,
+        0.9643,
+        0.6563
+      ],
+      [
+        "Apple iPhone 13 Mini",
+        "battery",
+        71,
+        0.9595,
+        0.6491
+      ],
+      [
+        "Apple iPhone 13 Mini",
+        "battery",
+        71,
+        0.9595,
+        0.6491
+      ],
+      [
+        "Apple iPhone 13 Mini",
+        "battery",
+        59,
+        0.9516,
+        0.6458
+      ],
+      [
+        "Motorola razr",
+        "display",
+        51,
+        0.9444,
+        0.6553
+      ]
+    ],
+    "low_confidence": [
+      [
+        "Apple iPhone 11",
+        "performance",
+        1,
+        0.25,
+        0.58
+      ],
+      [
+        "Apple iPhone 11",
+        "performance",
+        1,
+        0.25,
+        0.6633
+      ],
+      [
+        "Apple iPhone 11",
+        "price",
+        1,
+        0.25,
+        0.833
+      ],
+      [
+        "Apple iPhone XR",
+        "performance",
+        1,
+        0.25,
+        0.7467
+      ],
+      [
+        "Apple iPhone 12 Pro",
+        "performance",
+        1,
+        0.25,
+        0.58
+      ]
+    ]
+  },
+  "recommendations": {
+    "profiles": {
+      "Balanced": [
+        {
+          "rank": 1,
+          "phone": "Motorola Moto G",
+          "id": 141,
+          "score": 0.8196,
+          "explanation": "Motorola Moto G is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (93% positive review score, 17% of your priority), Performance (86% positive review score, 17% of your priority), and Battery (82% positive review score, 17% of"
+        },
+        {
+          "rank": 2,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 32,
+          "score": 0.8128,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (90% positive review score, 17% of your priority), Performance (88% positive review score, 17% of your priority), and Camera (86% positive review score, 17%"
+        },
+        {
+          "rank": 3,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 33,
+          "score": 0.8128,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (90% positive review score, 17% of your priority), Performance (88% positive review score, 17% of your priority), and Camera (86% positive review score, 17%"
+        },
+        {
+          "rank": 4,
+          "phone": "Samsung Galaxy A36 5G",
+          "id": 192,
+          "score": 0.7815,
+          "explanation": "Samsung Galaxy A36 5G is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (85% positive review score, 17% of your priority), Camera (80% positive review score, 17% of your priority), and Design & build (80% positive review score"
+        },
+        {
+          "rank": 5,
+          "phone": "Samsung Galaxy A36 5G",
+          "id": 193,
+          "score": 0.7815,
+          "explanation": "Samsung Galaxy A36 5G is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (85% positive review score, 17% of your priority), Camera (80% positive review score, 17% of your priority), and Design & build (80% positive review score"
+        }
+      ],
+      "Camera-focused": [
+        {
+          "rank": 1,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 32,
+          "score": 0.8151,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Camera (86% positive review score, 31% of your priority), Display (75% positive review score, 19% of your priority), and Design & build (84% positive review score, 16% of your prio"
+        },
+        {
+          "rank": 2,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 33,
+          "score": 0.8151,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Camera (86% positive review score, 31% of your priority), Display (75% positive review score, 19% of your priority), and Design & build (84% positive review score, 16% of your prio"
+        },
+        {
+          "rank": 3,
+          "phone": "Motorola Moto G",
+          "id": 141,
+          "score": 0.8074,
+          "explanation": "Motorola Moto G is recommended based on your priorities. The strongest matches from reviews are Camera (81% positive review score, 31% of your priority), Display (73% positive review score, 19% of your priority), and Design & build (77% positive review score, 16% of your priority"
+        },
+        {
+          "rank": 4,
+          "phone": "Samsung Galaxy A36 5G",
+          "id": 192,
+          "score": 0.7839,
+          "explanation": "Samsung Galaxy A36 5G is recommended based on your priorities. The strongest matches from reviews are Camera (80% positive review score, 31% of your priority), Display (77% positive review score, 19% of your priority), and Design & build (80% positive review score, 16% of your pr"
+        },
+        {
+          "rank": 5,
+          "phone": "Samsung Galaxy A36 5G",
+          "id": 193,
+          "score": 0.7839,
+          "explanation": "Samsung Galaxy A36 5G is recommended based on your priorities. The strongest matches from reviews are Camera (80% positive review score, 31% of your priority), Display (77% positive review score, 19% of your priority), and Design & build (80% positive review score, 16% of your pr"
+        }
+      ],
+      "Battery-focused": [
+        {
+          "rank": 1,
+          "phone": "Motorola Moto G",
+          "id": 141,
+          "score": 0.8302,
+          "explanation": "Motorola Moto G is recommended based on your priorities. The strongest matches from reviews are Battery (82% positive review score, 40% of your priority), Price / Value for money (93% positive review score, 16% of your priority), and Performance (86% positive review score, 16% of"
+        },
+        {
+          "rank": 2,
+          "phone": "Samsung Galaxy A36 5G",
+          "id": 192,
+          "score": 0.7799,
+          "explanation": "Samsung Galaxy A36 5G is recommended based on your priorities. The strongest matches from reviews are Battery (78% positive review score, 40% of your priority), Price / Value for money (85% positive review score, 16% of your priority), and Performance (68% positive review score, "
+        },
+        {
+          "rank": 3,
+          "phone": "Samsung Galaxy A36 5G",
+          "id": 193,
+          "score": 0.7799,
+          "explanation": "Samsung Galaxy A36 5G is recommended based on your priorities. The strongest matches from reviews are Battery (78% positive review score, 40% of your priority), Price / Value for money (85% positive review score, 16% of your priority), and Performance (68% positive review score, "
+        },
+        {
+          "rank": 4,
+          "phone": "Apple iPhone 12",
+          "id": 121,
+          "score": 0.7769,
+          "explanation": "Apple iPhone 12 is recommended based on your priorities. The strongest matches from reviews are Battery (80% positive review score, 40% of your priority), Price / Value for money (79% positive review score, 16% of your priority), and Performance (71% positive review score, 16% of"
+        },
+        {
+          "rank": 5,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 32,
+          "score": 0.7761,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Battery (66% positive review score, 40% of your priority), Price / Value for money (90% positive review score, 16% of your priority), and Performance (88% positive review score, 16"
+        }
+      ],
+      "Performance-focused": [
+        {
+          "rank": 1,
+          "phone": "Motorola Moto G",
+          "id": 141,
+          "score": 0.8099,
+          "explanation": "Motorola Moto G is recommended based on your priorities. The strongest matches from reviews are Performance (86% positive review score, 31% of your priority), Display (73% positive review score, 25% of your priority), and Battery (82% positive review score, 19% of your priority)."
+        },
+        {
+          "rank": 2,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 32,
+          "score": 0.8,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Performance (88% positive review score, 31% of your priority), Display (75% positive review score, 25% of your priority), and Battery (66% positive review score, 19% of your priori"
+        },
+        {
+          "rank": 3,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 33,
+          "score": 0.8,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Performance (88% positive review score, 31% of your priority), Display (75% positive review score, 25% of your priority), and Battery (66% positive review score, 19% of your priori"
+        },
+        {
+          "rank": 4,
+          "phone": "Apple iPhone 16 Pro",
+          "id": 113,
+          "score": 0.775,
+          "explanation": "Apple iPhone 16 Pro is recommended based on your priorities. The strongest matches from reviews are Performance (91% positive review score, 31% of your priority), Display (67% positive review score, 25% of your priority), and Battery (66% positive review score, 19% of your priori"
+        },
+        {
+          "rank": 5,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 31,
+          "score": 0.771,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Performance (88% positive review score, 31% of your priority), Display (75% positive review score, 25% of your priority), and Battery (55% positive review score, 19% of your priori"
+        }
+      ],
+      "Design-focused": [
+        {
+          "rank": 1,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 32,
+          "score": 0.813,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Design & build (84% positive review score, 34% of your priority), Display (75% positive review score, 21% of your priority), and Camera (86% positive review score, 14% of your prio"
+        },
+        {
+          "rank": 2,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 33,
+          "score": 0.813,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Design & build (84% positive review score, 34% of your priority), Display (75% positive review score, 21% of your priority), and Camera (86% positive review score, 14% of your prio"
+        },
+        {
+          "rank": 3,
+          "phone": "Motorola Moto G",
+          "id": 141,
+          "score": 0.797,
+          "explanation": "Motorola Moto G is recommended based on your priorities. The strongest matches from reviews are Design & build (77% positive review score, 34% of your priority), Display (73% positive review score, 21% of your priority), and Camera (81% positive review score, 14% of your priority"
+        },
+        {
+          "rank": 4,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 31,
+          "score": 0.7851,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Design & build (82% positive review score, 34% of your priority), Display (75% positive review score, 21% of your priority), and Camera (81% positive review score, 14% of your prio"
+        },
+        {
+          "rank": 5,
+          "phone": "Samsung Galaxy A36 5G",
+          "id": 192,
+          "score": 0.7849,
+          "explanation": "Samsung Galaxy A36 5G is recommended based on your priorities. The strongest matches from reviews are Design & build (80% positive review score, 34% of your priority), Display (77% positive review score, 21% of your priority), and Camera (80% positive review score, 14% of your pr"
+        }
+      ],
+      "Price-focused": [
+        {
+          "rank": 1,
+          "phone": "Motorola Moto G",
+          "id": 141,
+          "score": 0.8469,
+          "explanation": "Motorola Moto G is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (93% positive review score, 33% of your priority), Performance (86% positive review score, 17% of your priority), and Battery (82% positive review score, 17% of"
+        },
+        {
+          "rank": 2,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 32,
+          "score": 0.828,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (90% positive review score, 33% of your priority), Performance (88% positive review score, 17% of your priority), and Design & build (84% positive review sc"
+        },
+        {
+          "rank": 3,
+          "phone": "Apple iPhone 11 Pro",
+          "id": 33,
+          "score": 0.828,
+          "explanation": "Apple iPhone 11 Pro is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (90% positive review score, 33% of your priority), Performance (88% positive review score, 17% of your priority), and Design & build (84% positive review sc"
+        },
+        {
+          "rank": 4,
+          "phone": "Motorola Moto G Stylus 5G 2025",
+          "id": 206,
+          "score": 0.7921,
+          "explanation": "Motorola Moto G Stylus 5G 2025 is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (94% positive review score, 33% of your priority), Performance (75% positive review score, 17% of your priority), and Battery (68% positive revie"
+        },
+        {
+          "rank": 5,
+          "phone": "Samsung Galaxy A36 5G",
+          "id": 192,
+          "score": 0.7906,
+          "explanation": "Samsung Galaxy A36 5G is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (85% positive review score, 33% of your priority), Battery (78% positive review score, 17% of your priority), and Performance (68% positive review score, "
+        }
+      ]
+    },
+    "overlap_top3": 0.0,
+    "overlap_top5": 0.0,
+    "comparison": [
+      [
+        1,
+        "Motorola Moto G",
+        0.8196,
+        "Apple iPhone SE",
+        5.0
+      ],
+      [
+        2,
+        "Apple iPhone 11 Pro",
+        0.8128,
+        "Apple iPhone 17 Pro",
+        5.0
+      ],
+      [
+        3,
+        "Apple iPhone 11 Pro",
+        0.8128,
+        "Paul Hollman Google Pixel 10a Manual for Beginners Unlock Features and Use It Like a Pro",
+        5.0
+      ],
+      [
+        4,
+        "Samsung Galaxy A36 5G",
+        0.7815,
+        "OnePlus 7T Pro UK EU HD1913 Haze",
+        4.8
+      ],
+      [
+        5,
+        "Samsung Galaxy A36 5G",
+        0.7815,
+        "Apple iPhone XR",
+        4.6
+      ],
+      [
+        6,
+        "Apple iPhone 11 Pro",
+        0.776,
+        "OnePlus 15 Dual-SIM ROM + RAM",
+        4.6
+      ],
+      [
+        7,
+        "Apple iPhone 16 Pro",
+        0.7733,
+        "Samsung Galaxy Watch 8 Classic",
+        4.6
+      ],
+      [
+        8,
+        "Apple iPhone 12 Pro Max",
+        0.772,
+        "Apple iPhone SE",
+        4.5
+      ],
+      [
+        9,
+        "Apple iPhone 12",
+        0.7635,
+        "Apple iPhone XR",
+        4.4
+      ],
+      [
+        10,
+        "Google Pixel 9 Pro XL 5G",
+        0.7599,
+        "Apple iPhone XR",
+        4.4
+      ]
+    ],
+    "top1_explanation": "Motorola Moto G is recommended based on your priorities. The strongest matches from reviews are Price / Value for money (93% positive review score, 17% of your priority), Performance (86% positive review score, 17% of your priority), and Battery (82% positive review score, 17% of your priority)."
+  },
+  "evaluation": {
+    "star_text": {
+      "reviews_compared": 2925,
+      "agreement_rate": 0.6742,
+      "mean_absolute_error": 0.2318,
+      "by_rating": {
+        "1": {
+          "reviews": 315,
+          "agreement_rate": 0.3302,
+          "mean_absolute_error": 0.4672
+        },
+        "2": {
+          "reviews": 62,
+          "agreement_rate": 0.371,
+          "mean_absolute_error": 0.2346
+        },
+        "3": {
+          "reviews": 267,
+          "agreement_rate": 0.3483,
+          "mean_absolute_error": 0.2184
+        },
+        "4": {
+          "reviews": 600,
+          "agreement_rate": 0.6983,
+          "mean_absolute_error": 0.1732
+        },
+        "5": {
+          "reviews": 1681,
+          "agreement_rate": 0.793,
+          "mean_absolute_error": 0.2106
+        }
+      },
+      "note": "Star ratings are a weak, review-level label while ABSA output is aspect-level, so perfect agreement is neither expected nor desirable. Use this as a sanity check for systematic polarity bias, not as accuracy."
+    },
+    "feedback": {
+      "sessions": 10,
+      "mean_satisfaction": 3.343,
+      "mean_ndcg_at_3": 0.5988,
+      "mean_spearman": 0.0625,
+      "proposed_ndcg": 0.5988,
+      "baseline_ndcg": null,
+      "ranking_note": "Ranking quality looks weak (average NDCG@3 = 0.60 from 9 ranking runs). Phones people rated highest often were not near the top of the system list.",
+      "comparison_note": "Proposed method has 9 rated run(s). Run Rank with \u201cAmazon stars (baseline)\u201d and submit ratings to compare."
+    },
+    "explanation_faithfulness_rate": 1.0,
+    "explanation_checked": 6
+  }
+}

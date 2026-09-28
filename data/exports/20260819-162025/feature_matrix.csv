@@ -1,0 +1,5 @@
+﻿smartphone_id,name,brand,price,currency,review_count,battery,battery_mentions,camera,camera_mentions,display,display_mentions,performance,performance_mentions,price_mentions,affordability
+1,Samsung Galaxy S25,Samsung,0.5781,USD,60,0.7655,35,0.814,34,0.8804,43,0.7833,51,34,0.4444
+2,Apple iPhone 17,Apple,0.5283,USD,60,0.7754,39,0.945,36,0.8502,50,0.8012,46,32,0.0
+3,Xiaomi Xiaomi 15,Xiaomi,0.7671,USD,60,0.7818,38,0.7915,37,0.8355,39,0.8157,50,27,1.0
+4,Google Pixel 10,Google,0.5602,USD,60,0.5725,38,0.8449,45,0.8426,41,0.6883,58,29,0.6667

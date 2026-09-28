@@ -1,0 +1,14 @@
+metric,value
+feedback_sessions,10
+mean_satisfaction,3.343
+mean_ndcg_at_3,0.5988
+ndcg_session_count,9
+mean_spearman,0.0625
+spearman_session_count,9
+proposed_mean_satisfaction,3.444
+proposed_mean_ndcg_at_3,0.5988
+proposed_session_count,9
+baseline_mean_satisfaction,
+baseline_mean_ndcg_at_3,
+baseline_session_count,0
+star_text_agreement_rate,0.6742

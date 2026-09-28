@@ -1,0 +1,7 @@
+aspect,positive,neutral,negative,mentions,raw,score,confidence
+battery,16,14,5,35,0.6571,0.6582,0.9211
+camera,36,34,11,81,0.6543,0.6563,0.9643
+design,7,6,0,13,0.7692,0.77,0.8125
+display,25,18,0,43,0.7907,0.775,0.9348
+performance,17,5,5,27,0.7222,0.7181,0.9
+price,14,10,6,30,0.6333,0.6571,0.9091

@@ -1,0 +1,5 @@
+﻿id,source,source_product_id,brand,model,canonical_name,raw_title,site_rating,site_rating_count,ram_gb,storage_gb,display_inches,battery_mah,rear_camera_mp,refresh_rate_hz,chipset,operating_system,release_year,product_url
+1,demo,DEMOSAMS01,Samsung,Galaxy S25,Samsung Galaxy S25,"Samsung Galaxy S25 5G Smartphone, 256GB, Titanium Grey, Unlocked",4.3,1800,12.0,256.0,6.2,4000,50.0,120,Snapdragon 8 Elite,Android 15,,https://example.invalid/dp/DEMOSAMS01
+2,demo,DEMOAPPL02,Apple,iPhone 17,Apple iPhone 17,Apple iPhone 17 128GB Black Unlocked Smartphone,4.3,1800,8.0,128.0,6.1,3600,48.0,120,A19 Bionic,iOS 19,,https://example.invalid/dp/DEMOAPPL02
+3,demo,DEMOXIAO03,Xiaomi,Xiaomi 15,Xiaomi Xiaomi 15,"Xiaomi 15 5G 512GB Dual SIM Smartphone, Green",4.3,1800,16.0,512.0,6.36,5400,50.0,120,Snapdragon 8 Gen 4,Android 15,,https://example.invalid/dp/DEMOXIAO03
+4,demo,DEMOGOOG04,Google,Pixel 10,Google Pixel 10,Google Pixel 10 128GB Obsidian Unlocked Android Smartphone,4.3,1800,12.0,128.0,6.3,4700,50.0,120,Tensor G5,Android 16,,https://example.invalid/dp/DEMOGOOG04

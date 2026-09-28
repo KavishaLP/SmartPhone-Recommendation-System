@@ -1,0 +1,1051 @@
+﻿id,review_id,smartphone_id,position,text,word_count
+1,3,1,0,Impressive hardware.,2
+2,3,1,1,Very reasonably priced compared to the competition.,7
+3,3,1,2,It has a triple camera setup on the back.,9
+4,11,1,0,Exactly what I wanted.,4
+5,11,1,1,Video stabilisation is superb for handheld shots.,7
+6,11,1,2,The panel is sharp and the touch response is instant.,10
+7,11,1,3,"Battery life is excellent, I end the day at 45 percent.",11
+8,11,1,4,"Performance is buttery smooth, no lag at all.",8
+9,49,1,0,Not for everyone.,3
+10,49,1,1,Multitasking is seamless with plenty of RAM.,7
+11,49,1,2,Overall I am happy with this purchase so far.,9
+12,49,1,3,The camera app has the usual modes.,7
+13,49,1,4,"The display is amazing, bright and vivid outdoors.",8
+14,58,1,0,Great phone with caveats.,4
+15,58,1,1,Night shots are disappointing and full of noise.,8
+16,58,1,2,The processor handles heavy games without heating up.,8
+17,58,1,3,Very reasonably priced compared to the competition.,7
+18,58,1,4,"Battery life is excellent, I end the day at 45 percent.",11
+19,1,1,0,Mixed feelings.,2
+20,1,1,1,"Performance is buttery smooth, no lag at all.",8
+21,1,1,2,It has a triple camera setup on the back.,9
+22,31,1,0,Exactly what I wanted.,4
+23,31,1,1,"Battery life is excellent, I end the day at 45 percent.",11
+24,31,1,2,The processor handles heavy games without heating up.,8
+25,31,1,3,The price sits in the usual flagship bracket.,8
+26,31,1,4,Screen quality is excellent with deep blacks.,7
+27,51,1,0,Would buy again.,3
+28,51,1,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+29,51,1,2,Pictures look washed out and the zoom is blurry.,9
+30,51,1,3,"Battery is okay, nothing special either way.",7
+31,51,1,4,It is overpriced and not worth the money.,8
+32,51,1,5,Overall I am happy with this purchase so far.,9
+33,16,1,0,Exactly what I wanted.,4
+34,16,1,1,The camera performs poorly in low light and photos come out grainy.,12
+35,16,1,2,It has a large battery and charges over USB-C.,10
+36,46,1,0,Would buy again.,3
+37,46,1,1,It feels incredibly fast and responsive.,6
+38,46,1,2,The battery barely lasts a working day.,7
+39,46,1,3,The camera captures stunning detail even in low light.,9
+40,29,1,0,Not for everyone.,3
+41,29,1,1,Delivery arrived a day early and the packaging was neat.,10
+42,29,1,2,Far too expensive for what you actually get.,8
+43,29,1,3,The panel is sharp and the touch response is instant.,10
+44,6,1,0,Great phone with caveats.,4
+45,6,1,1,Very reasonably priced compared to the competition.,7
+46,6,1,2,It feels incredibly fast and responsive.,6
+47,6,1,3,Setup took about fifteen minutes.,5
+48,18,1,0,Decent but flawed.,3
+49,18,1,1,Video stabilisation is superb for handheld shots.,7
+50,18,1,2,Very reasonably priced compared to the competition.,7
+51,10,1,0,Not for everyone.,3
+52,10,1,1,The price sits in the usual flagship bracket.,8
+53,10,1,2,Touch response is unresponsive at the edges.,7
+54,8,1,0,Would buy again.,3
+55,8,1,1,Night shots are disappointing and full of noise.,8
+56,8,1,2,"Battery is okay, nothing special either way.",7
+57,8,1,3,It feels incredibly fast and responsive.,6
+58,8,1,4,"The display is amazing, bright and vivid outdoors.",8
+59,24,1,0,Decent but flawed.,3
+60,24,1,1,"Fast charging is brilliant, it tops up in under an hour.",11
+61,24,1,2,Video stabilisation is superb for handheld shots.,7
+62,24,1,3,Setup took about fifteen minutes.,5
+63,28,1,0,Exactly what I wanted.,4
+64,28,1,1,It feels incredibly fast and responsive.,6
+65,28,1,2,Great value for money at this price point.,8
+66,14,1,0,Exactly what I wanted.,4
+67,14,1,1,"Performance is buttery smooth, no lag at all.",8
+68,14,1,2,The battery easily lasts two full days on a single charge.,11
+69,44,1,0,Impressive hardware.,2
+70,44,1,1,The display is dim under sunlight and colours look dull.,10
+71,44,1,2,"Battery life is poor, it dies by early evening.",9
+72,44,1,3,The camera app has the usual modes.,7
+73,44,1,4,The processor handles heavy games without heating up.,8
+74,44,1,5,Delivery arrived a day early and the packaging was neat.,10
+75,52,1,0,Impressive hardware.,2
+76,52,1,1,Screen quality is excellent with deep blacks.,7
+77,52,1,2,Portrait mode produces gorgeous results.,5
+78,52,1,3,"Fast charging is brilliant, it tops up in under an hour.",11
+79,52,1,4,It ships with a flagship chipset and 12GB of RAM.,10
+80,7,1,0,Impressive hardware.,2
+81,7,1,1,"Battery life is excellent, I end the day at 45 percent.",11
+82,7,1,2,Setup took about fifteen minutes.,5
+83,7,1,3,The camera captures stunning detail even in low light.,9
+84,7,1,4,The price sits in the usual flagship bracket.,8
+85,37,1,0,Decent but flawed.,3
+86,37,1,1,"Fast charging is brilliant, it tops up in under an hour.",11
+87,37,1,2,Portrait mode produces gorgeous results.,5
+88,39,1,0,Not for everyone.,3
+89,39,1,1,Screen quality is excellent with deep blacks.,7
+90,39,1,2,Worth every penny considering the specifications.,6
+91,39,1,3,Battery backup is amazing even with heavy use.,8
+92,13,1,0,Exactly what I wanted.,4
+93,13,1,1,The panel is sharp and the touch response is instant.,10
+94,13,1,2,Far too expensive for what you actually get.,8
+95,13,1,3,Delivery arrived a day early and the packaging was neat.,10
+96,13,1,4,"Performance is buttery smooth, no lag at all.",8
+97,12,1,0,Not for everyone.,3
+98,12,1,1,The processor handles heavy games without heating up.,8
+99,12,1,2,The panel is sharp and the touch response is instant.,10
+100,12,1,3,Worth every penny considering the specifications.,6
+101,21,1,0,Decent but flawed.,3
+102,21,1,1,Screen quality is excellent with deep blacks.,7
+103,21,1,2,"Performance is buttery smooth, no lag at all.",8
+104,21,1,3,Pictures look washed out and the zoom is blurry.,9
+105,50,1,0,Would buy again.,3
+106,50,1,1,It feels incredibly fast and responsive.,6
+107,50,1,2,The battery easily lasts two full days on a single charge.,11
+108,50,1,3,"The display is amazing, bright and vivid outdoors.",8
+109,32,1,0,Not for everyone.,3
+110,32,1,1,The panel is sharp and the touch response is instant.,10
+111,32,1,2,It is overpriced and not worth the money.,8
+112,32,1,3,Photos are crisp and the colours look natural.,8
+113,48,1,0,Decent but flawed.,3
+114,48,1,1,The price sits in the usual flagship bracket.,8
+115,48,1,2,The camera app has the usual modes.,7
+116,48,1,3,"Performance is buttery smooth, no lag at all.",8
+117,57,1,0,Would buy again.,3
+118,57,1,1,Charging is painfully slow compared to my old phone.,9
+119,57,1,2,Video stabilisation is superb for handheld shots.,7
+120,57,1,3,An absolute bargain during the sale.,6
+121,57,1,4,It uses an AMOLED panel with a centred punch hole.,10
+122,57,1,5,Overall I am happy with this purchase so far.,9
+123,33,1,0,Not for everyone.,3
+124,33,1,1,Great value for money at this price point.,8
+125,33,1,2,The panel is sharp and the touch response is instant.,10
+126,33,1,3,Setup took about fifteen minutes.,5
+127,33,1,4,Battery backup is amazing even with heavy use.,8
+128,36,1,0,Mixed feelings.,2
+129,36,1,1,The phone overheats during gaming and throttles hard.,8
+130,36,1,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+131,36,1,3,Video stabilisation is superb for handheld shots.,7
+132,47,1,0,Mixed feelings.,2
+133,47,1,1,The processor handles heavy games without heating up.,8
+134,47,1,2,Portrait mode produces gorgeous results.,5
+135,47,1,3,It uses an AMOLED panel with a centred punch hole.,10
+136,47,1,4,The battery barely lasts a working day.,7
+137,38,1,0,Impressive hardware.,2
+138,38,1,1,The panel is sharp and the touch response is instant.,10
+139,38,1,2,Very reasonably priced compared to the competition.,7
+140,38,1,3,"Battery life is excellent, I end the day at 45 percent.",11
+141,38,1,4,I switched from an older model after three years.,9
+142,38,1,5,It ships with a flagship chipset and 12GB of RAM.,10
+143,9,1,0,Mixed feelings.,2
+144,9,1,1,Photos are crisp and the colours look natural.,8
+145,9,1,2,Great value for money at this price point.,8
+146,25,1,0,Decent but flawed.,3
+147,25,1,1,Portrait mode produces gorgeous results.,5
+148,25,1,2,Worth every penny considering the specifications.,6
+149,25,1,3,"The display is amazing, bright and vivid outdoors.",8
+150,35,1,0,Mixed feelings.,2
+151,35,1,1,The processor handles heavy games without heating up.,8
+152,35,1,2,Screen quality is excellent with deep blacks.,7
+153,35,1,3,It has a large battery and charges over USB-C.,10
+154,41,1,0,Would buy again.,3
+155,41,1,1,The camera captures stunning detail even in low light.,9
+156,41,1,2,The processor handles heavy games without heating up.,8
+157,41,1,3,Battery backup is amazing even with heavy use.,8
+158,41,1,4,Very reasonably priced compared to the competition.,7
+159,43,1,0,Impressive hardware.,2
+160,43,1,1,The camera captures stunning detail even in low light.,9
+161,43,1,2,Very reasonably priced compared to the competition.,7
+162,43,1,3,"Battery life is excellent, I end the day at 45 percent.",11
+163,43,1,4,I switched from an older model after three years.,9
+164,45,1,0,Great phone with caveats.,4
+165,45,1,1,An absolute bargain during the sale.,6
+166,45,1,2,Photos are crisp and the colours look natural.,8
+167,45,1,3,It ships with a flagship chipset and 12GB of RAM.,10
+168,45,1,4,"Battery life is excellent, I end the day at 45 percent.",11
+169,30,1,0,Exactly what I wanted.,4
+170,30,1,1,"Battery life is excellent, I end the day at 45 percent.",11
+171,30,1,2,It feels incredibly fast and responsive.,6
+172,30,1,3,Photos are crisp and the colours look natural.,8
+173,30,1,4,It uses an AMOLED panel with a centred punch hole.,10
+174,54,1,0,Mixed feelings.,2
+175,54,1,1,"Fast charging is brilliant, it tops up in under an hour.",11
+176,54,1,2,The price is hard to justify against cheaper rivals.,9
+177,54,1,3,Video stabilisation is superb for handheld shots.,7
+178,54,1,4,The panel is sharp and the touch response is instant.,10
+179,4,1,0,Decent but flawed.,3
+180,4,1,1,Photos are crisp and the colours look natural.,8
+181,4,1,2,It has a large battery and charges over USB-C.,10
+182,4,1,3,It ships with a flagship chipset and 12GB of RAM.,10
+183,4,1,4,The panel is sharp and the touch response is instant.,10
+184,23,1,0,Would buy again.,3
+185,23,1,1,It uses an AMOLED panel with a centred punch hole.,10
+186,23,1,2,Worth every penny considering the specifications.,6
+187,23,1,3,I switched from an older model after three years.,9
+188,40,1,0,Decent but flawed.,3
+189,40,1,1,Screen quality is excellent with deep blacks.,7
+190,40,1,2,Multitasking is seamless with plenty of RAM.,7
+191,40,1,3,Video stabilisation is superb for handheld shots.,7
+192,59,1,0,Decent but flawed.,3
+193,59,1,1,The processor handles heavy games without heating up.,8
+194,59,1,2,Very reasonably priced compared to the competition.,7
+195,59,1,3,Portrait mode produces gorgeous results.,5
+196,59,1,4,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+197,27,1,0,Decent but flawed.,3
+198,27,1,1,Overall I am happy with this purchase so far.,9
+199,27,1,2,Multitasking is seamless with plenty of RAM.,7
+200,27,1,3,Portrait mode produces gorgeous results.,5
+201,27,1,4,Battery backup is amazing even with heavy use.,8
+202,27,1,5,The price is hard to justify against cheaper rivals.,9
+203,5,1,0,Decent but flawed.,3
+204,5,1,1,Multitasking is seamless with plenty of RAM.,7
+205,5,1,2,The price is hard to justify against cheaper rivals.,9
+206,2,1,0,Impressive hardware.,2
+207,2,1,1,Very reasonably priced compared to the competition.,7
+208,2,1,2,"Performance is buttery smooth, no lag at all.",8
+209,55,1,0,Impressive hardware.,2
+210,55,1,1,"The display is amazing, bright and vivid outdoors.",8
+211,55,1,2,Multitasking is seamless with plenty of RAM.,7
+212,55,1,3,Setup took about fifteen minutes.,5
+213,55,1,4,Far too expensive for what you actually get.,8
+214,55,1,5,The battery easily lasts two full days on a single charge.,11
+215,20,1,0,Mixed feelings.,2
+216,20,1,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+217,20,1,2,Setup took about fifteen minutes.,5
+218,20,1,3,Very reasonably priced compared to the competition.,7
+219,22,1,0,Exactly what I wanted.,4
+220,22,1,1,It ships with a flagship chipset and 12GB of RAM.,10
+221,22,1,2,Screen quality is excellent with deep blacks.,7
+222,17,1,0,Would buy again.,3
+223,17,1,1,The price sits in the usual flagship bracket.,8
+224,17,1,2,It ships with a flagship chipset and 12GB of RAM.,10
+225,17,1,3,Screen quality is excellent with deep blacks.,7
+226,17,1,4,I switched from an older model after three years.,9
+227,53,1,0,Impressive hardware.,2
+228,53,1,1,Pictures look washed out and the zoom is blurry.,9
+229,53,1,2,"Fast charging is brilliant, it tops up in under an hour.",11
+230,53,1,3,It uses an AMOLED panel with a centred punch hole.,10
+231,53,1,4,Delivery arrived a day early and the packaging was neat.,10
+232,56,1,0,Would buy again.,3
+233,56,1,1,The panel is sharp and the touch response is instant.,10
+234,56,1,2,It ships with a flagship chipset and 12GB of RAM.,10
+235,56,1,3,"Fast charging is brilliant, it tops up in under an hour.",11
+236,56,1,4,Great value for money at this price point.,8
+237,15,1,0,Solid upgrade.,2
+238,15,1,1,An absolute bargain during the sale.,6
+239,15,1,2,The panel is sharp and the touch response is instant.,10
+240,15,1,3,I switched from an older model after three years.,9
+241,15,1,4,Battery backup is amazing even with heavy use.,8
+242,19,1,0,Would buy again.,3
+243,19,1,1,The processor handles heavy games without heating up.,8
+244,19,1,2,The camera captures stunning detail even in low light.,9
+245,19,1,3,The price sits in the usual flagship bracket.,8
+246,19,1,4,"Battery life is excellent, I end the day at 45 percent.",11
+247,42,1,0,Not for everyone.,3
+248,42,1,1,Overall I am happy with this purchase so far.,9
+249,42,1,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+250,42,1,3,An absolute bargain during the sale.,6
+251,34,1,0,Solid upgrade.,2
+252,34,1,1,Great value for money at this price point.,8
+253,34,1,2,Charging is painfully slow compared to my old phone.,9
+254,34,1,3,The camera captures stunning detail even in low light.,9
+255,26,1,0,Would buy again.,3
+256,26,1,1,"Fast charging is brilliant, it tops up in under an hour.",11
+257,26,1,2,Photos are crisp and the colours look natural.,8
+258,26,1,3,It feels incredibly fast and responsive.,6
+259,60,1,0,Decent but flawed.,3
+260,60,1,1,It has a large battery and charges over USB-C.,10
+261,60,1,2,"Performance is buttery smooth, no lag at all.",8
+262,60,1,3,Worth every penny considering the specifications.,6
+263,60,1,4,It uses an AMOLED panel with a centred punch hole.,10
+264,66,2,0,Mixed feelings.,2
+265,66,2,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+266,66,2,2,The processor handles heavy games without heating up.,8
+267,66,2,3,The price is hard to justify against cheaper rivals.,9
+268,66,2,4,The battery easily lasts two full days on a single charge.,11
+269,89,2,0,Solid upgrade.,2
+270,89,2,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+271,89,2,2,I switched from an older model after three years.,9
+272,89,2,3,"Battery is okay, nothing special either way.",7
+273,103,2,0,Solid upgrade.,2
+274,103,2,1,Charging is painfully slow compared to my old phone.,9
+275,103,2,2,The display is dim under sunlight and colours look dull.,10
+276,103,2,3,"Performance is buttery smooth, no lag at all.",8
+277,103,2,4,I switched from an older model after three years.,9
+278,103,2,5,Portrait mode produces gorgeous results.,5
+279,118,2,0,Not for everyone.,3
+280,118,2,1,I switched from an older model after three years.,9
+281,118,2,2,Multitasking is seamless with plenty of RAM.,7
+282,118,2,3,Screen quality is excellent with deep blacks.,7
+283,78,2,0,Not for everyone.,3
+284,78,2,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+285,78,2,2,The price is hard to justify against cheaper rivals.,9
+286,78,2,3,Setup took about fifteen minutes.,5
+287,105,2,0,Decent but flawed.,3
+288,105,2,1,An absolute bargain during the sale.,6
+289,105,2,2,"Performance is buttery smooth, no lag at all.",8
+290,105,2,3,Overall I am happy with this purchase so far.,9
+291,105,2,4,The battery barely lasts a working day.,7
+292,98,2,0,Decent but flawed.,3
+293,98,2,1,The processor handles heavy games without heating up.,8
+294,98,2,2,It has a large battery and charges over USB-C.,10
+295,98,2,3,Photos are crisp and the colours look natural.,8
+296,98,2,4,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+297,99,2,0,Decent but flawed.,3
+298,99,2,1,Touch response is unresponsive at the edges.,7
+299,99,2,2,An absolute bargain during the sale.,6
+300,99,2,3,Delivery arrived a day early and the packaging was neat.,10
+301,99,2,4,"Performance is buttery smooth, no lag at all.",8
+302,100,2,0,Would buy again.,3
+303,100,2,1,It uses an AMOLED panel with a centred punch hole.,10
+304,100,2,2,The processor handles heavy games without heating up.,8
+305,100,2,3,"Battery life is excellent, I end the day at 45 percent.",11
+306,100,2,4,Photos are crisp and the colours look natural.,8
+307,100,2,5,Overall I am happy with this purchase so far.,9
+308,62,2,0,Not for everyone.,3
+309,62,2,1,Portrait mode produces gorgeous results.,5
+310,62,2,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+311,119,2,0,Great phone with caveats.,4
+312,119,2,1,It has a large battery and charges over USB-C.,10
+313,119,2,2,The camera captures stunning detail even in low light.,9
+314,119,2,3,The price sits in the usual flagship bracket.,8
+315,119,2,4,"Performance is buttery smooth, no lag at all.",8
+316,119,2,5,I switched from an older model after three years.,9
+317,73,2,0,Not for everyone.,3
+318,73,2,1,The camera captures stunning detail even in low light.,9
+319,73,2,2,Screen quality is excellent with deep blacks.,7
+320,80,2,0,Exactly what I wanted.,4
+321,80,2,1,"The display is amazing, bright and vivid outdoors.",8
+322,80,2,2,Portrait mode produces gorgeous results.,5
+323,80,2,3,Great value for money at this price point.,8
+324,107,2,0,Not for everyone.,3
+325,107,2,1,Battery backup is amazing even with heavy use.,8
+326,107,2,2,The camera captures stunning detail even in low light.,9
+327,107,2,3,Overall I am happy with this purchase so far.,9
+328,85,2,0,Exactly what I wanted.,4
+329,85,2,1,"Battery life is excellent, I end the day at 45 percent.",11
+330,85,2,2,It ships with a flagship chipset and 12GB of RAM.,10
+331,88,2,0,Great phone with caveats.,4
+332,88,2,1,Overall I am happy with this purchase so far.,9
+333,88,2,2,Great value for money at this price point.,8
+334,88,2,3,The camera captures stunning detail even in low light.,9
+335,91,2,0,Great phone with caveats.,4
+336,91,2,1,It is overpriced and not worth the money.,8
+337,91,2,2,The battery easily lasts two full days on a single charge.,11
+338,91,2,3,Overall I am happy with this purchase so far.,9
+339,91,2,4,Video stabilisation is superb for handheld shots.,7
+340,79,2,0,Decent but flawed.,3
+341,79,2,1,Battery backup is amazing even with heavy use.,8
+342,79,2,2,Video stabilisation is superb for handheld shots.,7
+343,95,2,0,Solid upgrade.,2
+344,95,2,1,The panel is sharp and the touch response is instant.,10
+345,95,2,2,Great value for money at this price point.,8
+346,95,2,3,Overall I am happy with this purchase so far.,9
+347,96,2,0,Mixed feelings.,2
+348,96,2,1,Multitasking is seamless with plenty of RAM.,7
+349,96,2,2,"Fast charging is brilliant, it tops up in under an hour.",11
+350,96,2,3,The camera captures stunning detail even in low light.,9
+351,96,2,4,Worth every penny considering the specifications.,6
+352,87,2,0,Not for everyone.,3
+353,87,2,1,Photos are crisp and the colours look natural.,8
+354,87,2,2,The processor handles heavy games without heating up.,8
+355,87,2,3,It uses an AMOLED panel with a centred punch hole.,10
+356,106,2,0,Mixed feelings.,2
+357,106,2,1,Battery backup is amazing even with heavy use.,8
+358,106,2,2,Screen quality is excellent with deep blacks.,7
+359,86,2,0,Would buy again.,3
+360,86,2,1,"Battery is okay, nothing special either way.",7
+361,86,2,2,An absolute bargain during the sale.,6
+362,86,2,3,It ships with a flagship chipset and 12GB of RAM.,10
+363,63,2,0,Mixed feelings.,2
+364,63,2,1,Screen quality is excellent with deep blacks.,7
+365,63,2,2,"Fast charging is brilliant, it tops up in under an hour.",11
+366,63,2,3,An absolute bargain during the sale.,6
+367,83,2,0,Would buy again.,3
+368,83,2,1,The battery easily lasts two full days on a single charge.,11
+369,83,2,2,Portrait mode produces gorgeous results.,5
+370,102,2,0,Impressive hardware.,2
+371,102,2,1,Delivery arrived a day early and the packaging was neat.,10
+372,102,2,2,The price is hard to justify against cheaper rivals.,9
+373,102,2,3,"Fast charging is brilliant, it tops up in under an hour.",11
+374,102,2,4,The panel is sharp and the touch response is instant.,10
+375,72,2,0,Decent but flawed.,3
+376,72,2,1,Worth every penny considering the specifications.,6
+377,72,2,2,Setup took about fifteen minutes.,5
+378,72,2,3,It uses an AMOLED panel with a centred punch hole.,10
+379,72,2,4,"Performance is buttery smooth, no lag at all.",8
+380,61,2,0,Mixed feelings.,2
+381,61,2,1,Multitasking is seamless with plenty of RAM.,7
+382,61,2,2,The price sits in the usual flagship bracket.,8
+383,61,2,3,Photos are crisp and the colours look natural.,8
+384,61,2,4,"Fast charging is brilliant, it tops up in under an hour.",11
+385,81,2,0,Great phone with caveats.,4
+386,81,2,1,The display is dim under sunlight and colours look dull.,10
+387,81,2,2,The processor handles heavy games without heating up.,8
+388,81,2,3,An absolute bargain during the sale.,6
+389,71,2,0,Solid upgrade.,2
+390,71,2,1,It is overpriced and not worth the money.,8
+391,71,2,2,Screen quality is excellent with deep blacks.,7
+392,71,2,3,Battery backup is amazing even with heavy use.,8
+393,111,2,0,Not for everyone.,3
+394,111,2,1,Photos are crisp and the colours look natural.,8
+395,111,2,2,Screen has a noticeable green tint which is annoying.,9
+396,111,2,3,It has a large battery and charges over USB-C.,10
+397,112,2,0,Exactly what I wanted.,4
+398,112,2,1,The processor handles heavy games without heating up.,8
+399,112,2,2,Video stabilisation is superb for handheld shots.,7
+400,112,2,3,Far too expensive for what you actually get.,8
+401,112,2,4,Overall I am happy with this purchase so far.,9
+402,101,2,0,Solid upgrade.,2
+403,101,2,1,"Battery life is excellent, I end the day at 45 percent.",11
+404,101,2,2,The processor handles heavy games without heating up.,8
+405,101,2,3,Very reasonably priced compared to the competition.,7
+406,101,2,4,The camera captures stunning detail even in low light.,9
+407,110,2,0,Decent but flawed.,3
+408,110,2,1,Photos are crisp and the colours look natural.,8
+409,110,2,2,Battery backup is amazing even with heavy use.,8
+410,110,2,3,Screen quality is excellent with deep blacks.,7
+411,110,2,4,It is overpriced and not worth the money.,8
+412,64,2,0,Solid upgrade.,2
+413,64,2,1,Screen has a noticeable green tint which is annoying.,9
+414,64,2,2,Worth every penny considering the specifications.,6
+415,104,2,0,Impressive hardware.,2
+416,104,2,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+417,104,2,2,It is overpriced and not worth the money.,8
+418,104,2,3,The battery barely lasts a working day.,7
+419,104,2,4,Video stabilisation is superb for handheld shots.,7
+420,117,2,0,Solid upgrade.,2
+421,117,2,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+422,117,2,2,"Fast charging is brilliant, it tops up in under an hour.",11
+423,68,2,0,Exactly what I wanted.,4
+424,68,2,1,The price is hard to justify against cheaper rivals.,9
+425,68,2,2,The panel is sharp and the touch response is instant.,10
+426,68,2,3,"Performance is buttery smooth, no lag at all.",8
+427,70,2,0,Decent but flawed.,3
+428,70,2,1,It ships with a flagship chipset and 12GB of RAM.,10
+429,70,2,2,Battery backup is amazing even with heavy use.,8
+430,70,2,3,An absolute bargain during the sale.,6
+431,70,2,4,It has a triple camera setup on the back.,9
+432,109,2,0,Decent but flawed.,3
+433,109,2,1,I switched from an older model after three years.,9
+434,109,2,2,Photos are crisp and the colours look natural.,8
+435,109,2,3,"Battery is okay, nothing special either way.",7
+436,109,2,4,An absolute bargain during the sale.,6
+437,109,2,5,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+438,92,2,0,Not for everyone.,3
+439,92,2,1,"The display is amazing, bright and vivid outdoors.",8
+440,92,2,2,Setup took about fifteen minutes.,5
+441,92,2,3,"Performance is buttery smooth, no lag at all.",8
+442,115,2,0,Great phone with caveats.,4
+443,115,2,1,Screen has a noticeable green tint which is annoying.,9
+444,115,2,2,Far too expensive for what you actually get.,8
+445,115,2,3,The camera captures stunning detail even in low light.,9
+446,115,2,4,It ships with a flagship chipset and 12GB of RAM.,10
+447,115,2,5,Setup took about fifteen minutes.,5
+448,114,2,0,Solid upgrade.,2
+449,114,2,1,"The display is amazing, bright and vivid outdoors.",8
+450,114,2,2,The battery drains far too quickly during video calls.,9
+451,114,2,3,Photos are crisp and the colours look natural.,8
+452,116,2,0,Mixed feelings.,2
+453,116,2,1,The processor handles heavy games without heating up.,8
+454,116,2,2,Video stabilisation is superb for handheld shots.,7
+455,116,2,3,The price is hard to justify against cheaper rivals.,9
+456,116,2,4,Setup took about fifteen minutes.,5
+457,116,2,5,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+458,84,2,0,Great phone with caveats.,4
+459,84,2,1,Great value for money at this price point.,8
+460,84,2,2,"The display is amazing, bright and vivid outdoors.",8
+461,113,2,0,Great phone with caveats.,4
+462,113,2,1,Photos are crisp and the colours look natural.,8
+463,113,2,2,The processor handles heavy games without heating up.,8
+464,113,2,3,The battery easily lasts two full days on a single charge.,11
+465,113,2,4,Screen quality is excellent with deep blacks.,7
+466,67,2,0,Mixed feelings.,2
+467,67,2,1,Apps crash frequently which is frustrating.,6
+468,67,2,2,Great value for money at this price point.,8
+469,77,2,0,Decent but flawed.,3
+470,77,2,1,I switched from an older model after three years.,9
+471,77,2,2,"The display is amazing, bright and vivid outdoors.",8
+472,77,2,3,Video stabilisation is superb for handheld shots.,7
+473,77,2,4,Far too expensive for what you actually get.,8
+474,77,2,5,"Battery life is excellent, I end the day at 45 percent.",11
+475,74,2,0,Exactly what I wanted.,4
+476,74,2,1,It feels incredibly fast and responsive.,6
+477,74,2,2,The price sits in the usual flagship bracket.,8
+478,74,2,3,Portrait mode produces gorgeous results.,5
+479,108,2,0,Solid upgrade.,2
+480,108,2,1,"Fast charging is brilliant, it tops up in under an hour.",11
+481,108,2,2,The price sits in the usual flagship bracket.,8
+482,69,2,0,Mixed feelings.,2
+483,69,2,1,"Battery is okay, nothing special either way.",7
+484,69,2,2,Very reasonably priced compared to the competition.,7
+485,69,2,3,Photos are crisp and the colours look natural.,8
+486,76,2,0,Not for everyone.,3
+487,76,2,1,The panel is sharp and the touch response is instant.,10
+488,76,2,2,It is overpriced and not worth the money.,8
+489,76,2,3,I switched from an older model after three years.,9
+490,76,2,4,Portrait mode produces gorgeous results.,5
+491,82,2,0,Impressive hardware.,2
+492,82,2,1,"The display is amazing, bright and vivid outdoors.",8
+493,82,2,2,Battery backup is amazing even with heavy use.,8
+494,82,2,3,Photos are crisp and the colours look natural.,8
+495,82,2,4,Worth every penny considering the specifications.,6
+496,93,2,0,Decent but flawed.,3
+497,93,2,1,Multitasking is seamless with plenty of RAM.,7
+498,93,2,2,Setup took about fifteen minutes.,5
+499,93,2,3,Portrait mode produces gorgeous results.,5
+500,93,2,4,"Battery is okay, nothing special either way.",7
+501,97,2,0,Decent but flawed.,3
+502,97,2,1,The battery easily lasts two full days on a single charge.,11
+503,97,2,2,An absolute bargain during the sale.,6
+504,94,2,0,Impressive hardware.,2
+505,94,2,1,Overall I am happy with this purchase so far.,9
+506,94,2,2,"The display is amazing, bright and vivid outdoors.",8
+507,94,2,3,Very reasonably priced compared to the competition.,7
+508,94,2,4,Portrait mode produces gorgeous results.,5
+509,94,2,5,Battery backup is amazing even with heavy use.,8
+510,75,2,0,Decent but flawed.,3
+511,75,2,1,It feels incredibly fast and responsive.,6
+512,75,2,2,Battery backup is amazing even with heavy use.,8
+513,90,2,0,Solid upgrade.,2
+514,90,2,1,Overall I am happy with this purchase so far.,9
+515,90,2,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+516,90,2,3,Video stabilisation is superb for handheld shots.,7
+517,90,2,4,Very reasonably priced compared to the competition.,7
+518,90,2,5,Battery backup is amazing even with heavy use.,8
+519,65,2,0,Great phone with caveats.,4
+520,65,2,1,The processor handles heavy games without heating up.,8
+521,65,2,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+522,65,2,3,It has a large battery and charges over USB-C.,10
+523,65,2,4,Worth every penny considering the specifications.,6
+524,120,2,0,Not for everyone.,3
+525,120,2,1,The camera captures stunning detail even in low light.,9
+526,120,2,2,It is overpriced and not worth the money.,8
+527,120,2,3,The panel is sharp and the touch response is instant.,10
+528,120,2,4,Battery backup is amazing even with heavy use.,8
+529,141,3,0,Decent but flawed.,3
+530,141,3,1,The panel is sharp and the touch response is instant.,10
+531,141,3,2,Battery backup is amazing even with heavy use.,8
+532,164,3,0,Decent but flawed.,3
+533,164,3,1,"The display is amazing, bright and vivid outdoors.",8
+534,164,3,2,The battery easily lasts two full days on a single charge.,11
+535,127,3,0,Exactly what I wanted.,4
+536,127,3,1,The panel is sharp and the touch response is instant.,10
+537,127,3,2,It has a large battery and charges over USB-C.,10
+538,127,3,3,Worth every penny considering the specifications.,6
+539,127,3,4,Delivery arrived a day early and the packaging was neat.,10
+540,171,3,0,Not for everyone.,3
+541,171,3,1,It uses an AMOLED panel with a centred punch hole.,10
+542,171,3,2,Portrait mode produces gorgeous results.,5
+543,171,3,3,I switched from an older model after three years.,9
+544,171,3,4,Worth every penny considering the specifications.,6
+545,167,3,0,Great phone with caveats.,4
+546,167,3,1,"The display is amazing, bright and vivid outdoors.",8
+547,167,3,2,The processor handles heavy games without heating up.,8
+548,167,3,3,I switched from an older model after three years.,9
+549,170,3,0,Solid upgrade.,2
+550,170,3,1,An absolute bargain during the sale.,6
+551,170,3,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+552,170,3,3,"Fast charging is brilliant, it tops up in under an hour.",11
+553,170,3,4,The camera captures stunning detail even in low light.,9
+554,151,3,0,Exactly what I wanted.,4
+555,151,3,1,Worth every penny considering the specifications.,6
+556,151,3,2,Battery backup is amazing even with heavy use.,8
+557,151,3,3,Screen quality is excellent with deep blacks.,7
+558,163,3,0,Would buy again.,3
+559,163,3,1,"Battery life is excellent, I end the day at 45 percent.",11
+560,163,3,2,"The display is amazing, bright and vivid outdoors.",8
+561,163,3,3,Video stabilisation is superb for handheld shots.,7
+562,130,3,0,Decent but flawed.,3
+563,130,3,1,It ships with a flagship chipset and 12GB of RAM.,10
+564,130,3,2,Battery backup is amazing even with heavy use.,8
+565,130,3,3,Photos are crisp and the colours look natural.,8
+566,130,3,4,An absolute bargain during the sale.,6
+567,152,3,0,Great phone with caveats.,4
+568,152,3,1,Battery backup is amazing even with heavy use.,8
+569,152,3,2,The camera captures stunning detail even in low light.,9
+570,152,3,3,I switched from an older model after three years.,9
+571,152,3,4,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+572,180,3,0,Decent but flawed.,3
+573,180,3,1,Portrait mode produces gorgeous results.,5
+574,180,3,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+575,180,3,3,The battery easily lasts two full days on a single charge.,11
+576,145,3,0,Great phone with caveats.,4
+577,145,3,1,Apps crash frequently which is frustrating.,6
+578,145,3,2,Great value for money at this price point.,8
+579,145,3,3,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+580,149,3,0,Mixed feelings.,2
+581,149,3,1,Video stabilisation is superb for handheld shots.,7
+582,149,3,2,"Performance is buttery smooth, no lag at all.",8
+583,149,3,3,An absolute bargain during the sale.,6
+584,149,3,4,"Fast charging is brilliant, it tops up in under an hour.",11
+585,178,3,0,Decent but flawed.,3
+586,178,3,1,Portrait mode produces gorgeous results.,5
+587,178,3,2,It ships with a flagship chipset and 12GB of RAM.,10
+588,146,3,0,Not for everyone.,3
+589,146,3,1,It ships with a flagship chipset and 12GB of RAM.,10
+590,146,3,2,Very reasonably priced compared to the competition.,7
+591,134,3,0,Great phone with caveats.,4
+592,134,3,1,Worth every penny considering the specifications.,6
+593,134,3,2,"Performance is buttery smooth, no lag at all.",8
+594,134,3,3,The camera captures stunning detail even in low light.,9
+595,134,3,4,Delivery arrived a day early and the packaging was neat.,10
+596,134,3,5,The panel is sharp and the touch response is instant.,10
+597,157,3,0,Mixed feelings.,2
+598,157,3,1,Charging is painfully slow compared to my old phone.,9
+599,157,3,2,The camera captures stunning detail even in low light.,9
+600,157,3,3,An absolute bargain during the sale.,6
+601,158,3,0,Great phone with caveats.,4
+602,158,3,1,"Battery life is excellent, I end the day at 45 percent.",11
+603,158,3,2,The panel is sharp and the touch response is instant.,10
+604,158,3,3,Great value for money at this price point.,8
+605,158,3,4,Delivery arrived a day early and the packaging was neat.,10
+606,123,3,0,Mixed feelings.,2
+607,123,3,1,"Fast charging is brilliant, it tops up in under an hour.",11
+608,123,3,2,Photos are crisp and the colours look natural.,8
+609,132,3,0,Solid upgrade.,2
+610,132,3,1,Great value for money at this price point.,8
+611,132,3,2,Battery backup is amazing even with heavy use.,8
+612,132,3,3,Setup took about fifteen minutes.,5
+613,139,3,0,Decent but flawed.,3
+614,139,3,1,Overall I am happy with this purchase so far.,9
+615,139,3,2,An absolute bargain during the sale.,6
+616,139,3,3,Battery backup is amazing even with heavy use.,8
+617,155,3,0,Mixed feelings.,2
+618,155,3,1,"Fast charging is brilliant, it tops up in under an hour.",11
+619,155,3,2,Night shots are disappointing and full of noise.,8
+620,155,3,3,Multitasking is seamless with plenty of RAM.,7
+621,155,3,4,Touch response is unresponsive at the edges.,7
+622,179,3,0,Exactly what I wanted.,4
+623,179,3,1,Great value for money at this price point.,8
+624,179,3,2,Delivery arrived a day early and the packaging was neat.,10
+625,179,3,3,It feels incredibly fast and responsive.,6
+626,179,3,4,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+627,179,3,5,Night shots are disappointing and full of noise.,8
+628,133,3,0,Would buy again.,3
+629,133,3,1,It lags badly when switching between apps.,7
+630,133,3,2,Portrait mode produces gorgeous results.,5
+631,133,3,3,It uses an AMOLED panel with a centred punch hole.,10
+632,133,3,4,Great value for money at this price point.,8
+633,142,3,0,Decent but flawed.,3
+634,142,3,1,It feels incredibly fast and responsive.,6
+635,142,3,2,Charging is painfully slow compared to my old phone.,9
+636,142,3,3,An absolute bargain during the sale.,6
+637,137,3,0,Great phone with caveats.,4
+638,137,3,1,Very reasonably priced compared to the competition.,7
+639,137,3,2,The camera app has the usual modes.,7
+640,137,3,3,Multitasking is seamless with plenty of RAM.,7
+641,169,3,0,Solid upgrade.,2
+642,169,3,1,It feels incredibly fast and responsive.,6
+643,169,3,2,The display is dim under sunlight and colours look dull.,10
+644,169,3,3,Video stabilisation is superb for handheld shots.,7
+645,169,3,4,The battery easily lasts two full days on a single charge.,11
+646,169,3,5,Delivery arrived a day early and the packaging was neat.,10
+647,125,3,0,Impressive hardware.,2
+648,125,3,1,Multitasking is seamless with plenty of RAM.,7
+649,125,3,2,Worth every penny considering the specifications.,6
+650,125,3,3,"Battery life is poor, it dies by early evening.",9
+651,125,3,4,Screen quality is excellent with deep blacks.,7
+652,125,3,5,I switched from an older model after three years.,9
+653,144,3,0,Mixed feelings.,2
+654,144,3,1,An absolute bargain during the sale.,6
+655,144,3,2,Battery backup is amazing even with heavy use.,8
+656,144,3,3,It feels incredibly fast and responsive.,6
+657,144,3,4,Video stabilisation is superb for handheld shots.,7
+658,135,3,0,Solid upgrade.,2
+659,135,3,1,Portrait mode produces gorgeous results.,5
+660,135,3,2,"Performance is buttery smooth, no lag at all.",8
+661,174,3,0,Impressive hardware.,2
+662,174,3,1,The camera performs poorly in low light and photos come out grainy.,12
+663,174,3,2,"Performance is buttery smooth, no lag at all.",8
+664,174,3,3,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+665,174,3,4,"Fast charging is brilliant, it tops up in under an hour.",11
+666,122,3,0,Exactly what I wanted.,4
+667,122,3,1,"Battery life is excellent, I end the day at 45 percent.",11
+668,122,3,2,Very reasonably priced compared to the competition.,7
+669,122,3,3,Portrait mode produces gorgeous results.,5
+670,138,3,0,Mixed feelings.,2
+671,138,3,1,Portrait mode produces gorgeous results.,5
+672,138,3,2,The processor handles heavy games without heating up.,8
+673,168,3,0,Impressive hardware.,2
+674,168,3,1,Multitasking is seamless with plenty of RAM.,7
+675,168,3,2,It has a triple camera setup on the back.,9
+676,140,3,0,Not for everyone.,3
+677,140,3,1,Portrait mode produces gorgeous results.,5
+678,140,3,2,Very reasonably priced compared to the competition.,7
+679,140,3,3,The panel is sharp and the touch response is instant.,10
+680,140,3,4,"Battery life is excellent, I end the day at 45 percent.",11
+681,153,3,0,Mixed feelings.,2
+682,153,3,1,The camera app has the usual modes.,7
+683,153,3,2,"Performance is buttery smooth, no lag at all.",8
+684,153,3,3,It uses an AMOLED panel with a centred punch hole.,10
+685,166,3,0,Mixed feelings.,2
+686,166,3,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+687,166,3,2,"Battery life is poor, it dies by early evening.",9
+688,166,3,3,It feels incredibly fast and responsive.,6
+689,136,3,0,Decent but flawed.,3
+690,136,3,1,It ships with a flagship chipset and 12GB of RAM.,10
+691,136,3,2,Delivery arrived a day early and the packaging was neat.,10
+692,136,3,3,Worth every penny considering the specifications.,6
+693,136,3,4,The panel is sharp and the touch response is instant.,10
+694,136,3,5,Video stabilisation is superb for handheld shots.,7
+695,159,3,0,Would buy again.,3
+696,159,3,1,"Battery is okay, nothing special either way.",7
+697,159,3,2,I switched from an older model after three years.,9
+698,159,3,3,Multitasking is seamless with plenty of RAM.,7
+699,128,3,0,Exactly what I wanted.,4
+700,128,3,1,The display is dim under sunlight and colours look dull.,10
+701,128,3,2,Worth every penny considering the specifications.,6
+702,128,3,3,The battery drains far too quickly during video calls.,9
+703,129,3,0,Not for everyone.,3
+704,129,3,1,"Fast charging is brilliant, it tops up in under an hour.",11
+705,129,3,2,Very reasonably priced compared to the competition.,7
+706,129,3,3,The panel is sharp and the touch response is instant.,10
+707,148,3,0,Impressive hardware.,2
+708,148,3,1,Battery backup is amazing even with heavy use.,8
+709,148,3,2,Setup took about fifteen minutes.,5
+710,148,3,3,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+711,148,3,4,It feels incredibly fast and responsive.,6
+712,175,3,0,Impressive hardware.,2
+713,175,3,1,Setup took about fifteen minutes.,5
+714,175,3,2,Far too expensive for what you actually get.,8
+715,175,3,3,The battery easily lasts two full days on a single charge.,11
+716,147,3,0,Great phone with caveats.,4
+717,147,3,1,Great value for money at this price point.,8
+718,147,3,2,Video stabilisation is superb for handheld shots.,7
+719,150,3,0,Great phone with caveats.,4
+720,150,3,1,"Battery life is excellent, I end the day at 45 percent.",11
+721,150,3,2,The processor handles heavy games without heating up.,8
+722,150,3,3,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+723,150,3,4,Photos are crisp and the colours look natural.,8
+724,161,3,0,Great phone with caveats.,4
+725,161,3,1,"The display is amazing, bright and vivid outdoors.",8
+726,161,3,2,"Fast charging is brilliant, it tops up in under an hour.",11
+727,121,3,0,Would buy again.,3
+728,121,3,1,Portrait mode produces gorgeous results.,5
+729,121,3,2,Great value for money at this price point.,8
+730,121,3,3,The battery easily lasts two full days on a single charge.,11
+731,121,3,4,The display is dim under sunlight and colours look dull.,10
+732,126,3,0,Impressive hardware.,2
+733,126,3,1,Battery backup is amazing even with heavy use.,8
+734,126,3,2,Setup took about fifteen minutes.,5
+735,126,3,3,Portrait mode produces gorgeous results.,5
+736,126,3,4,Worth every penny considering the specifications.,6
+737,143,3,0,Mixed feelings.,2
+738,143,3,1,Pictures look washed out and the zoom is blurry.,9
+739,143,3,2,"Performance is buttery smooth, no lag at all.",8
+740,143,3,3,It is overpriced and not worth the money.,8
+741,143,3,4,"Battery life is poor, it dies by early evening.",9
+742,160,3,0,Solid upgrade.,2
+743,160,3,1,The camera captures stunning detail even in low light.,9
+744,160,3,2,Worth every penny considering the specifications.,6
+745,162,3,0,Mixed feelings.,2
+746,162,3,1,Photos are crisp and the colours look natural.,8
+747,162,3,2,The processor handles heavy games without heating up.,8
+748,162,3,3,Touch response is unresponsive at the edges.,7
+749,172,3,0,Impressive hardware.,2
+750,172,3,1,Screen quality is excellent with deep blacks.,7
+751,172,3,2,"Performance is buttery smooth, no lag at all.",8
+752,156,3,0,Mixed feelings.,2
+753,156,3,1,Pictures look washed out and the zoom is blurry.,9
+754,156,3,2,Very reasonably priced compared to the competition.,7
+755,156,3,3,It ships with a flagship chipset and 12GB of RAM.,10
+756,156,3,4,Screen quality is excellent with deep blacks.,7
+757,165,3,0,Impressive hardware.,2
+758,165,3,1,Setup took about fifteen minutes.,5
+759,165,3,2,The camera performs poorly in low light and photos come out grainy.,12
+760,165,3,3,The battery easily lasts two full days on a single charge.,11
+761,165,3,4,Worth every penny considering the specifications.,6
+762,173,3,0,Decent but flawed.,3
+763,173,3,1,Setup took about fifteen minutes.,5
+764,173,3,2,"Battery life is poor, it dies by early evening.",9
+765,173,3,3,"The display is amazing, bright and vivid outdoors.",8
+766,177,3,0,Impressive hardware.,2
+767,177,3,1,I switched from an older model after three years.,9
+768,177,3,2,Pictures look washed out and the zoom is blurry.,9
+769,177,3,3,"Performance is buttery smooth, no lag at all.",8
+770,177,3,4,"Battery life is excellent, I end the day at 45 percent.",11
+771,124,3,0,Exactly what I wanted.,4
+772,124,3,1,Setup took about fifteen minutes.,5
+773,124,3,2,The camera captures stunning detail even in low light.,9
+774,124,3,3,"The display is amazing, bright and vivid outdoors.",8
+775,154,3,0,Great phone with caveats.,4
+776,154,3,1,It ships with a flagship chipset and 12GB of RAM.,10
+777,154,3,2,Great value for money at this price point.,8
+778,154,3,3,Setup took about fifteen minutes.,5
+779,154,3,4,It has a triple camera setup on the back.,9
+780,176,3,0,Exactly what I wanted.,4
+781,176,3,1,"Fast charging is brilliant, it tops up in under an hour.",11
+782,176,3,2,I switched from an older model after three years.,9
+783,176,3,3,The price sits in the usual flagship bracket.,8
+784,131,3,0,Mixed feelings.,2
+785,131,3,1,The panel is sharp and the touch response is instant.,10
+786,131,3,2,The camera captures stunning detail even in low light.,9
+787,236,4,0,Great phone with caveats.,4
+788,236,4,1,It feels incredibly fast and responsive.,6
+789,236,4,2,"The display is amazing, bright and vivid outdoors.",8
+790,236,4,3,Overall I am happy with this purchase so far.,9
+791,239,4,0,Not for everyone.,3
+792,239,4,1,Portrait mode produces gorgeous results.,5
+793,239,4,2,Multitasking is seamless with plenty of RAM.,7
+794,239,4,3,Very reasonably priced compared to the competition.,7
+795,239,4,4,Screen has a noticeable green tint which is annoying.,9
+796,209,4,0,Great phone with caveats.,4
+797,209,4,1,"Battery life is poor, it dies by early evening.",9
+798,209,4,2,It feels incredibly fast and responsive.,6
+799,209,4,3,Photos are crisp and the colours look natural.,8
+800,209,4,4,Delivery arrived a day early and the packaging was neat.,10
+801,182,4,0,Decent but flawed.,3
+802,182,4,1,Far too expensive for what you actually get.,8
+803,182,4,2,Video stabilisation is superb for handheld shots.,7
+804,182,4,3,Performance is sluggish and the UI stutters.,7
+805,188,4,0,Impressive hardware.,2
+806,188,4,1,Delivery arrived a day early and the packaging was neat.,10
+807,188,4,2,The camera captures stunning detail even in low light.,9
+808,188,4,3,Very reasonably priced compared to the competition.,7
+809,240,4,0,Would buy again.,3
+810,240,4,1,The camera captures stunning detail even in low light.,9
+811,240,4,2,It ships with a flagship chipset and 12GB of RAM.,10
+812,240,4,3,The price is hard to justify against cheaper rivals.,9
+813,240,4,4,I switched from an older model after three years.,9
+814,201,4,0,Exactly what I wanted.,4
+815,201,4,1,The price sits in the usual flagship bracket.,8
+816,201,4,2,"Fast charging is brilliant, it tops up in under an hour.",11
+817,201,4,3,Screen quality is excellent with deep blacks.,7
+818,201,4,4,Portrait mode produces gorgeous results.,5
+819,205,4,0,Mixed feelings.,2
+820,205,4,1,Performance is sluggish and the UI stutters.,7
+821,205,4,2,Very reasonably priced compared to the competition.,7
+822,205,4,3,The battery easily lasts two full days on a single charge.,11
+823,218,4,0,Not for everyone.,3
+824,218,4,1,The battery drains far too quickly during video calls.,9
+825,218,4,2,Photos are crisp and the colours look natural.,8
+826,219,4,0,Not for everyone.,3
+827,219,4,1,Battery backup is amazing even with heavy use.,8
+828,219,4,2,Setup took about fifteen minutes.,5
+829,219,4,3,Worth every penny considering the specifications.,6
+830,221,4,0,Mixed feelings.,2
+831,221,4,1,"Battery is okay, nothing special either way.",7
+832,221,4,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+833,221,4,3,Very reasonably priced compared to the competition.,7
+834,221,4,4,Performance is sluggish and the UI stutters.,7
+835,212,4,0,Not for everyone.,3
+836,212,4,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+837,212,4,2,Overall I am happy with this purchase so far.,9
+838,212,4,3,It ships with a flagship chipset and 12GB of RAM.,10
+839,222,4,0,Mixed feelings.,2
+840,222,4,1,"The display is amazing, bright and vivid outdoors.",8
+841,222,4,2,It is overpriced and not worth the money.,8
+842,222,4,3,"Battery life is excellent, I end the day at 45 percent.",11
+843,222,4,4,It ships with a flagship chipset and 12GB of RAM.,10
+844,230,4,0,Solid upgrade.,2
+845,230,4,1,It feels incredibly fast and responsive.,6
+846,230,4,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+847,230,4,3,Charging is painfully slow compared to my old phone.,9
+848,230,4,4,Video stabilisation is superb for handheld shots.,7
+849,230,4,5,Setup took about fifteen minutes.,5
+850,233,4,0,Exactly what I wanted.,4
+851,233,4,1,"Performance is buttery smooth, no lag at all.",8
+852,233,4,2,Screen quality is excellent with deep blacks.,7
+853,184,4,0,Decent but flawed.,3
+854,184,4,1,Photos are crisp and the colours look natural.,8
+855,184,4,2,The price sits in the usual flagship bracket.,8
+856,184,4,3,Performance is sluggish and the UI stutters.,7
+857,184,4,4,"Battery is okay, nothing special either way.",7
+858,210,4,0,Solid upgrade.,2
+859,210,4,1,"The display is amazing, bright and vivid outdoors.",8
+860,210,4,2,Multitasking is seamless with plenty of RAM.,7
+861,210,4,3,The battery drains far too quickly during video calls.,9
+862,210,4,4,The camera captures stunning detail even in low light.,9
+863,225,4,0,Not for everyone.,3
+864,225,4,1,It ships with a flagship chipset and 12GB of RAM.,10
+865,225,4,2,The display is dim under sunlight and colours look dull.,10
+866,225,4,3,"Battery life is poor, it dies by early evening.",9
+867,225,4,4,Video stabilisation is superb for handheld shots.,7
+868,187,4,0,Not for everyone.,3
+869,187,4,1,It ships with a flagship chipset and 12GB of RAM.,10
+870,187,4,2,The panel is sharp and the touch response is instant.,10
+871,192,4,0,Exactly what I wanted.,4
+872,192,4,1,The battery drains far too quickly during video calls.,9
+873,192,4,2,Setup took about fifteen minutes.,5
+874,192,4,3,Great value for money at this price point.,8
+875,207,4,0,Solid upgrade.,2
+876,207,4,1,Portrait mode produces gorgeous results.,5
+877,207,4,2,The price sits in the usual flagship bracket.,8
+878,207,4,3,Battery backup is amazing even with heavy use.,8
+879,207,4,4,The panel is sharp and the touch response is instant.,10
+880,235,4,0,Would buy again.,3
+881,235,4,1,"Performance is buttery smooth, no lag at all.",8
+882,235,4,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+883,235,4,3,Portrait mode produces gorgeous results.,5
+884,195,4,0,Mixed feelings.,2
+885,195,4,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+886,195,4,2,The camera captures stunning detail even in low light.,9
+887,223,4,0,Impressive hardware.,2
+888,223,4,1,The panel is sharp and the touch response is instant.,10
+889,223,4,2,The battery barely lasts a working day.,7
+890,223,4,3,The phone overheats during gaming and throttles hard.,8
+891,223,4,4,Photos are crisp and the colours look natural.,8
+892,224,4,0,Would buy again.,3
+893,224,4,1,Screen quality is excellent with deep blacks.,7
+894,224,4,2,The battery barely lasts a working day.,7
+895,224,4,3,Photos are crisp and the colours look natural.,8
+896,229,4,0,Decent but flawed.,3
+897,229,4,1,It ships with a flagship chipset and 12GB of RAM.,10
+898,229,4,2,Very reasonably priced compared to the competition.,7
+899,229,4,3,"Fast charging is brilliant, it tops up in under an hour.",11
+900,234,4,0,Mixed feelings.,2
+901,234,4,1,"The display is amazing, bright and vivid outdoors.",8
+902,234,4,2,It has a large battery and charges over USB-C.,10
+903,234,4,3,The camera captures stunning detail even in low light.,9
+904,213,4,0,Would buy again.,3
+905,213,4,1,"Performance is buttery smooth, no lag at all.",8
+906,213,4,2,The price is hard to justify against cheaper rivals.,9
+907,213,4,3,The battery easily lasts two full days on a single charge.,11
+908,213,4,4,The camera captures stunning detail even in low light.,9
+909,194,4,0,Impressive hardware.,2
+910,194,4,1,Touch response is unresponsive at the edges.,7
+911,194,4,2,Video stabilisation is superb for handheld shots.,7
+912,194,4,3,Delivery arrived a day early and the packaging was neat.,10
+913,202,4,0,Would buy again.,3
+914,202,4,1,Setup took about fifteen minutes.,5
+915,202,4,2,Video stabilisation is superb for handheld shots.,7
+916,202,4,3,"Fast charging is brilliant, it tops up in under an hour.",11
+917,227,4,0,Decent but flawed.,3
+918,227,4,1,"Fast charging is brilliant, it tops up in under an hour.",11
+919,227,4,2,It ships with a flagship chipset and 12GB of RAM.,10
+920,181,4,0,Exactly what I wanted.,4
+921,181,4,1,"Battery life is excellent, I end the day at 45 percent.",11
+922,181,4,2,Overall I am happy with this purchase so far.,9
+923,181,4,3,Multitasking is seamless with plenty of RAM.,7
+924,189,4,0,Would buy again.,3
+925,189,4,1,Worth every penny considering the specifications.,6
+926,189,4,2,Portrait mode produces gorgeous results.,5
+927,189,4,3,"Performance is buttery smooth, no lag at all.",8
+928,189,4,4,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+929,217,4,0,Mixed feelings.,2
+930,217,4,1,The camera captures stunning detail even in low light.,9
+931,217,4,2,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+932,217,4,3,Charging is painfully slow compared to my old phone.,9
+933,237,4,0,Decent but flawed.,3
+934,237,4,1,It lags badly when switching between apps.,7
+935,237,4,2,Setup took about fifteen minutes.,5
+936,237,4,3,The price is hard to justify against cheaper rivals.,9
+937,237,4,4,The battery easily lasts two full days on a single charge.,11
+938,237,4,5,The camera captures stunning detail even in low light.,9
+939,186,4,0,Decent but flawed.,3
+940,186,4,1,An absolute bargain during the sale.,6
+941,186,4,2,The battery easily lasts two full days on a single charge.,11
+942,186,4,3,Multitasking is seamless with plenty of RAM.,7
+943,186,4,4,"The display is amazing, bright and vivid outdoors.",8
+944,190,4,0,Not for everyone.,3
+945,190,4,1,"Performance is buttery smooth, no lag at all.",8
+946,190,4,2,Screen quality is excellent with deep blacks.,7
+947,197,4,0,Impressive hardware.,2
+948,197,4,1,The battery drains far too quickly during video calls.,9
+949,197,4,2,The phone overheats during gaming and throttles hard.,8
+950,197,4,3,Portrait mode produces gorgeous results.,5
+951,198,4,0,Not for everyone.,3
+952,198,4,1,The battery drains far too quickly during video calls.,9
+953,198,4,2,Delivery arrived a day early and the packaging was neat.,10
+954,198,4,3,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+955,198,4,4,An absolute bargain during the sale.,6
+956,198,4,5,The camera captures stunning detail even in low light.,9
+957,231,4,0,Not for everyone.,3
+958,231,4,1,The display is dim under sunlight and colours look dull.,10
+959,231,4,2,Multitasking is seamless with plenty of RAM.,7
+960,231,4,3,"Fast charging is brilliant, it tops up in under an hour.",11
+961,183,4,0,Exactly what I wanted.,4
+962,183,4,1,The battery easily lasts two full days on a single charge.,11
+963,183,4,2,Delivery arrived a day early and the packaging was neat.,10
+964,183,4,3,Worth every penny considering the specifications.,6
+965,214,4,0,Solid upgrade.,2
+966,214,4,1,The camera app has the usual modes.,7
+967,214,4,2,Very reasonably priced compared to the competition.,7
+968,215,4,0,Impressive hardware.,2
+969,215,4,1,"Fast charging is brilliant, it tops up in under an hour.",11
+970,215,4,2,It feels incredibly fast and responsive.,6
+971,215,4,3,Portrait mode produces gorgeous results.,5
+972,215,4,4,An absolute bargain during the sale.,6
+973,238,4,0,Decent but flawed.,3
+974,238,4,1,Portrait mode produces gorgeous results.,5
+975,238,4,2,Very reasonably priced compared to the competition.,7
+976,193,4,0,Great phone with caveats.,4
+977,193,4,1,The battery barely lasts a working day.,7
+978,193,4,2,Portrait mode produces gorgeous results.,5
+979,193,4,3,Touch response is unresponsive at the edges.,7
+980,193,4,4,I switched from an older model after three years.,9
+981,193,4,5,The processor handles heavy games without heating up.,8
+982,228,4,0,Impressive hardware.,2
+983,228,4,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+984,228,4,2,Delivery arrived a day early and the packaging was neat.,10
+985,228,4,3,The price sits in the usual flagship bracket.,8
+986,228,4,4,"Battery life is excellent, I end the day at 45 percent.",11
+987,228,4,5,It lags badly when switching between apps.,7
+988,216,4,0,Great phone with caveats.,4
+989,216,4,1,It feels incredibly fast and responsive.,6
+990,216,4,2,Overall I am happy with this purchase so far.,9
+991,216,4,3,The price sits in the usual flagship bracket.,8
+992,211,4,0,Great phone with caveats.,4
+993,211,4,1,Colours are punchy and the 120Hz refresh rate feels smooth.,10
+994,211,4,2,The camera captures stunning detail even in low light.,9
+995,211,4,3,The battery easily lasts two full days on a single charge.,11
+996,226,4,0,Solid upgrade.,2
+997,226,4,1,Overall I am happy with this purchase so far.,9
+998,226,4,2,It feels incredibly fast and responsive.,6
+999,226,4,3,The battery easily lasts two full days on a single charge.,11
+1000,226,4,4,Photos are crisp and the colours look natural.,8
+1001,226,4,5,Touch response is unresponsive at the edges.,7
+1002,199,4,0,Great phone with caveats.,4
+1003,199,4,1,The battery drains far too quickly during video calls.,9
+1004,199,4,2,It feels incredibly fast and responsive.,6
+1005,199,4,3,Photos are crisp and the colours look natural.,8
+1006,199,4,4,It is overpriced and not worth the money.,8
+1007,204,4,0,Great phone with caveats.,4
+1008,204,4,1,The panel is sharp and the touch response is instant.,10
+1009,204,4,2,Charging is painfully slow compared to my old phone.,9
+1010,204,4,3,The processor handles heavy games without heating up.,8
+1011,204,4,4,I switched from an older model after three years.,9
+1012,204,4,5,It has a triple camera setup on the back.,9
+1013,232,4,0,Impressive hardware.,2
+1014,232,4,1,The camera captures stunning detail even in low light.,9
+1015,232,4,2,Worth every penny considering the specifications.,6
+1016,232,4,3,Apps crash frequently which is frustrating.,6
+1017,232,4,4,"Battery life is poor, it dies by early evening.",9
+1018,220,4,0,Not for everyone.,3
+1019,220,4,1,"Performance is buttery smooth, no lag at all.",8
+1020,220,4,2,It uses an AMOLED panel with a centred punch hole.,10
+1021,185,4,0,Impressive hardware.,2
+1022,185,4,1,Worth every penny considering the specifications.,6
+1023,185,4,2,Video stabilisation is superb for handheld shots.,7
+1024,185,4,3,Delivery arrived a day early and the packaging was neat.,10
+1025,191,4,0,Impressive hardware.,2
+1026,191,4,1,It feels incredibly fast and responsive.,6
+1027,191,4,2,Very reasonably priced compared to the competition.,7
+1028,191,4,3,Setup took about fifteen minutes.,5
+1029,203,4,0,Impressive hardware.,2
+1030,203,4,1,The camera captures stunning detail even in low light.,9
+1031,203,4,2,Apps crash frequently which is frustrating.,6
+1032,203,4,3,It has a large battery and charges over USB-C.,10
+1033,203,4,4,The price sits in the usual flagship bracket.,8
+1034,208,4,0,Would buy again.,3
+1035,208,4,1,Setup took about fifteen minutes.,5
+1036,208,4,2,Photos are crisp and the colours look natural.,8
+1037,208,4,3,Very reasonably priced compared to the competition.,7
+1038,196,4,0,Not for everyone.,3
+1039,196,4,1,The battery easily lasts two full days on a single charge.,11
+1040,196,4,2,An absolute bargain during the sale.,6
+1041,196,4,3,Portrait mode produces gorgeous results.,5
+1042,196,4,4,Screen quality is excellent with deep blacks.,7
+1043,200,4,0,Impressive hardware.,2
+1044,200,4,1,Far too expensive for what you actually get.,8
+1045,200,4,2,The phone overheats during gaming and throttles hard.,8
+1046,206,4,0,Great phone with caveats.,4
+1047,206,4,1,Worth every penny considering the specifications.,6
+1048,206,4,2,Delivery arrived a day early and the packaging was neat.,10
+1049,206,4,3,Photos are crisp and the colours look natural.,8
+1050,206,4,4,The panel is sharp and the touch response is instant.,10

@@ -1,0 +1,130 @@
+{
+  "dataset": "McAuley-Lab/Amazon-Reviews-2023",
+  "meta_source": "hf://datasets/McAuley-Lab/Amazon-Reviews-2023/raw_meta_Cell_Phones_and_Accessories/full-*.parquet",
+  "review_source": "hf://datasets/McAuley-Lab/Amazon-Reviews-2023/raw/review_categories/Cell_Phones_and_Accessories.jsonl",
+  "built_at": "2026-08-23T11:33:08.635120+00:00",
+  "methodology": {
+    "step_1": "preprocess (dedupe, spam/empty, HTML, normalise, language)",
+    "step_2_to_6": "run locally via: python run.py import-corpus \u2026 --analyze",
+    "aspects": [
+      "battery",
+      "camera",
+      "display",
+      "performance",
+      "price"
+    ]
+  },
+  "filters": {
+    "max_phones": 20,
+    "max_reviews_per_phone": 60,
+    "min_rating_count": 500,
+    "max_review_scan": 1200000,
+    "brand_filter": [
+      "apple",
+      "google",
+      "samsung",
+      "xiaomi"
+    ],
+    "language_filter": "en",
+    "min_chars": 15
+  },
+  "counts": {
+    "meta_scanned": 42938,
+    "reviews_scanned": 1200000,
+    "phones_written": 17,
+    "reviews_written": 311,
+    "reviews_usable": 301,
+    "exclusion_breakdown": {
+      "too_short": 3,
+      "language_filtered": 6,
+      "all_caps": 1
+    }
+  },
+  "phones": [
+    {
+      "asin": "B09PPWVQSB",
+      "name": "Samsung Galaxy S20 FE",
+      "usable_reviews": 57
+    },
+    {
+      "asin": "B09JJCXC2M",
+      "name": "Samsung Galaxy S10e",
+      "usable_reviews": 59
+    },
+    {
+      "asin": "B0B8PDLMMS",
+      "name": "Samsung S21 Ultra",
+      "usable_reviews": 36
+    },
+    {
+      "asin": "B08PP9FM9N",
+      "name": "Apple iPhone 12 Mini 5G",
+      "usable_reviews": 33
+    },
+    {
+      "asin": "B09HFW8GRB",
+      "name": "Samsung S20 5G",
+      "usable_reviews": 47
+    },
+    {
+      "asin": "B08PNTRC2Y",
+      "name": "Apple IPhone 12 Pro Max",
+      "usable_reviews": 10
+    },
+    {
+      "asin": "B08FRT6G9W",
+      "name": "Samsung Galaxy S20+ Plus 5G",
+      "usable_reviews": 23
+    },
+    {
+      "asin": "B09LP9P1FM",
+      "name": "Apple iPhone 13",
+      "usable_reviews": 5
+    },
+    {
+      "asin": "B09YMQRNS3",
+      "name": "Samsung A11",
+      "usable_reviews": 8
+    },
+    {
+      "asin": "B084MD6Y5H",
+      "name": "Samsung N770FDS",
+      "usable_reviews": 9
+    },
+    {
+      "asin": "B08T1WZFN7",
+      "name": "Samsung A12",
+      "usable_reviews": 3
+    },
+    {
+      "asin": "B09LPBQBPT",
+      "name": "Apple 13 Pro",
+      "usable_reviews": 4
+    },
+    {
+      "asin": "B09Q9896N9",
+      "name": "Xiaomi Mi 11T 5g",
+      "usable_reviews": 2
+    },
+    {
+      "asin": "B09VB2342C",
+      "name": "Xiaomi Poco X4 pro 5G",
+      "usable_reviews": 1
+    },
+    {
+      "asin": "B0BGYC7HYQ",
+      "name": "Apple IPhone 13 Pro",
+      "usable_reviews": 1
+    },
+    {
+      "asin": "B08JKZFFK1",
+      "name": "Samsung SM-F707 Z Flip 5G",
+      "usable_reviews": 2
+    },
+    {
+      "asin": "B0BZZWDX5V",
+      "name": "Samsung A51",
+      "usable_reviews": 1
+    }
+  ]
+}

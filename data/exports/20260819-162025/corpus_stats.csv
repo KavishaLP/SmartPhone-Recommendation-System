@@ -1,0 +1,2 @@
+﻿phones,reviews_total,reviews_usable,reviews_excluded,exclusion_breakdown,sentences,aspect_sentiments,sentiment_distribution,aspect_distribution,mean_sentences_per_review,mean_aspects_per_sentence,pipeline_version,absa_engine
+4,240,240,0,{},1050,802,"{'negative': 110, 'neutral': 152, 'positive': 540}","{'battery': 150, 'camera': 152, 'display': 173, 'performance': 205, 'price': 122}",4.38,0.76,1.0.0,lexicon
