@@ -1393,11 +1393,11 @@ async function loadPhoneSelectors() {
   } catch { /* optional */ }
 }
 
-const currentView = () => (location.hash || '#recommend').slice(1).split('?')[0];
+const currentView = () => (location.hash || '#phones').slice(1).split('?')[0];
 function go(view) { location.hash = view; }
 
 async function renderView(view) {
-  if (!VIEW_META[view]) view = 'recommend';
+  if (!VIEW_META[view]) view = 'phones';
   $$('.view').forEach((node) => node.classList.toggle('active', node.id === `view-${view}`));
   $$('.nav-item').forEach((node) => node.classList.toggle('active', node.dataset.view === view));
   const [title, subtitle] = VIEW_META[view];

@@ -269,7 +269,20 @@ a:hover { text-decoration: underline; }
   backdrop-filter: blur(8px);
 }
 .card.pad-lg { padding: 22px; }
-.panel-sticky { position: sticky; top: 88px; }
+.panel-sticky {
+  position: sticky;
+  top: 88px;
+  max-height: calc(100vh - 104px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+.panel-sticky #btn-recommend {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  box-shadow: 0 -10px 16px color-mix(in srgb, var(--surface) 88%, transparent);
+}
 .toolbar-card { padding: 14px 16px; }
 .card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .card-head h3 {

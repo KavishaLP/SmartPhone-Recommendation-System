@@ -30,22 +30,22 @@
     </div>
     <nav class="nav">
       <div class="nav-label">Navigate</div>
-      <div class="nav-item active" data-view="recommend">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18.5 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-        <span>Recommend</span>
-      </div>
-      <div class="nav-item" data-view="phones">
+      <div class="nav-item active" data-view="phones">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
         <span>Phones</span>
         <span class="nav-badge" id="badge-phones">-</span>
       </div>
-      <div class="nav-item" data-view="evidence">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span>Evidence</span>
+      <div class="nav-item" data-view="recommend">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18.5 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+        <span>Recommend</span>
       </div>
       <div class="nav-item" data-view="evaluation">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>
         <span>Evaluation</span>
+      </div>
+      <div class="nav-item" data-view="evidence">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span>Evidence</span>
       </div>
     </nav>
     <div class="sidebar-foot">
@@ -57,8 +57,8 @@
     <header class="topbar">
       <button class="btn btn-ghost menu-toggle" id="menu-toggle" style="place-items:center">☰</button>
       <div>
-        <h1 id="page-title">Recommend</h1>
-        <div class="topbar-sub" id="page-sub">Set aspect priorities; ranks phones from Amazon review ABSA scores</div>
+        <h1 id="page-title">Phones</h1>
+        <div class="topbar-sub" id="page-sub">Browse smartphones with aspect scores from Amazon reviews</div>
       </div>
       <div class="topbar-actions">
         <button class="btn btn-icon theme-toggle" id="btn-theme" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
@@ -71,7 +71,7 @@
 
     <div class="content">
       <!-- Recommend -->
-      <section class="view active" id="view-recommend">
+      <section class="view" id="view-recommend">
         <div class="flow-steps" id="flow-steps" aria-label="Recommendation flow">
           <div class="flow-step active" data-step="1"><span class="flow-num">1</span><span class="flow-label">Set priorities</span></div>
           <div class="flow-step" data-step="2"><span class="flow-num">2</span><span class="flow-label">See ranked phones</span></div>
@@ -125,7 +125,7 @@
       </section>
 
       <!-- Phones -->
-      <section class="view" id="view-phones">
+      <section class="view active" id="view-phones">
         <div class="card toolbar-card">
           <div class="row wrap">
             <input type="text" id="phone-search" placeholder="Search by name or brand…" style="max-width:320px">
